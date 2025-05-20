@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/20 14:25:31 by atomasi          ###   ########.fr       */
+/*   Created: 2024/10/07 11:38:34 by atomasi           #+#    #+#             */
+/*   Updated: 2024/10/08 10:07:06 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
+void	ft_lstadd_back(t_list **lst, t_list *neww)
+{
+	t_list	*temp;
 
-# include <stdio.h>
-
-
-#endif
+	if (*lst == NULL)
+	{
+		*lst = neww;
+		return ;
+	}
+	if (neww == NULL)
+		return ;
+	temp = *lst;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = neww;
+}

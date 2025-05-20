@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/20 14:25:31 by atomasi          ###   ########.fr       */
+/*   Created: 2024/10/02 14:34:35 by atomasi           #+#    #+#             */
+/*   Updated: 2024/10/09 14:24:42 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t				i;
+	const unsigned char	*temp;
+	unsigned char		cu;
 
-# include <stdio.h>
-
-
-#endif
+	i = 0;
+	temp = (const unsigned char *)s;
+	cu = (unsigned char)c;
+	while (i < n)
+	{
+		if (temp[i] == cu)
+		{
+			return ((void *)&temp[i]);
+		}
+		i++;
+	}
+	return (0);
+}

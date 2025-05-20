@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/20 14:25:31 by atomasi          ###   ########.fr       */
+/*   Created: 2024/10/07 11:15:41 by atomasi           #+#    #+#             */
+/*   Updated: 2024/10/08 10:09:38 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*temp;
 
-# include <stdio.h>
-
-
-#endif
+	temp = lst;
+	if (lst == NULL)
+		return (NULL);
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	return (temp);
+}

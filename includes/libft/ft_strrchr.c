@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/20 14:25:31 by atomasi          ###   ########.fr       */
+/*   Created: 2024/10/02 13:59:05 by atomasi           #+#    #+#             */
+/*   Updated: 2024/10/09 14:26:02 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+char	*ft_strrchr(const char *s, int c)
+{
+	int				i;
+	unsigned char	cu;
 
-# define CUB3D_H
-
-# include <stdio.h>
-
-
-#endif
+	i = 0;
+	cu = (unsigned char)c;
+	while (s[i])
+	{
+		i++;
+	}
+	while (i >= 0)
+	{
+		if (s[i] == cu)
+			return ((char *)&s[i]);
+		i--;
+	}
+	return (0);
+}

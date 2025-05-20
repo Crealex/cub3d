@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/20 14:25:31 by atomasi          ###   ########.fr       */
+/*   Created: 2024/10/01 14:07:10 by atomasi           #+#    #+#             */
+/*   Updated: 2024/10/09 14:25:04 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
+#include "libft.h"
 
-# define CUB3D_H
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned int	i;
+	unsigned char	*temp;
 
-# include <stdio.h>
-
-
-#endif
+	i = 0;
+	temp = s;
+	while (i < n)
+	{
+		temp[i] = c;
+		i++;
+	}
+	return (temp);
+}

@@ -1,7 +1,8 @@
 NAME = cub3d
+LIBFT = includes/libft/libft.a
 SRCS = $(addprefix srcs/, main.c)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
-CFLAGS = -Werror -Wextra -Wall -g
+CFLAGS = -Werror -Wextra -Wall -g -Iincludes
 CC = gcc
 OBJDIR = objets
 
@@ -22,9 +23,14 @@ CURRENT_FILE = 0
 
 all:	${NAME} display_ascii
 
-${NAME}:	${OBJS}
+${NAME}:	${OBJS}  ${LIBFT}
 	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	@echo "${BOLD}${GREEN}📦 Link complete: ${NAME}${END}"
+
+${LIBFT}:
+	@echo "${BOLD}${BLUE}🔨 Building LIBFT...${END}"
+	@${MAKE} -C ./includes/libft/ bonus
+	@echo "${BOLD}${GREEN}✓ LIBFT ready${END}"
 
 ${OBJDIR}/%.o: %.c | ${OBJDIR}
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE)+1))))
