@@ -1,6 +1,9 @@
 NAME = cub3d
 LIBFT = includes/libft/libft.a
-SRCS = $(addprefix srcs/, main.c)
+PARSE = parsing/
+SRCS = $(addprefix srcs/,	main.c \
+							$(PARSE)parsing.c \
+							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Werror -Wextra -Wall -g -Iincludes
 CC = gcc
@@ -34,13 +37,12 @@ ${LIBFT}:
 
 ${OBJDIR}/%.o: %.c | ${OBJDIR}
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE)+1))))
+	@mkdir -p $(dir $@)
 	@printf "${BOLD}${L_PURPLE}⚡ [%2d/%2d] Compiling: %-20s ${END}" $(CURRENT_FILE) $(TOTAL_FILES) "$<"
 	@${CC} ${CFLAGS} -c -o $@ $<
 	@echo "${BOLD}${GREEN}✓${END}"
 
 ${OBJDIR}:
-	@mkdir -p ${OBJDIR}
-	@mkdir -p ${OBJDIR}/srcs
 	@echo "${BOLD}${BLUE}📁 Created objects directory${END}"
 
 clean:
