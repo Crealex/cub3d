@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/21 14:25:40 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:09:40 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int main()
 
 	data = data_init();
 	set_hooks(data);
-	mlx_put_image_to_window(data->mlx, data->window, data->player->img,\
-			data->player->posx, data->player->posy);
+	refresh_window(data);
+	mlx_loop_hook(data->mlx, loop, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
