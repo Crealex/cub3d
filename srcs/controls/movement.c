@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/21 14:25:40 by psoulie          ###   ########.fr       */
+/*   Created: 2025/05/21 14:19:25 by psoulie           #+#    #+#             */
+/*   Updated: 2025/05/21 14:25:30 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int main()
+void	player_move_forwards(t_data *data)
 {
-	t_data	*data;
+	t_square	*player;
 
-	data = data_init();
-	set_hooks(data);
-	mlx_put_image_to_window(data->mlx, data->window, data->player->img,\
-			data->player->posx, data->player->posy);
-	mlx_loop(data->mlx);
-	return (0);
+
 }
