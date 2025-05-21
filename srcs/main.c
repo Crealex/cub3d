@@ -7,7 +7,5 @@ int main(int argc, char **argv)
 
 	salut = parsing(argc, argv);
 	(void)salut;
-	printf("test\n");
-	printf("test\n");
 	return (0);
 }

@@ -27,7 +27,7 @@ CURRENT_FILE = 0
 all:	${NAME} display_ascii
 
 ${NAME}:	${OBJS}  ${LIBFT}
-	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME}
 	@echo "${BOLD}${GREEN}📦 Link complete: ${NAME}${END}"
 
 ${LIBFT}:
