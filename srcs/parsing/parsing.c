@@ -14,6 +14,11 @@
 
 int check_map(char *path)
 {
+	// check si les 4 paths de texture sont valide
+	// check si les couleurs pour le sol et le plafond sont valides
+	// check si le map est bien fermée
+	// check si le joueur est bien mis
+	// check si le chemin de la map est valide
 	return (0);
 }
 
