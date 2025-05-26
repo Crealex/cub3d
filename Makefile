@@ -19,12 +19,11 @@ RED		:= \033[0;31m
 MAGENTA := \033[0;35m
 CYAN 	:= \033[0;36m
 
-
 # Counter or compiled
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE = 0
 
-all:	${NAME} #display_ascii
+all:	${NAME} display_ascii
 
 ${NAME}:	${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} includes/minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm -o ${NAME}
@@ -61,7 +60,7 @@ display_ascii:
 		cat ascii_art.txt; \
 	fi
 	@echo "$(END)"
-	@echo "${BOLD}${L_PURPLE} ✨Cub3d✨ ${GREEN}is ready 🎉 ${END}"
+	@echo "${BOLD}${L_PURPLE} ✨cub3d✨ ${GREEN}is ready 🎉 ${END}"
 	@echo "${BOLD}${BLUE}➜ Use ./${NAME} to run the program${END}"
 
 party:

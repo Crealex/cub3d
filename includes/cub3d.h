@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/26 12:29:44 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/26 14:26:19 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@
 # define A 97
 # define S 115
 # define D 100
+# define RIGHT 65363
+# define LEFT 65361
+
 
 // macros
-# define MOVE_SPD 3
-# define TURN_SPD 1
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
+# define MOVE_SPD 3
+# define TURN_SPD 0.04
 
 typedef struct	s_square
 {
@@ -49,6 +52,8 @@ typedef struct	s_square
 	int		a;
 	int		s;
 	int		d;
+	int		left;
+	int		right;
 	void	*img;
 	int		bpp;
 	int		line_size;
@@ -77,6 +82,10 @@ void	player_move_right(t_data *data);
 void	player_move_left(t_data *data);
 void	player_move_backwards(t_data *data);
 int		loop(t_data *data);
+
+// rotation
+void	player_rotate_left(t_data *data);
+void	player_rotate_right(t_data *data);
 
 // window init
 t_data	*data_init();

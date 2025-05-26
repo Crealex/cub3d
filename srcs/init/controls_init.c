@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:05:43 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/21 20:05:59 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/26 14:03:22 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	on_keyrelease(int keycode, t_data *data)
 {
+	if (keycode == RIGHT)
+		data->player->right = 0;
+	if (keycode == LEFT)
+		data->player->left = 0;
 	if (keycode == W)
 		data->player->w = 0;
 	if (keycode == A)
@@ -29,6 +33,10 @@ int	on_keypress(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		exit(0);
+	if (keycode == RIGHT)
+		data->player->right = 1;
+	if (keycode == LEFT)
+		data->player->left = 1;
 	if (keycode == W)
 		data->player->w = 1;
 	if (keycode == A)

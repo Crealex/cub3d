@@ -14,6 +14,10 @@
 
 int	loop(t_data *data)
 {
+	if (data->player->left)
+		player_rotate_left(data);
+	if (data->player->right)
+		player_rotate_right(data);
 	if (data->player->w)
 		player_move_forwards(data);
 	if (data->player->a)
