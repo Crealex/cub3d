@@ -1,8 +1,12 @@
 NAME = cub3d
 LIBFT = includes/libft/libft.a
 PARSE = parsing/
+UTILS = utils/
 SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)parsing.c \
+							$(PARSE)check_file.c \
+							$(PARSE)init_struct.c \
+							$(UTILS)free.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Werror -Wextra -Wall -g -Iincludes
@@ -66,5 +70,5 @@ display_ascii:
 		cat ascii_art.txt; \
 	fi
 	@echo "$(END)"
-	@echo "${BOLD}${L_PURPLE} ✨CPP-Module04-ex01✨ ${GREEN}is ready 🎉 ${END}"
+	@echo "${BOLD}${L_PURPLE} ✨cub3d✨ ${GREEN}is ready 🎉 ${END}"
 	@echo "${BOLD}${BLUE}➜ Use ./${NAME} to run the program${END}"

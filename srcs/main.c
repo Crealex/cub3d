@@ -6,6 +6,8 @@ int main(int argc, char **argv)
 	t_map *salut;
 
 	salut = parsing(argc, argv);
+	if (!salut)
+		return (1);
 	(void)salut;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/21 15:33:41 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/26 13:48:22 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,21 @@ typedef struct s_elem
 	int c;
 }			t_elem;
 
+// *** UTILS ***
+
+void	free_double_tab(char **tab);
+
+// *** PARSING ***
 t_map	*parsing(int argc, char **argv);
 void	init_elem(t_elem *elem);
 void	cpy_elem(t_elem src, t_elem *dst);
+int	check_file(char *path);
+int	check_elem(char **file);
+int	count_line(int fd);
+t_elem check_texture_path(char *file, t_elem base);
+
+// *** TESTING FCT ***
+void print_file(char **file);
+
 
 #endif

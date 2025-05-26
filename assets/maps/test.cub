@@ -1,0 +1,9 @@
+                  NO ./assets/textures/no.xpm
+EA ./assets/textures/ea.xpm
+SO ./assets/textures/so.xpm
+WE ./assets/textures/we.xpm
+
+F 200,100,0
+C 200,100,0
+
+
