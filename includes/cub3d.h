@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/21 19:54:36 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/26 12:29:44 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,45 @@
 # define CUB3D_H
 
 # include <stdio.h>
+# include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "minilibx-linux/mlx.h"
 # include <X11/ap_keysym.h>
 
+// keycodes
 # define ESC 65307
 # define W 119
 # define A 97
 # define S 115
 # define D 100
 
+// macros
+# define MOVE_SPD 3
+# define TURN_SPD 1
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+
 typedef struct	s_square
 {
 	int		side;
+	int		half;
 	int		colour;
-	int		angle;
-	int		posx;
-	int		posy;
+	double	angle;
+	double	cos_a;
+	double	sin_a;
+	double	posx;
+	double	posy;
 	int		w;
 	int		a;
 	int		s;
 	int		d;
 	void	*img;
+	int		bpp;
+	int		line_size;
+	int		endian;
+	char	*addr;
 }				t_player;
 
 typedef struct	s_data
@@ -50,6 +66,11 @@ typedef struct	s_data
 	t_player	*player;
 }				t_data;
 
+typedef struct s_figure
+{
+}				t_fig;
+
+
 // movement
 void	player_move_forwards(t_data *data);
 void	player_move_right(t_data *data);
@@ -60,6 +81,7 @@ int		loop(t_data *data);
 // window init
 t_data	*data_init();
 void	refresh_window(t_data *data);
+void	compute_square(t_player *square);
 
 // controls init
 void	set_hooks(t_data *data);

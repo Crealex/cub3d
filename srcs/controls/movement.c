@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 14:19:25 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/21 20:28:45 by psoulie          ###   ########.fr       */
+/*   Created: 202MOVE_SPD/0MOVE_SPD/21 14:19:2MOVE_SPD by psoulie           #+#    #+#             */
+/*   Updated: 202MOVE_SPD/0MOVE_SPD/21 20:28:4MOVE_SPD by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	player_move_forwards(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	player->posy -= 5;
+	player->posx += MOVE_SPD * player->cos_a;
+	player->posy += MOVE_SPD * player->sin_a;
 	refresh_window(data);
 }
 
@@ -39,7 +40,8 @@ void	player_move_left(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	player->posx -= 5;
+	player->posx += MOVE_SPD * player->sin_a;
+	player->posy -= MOVE_SPD * player->cos_a;
 	refresh_window(data);
 }
 
@@ -48,7 +50,8 @@ void	player_move_backwards(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	player->posy += 5;
+	player->posx -= MOVE_SPD * player->cos_a;
+	player->posy -= MOVE_SPD * player->sin_a;
 	refresh_window(data);
 }
 
@@ -57,6 +60,7 @@ void	player_move_right(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	player->posx += 5;
+	player->posx -= MOVE_SPD * player->sin_a;
+	player->posy += MOVE_SPD * player->cos_a;
 	refresh_window(data);
 }

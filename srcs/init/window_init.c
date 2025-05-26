@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/21 20:28:59 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/26 12:29:04 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,20 @@ static void	dup_square(t_data *data)
 	}
 }
 
+void	fill_square(t_player *square, int rx, int ry)
+{
+	int	offset;
+
+	offset = (rx * (square->bpp / 8)) + (ry * square->line_size);
+	*(unsigned int *)(square->addr + offset) = square->colour;
+}
+
 void	refresh_window(t_data *data)
 {
 	t_player	*player;
 
 	player = data->player;
+	compute_square(player);
 	mlx_put_image_to_window(data->mlx, data->window, data->background, \
 			0, 0);
 	mlx_put_image_to_window(data->mlx, data->window, player->img,\
@@ -63,29 +72,30 @@ void	refresh_window(t_data *data)
 	if (player->posx < 0 || player->posx + player->side > data->winsize_x
 			||player->posy < 0 || player->posy + player->side > data->winsize_y)
 			dup_square(data);
-	usleep(200);
 }
 
-static void	fill_square(t_player *square)
+void	compute_square(t_player *square)
 {
-	int		i;
-	int		j;
-	int		bpp;
-	int		line_size;
-	int		endian;
-	char	*addr;
+	int		x;
+	int		y;
+	int		rx;
+	int		ry;
 
-	addr = mlx_get_data_addr(square->img, &bpp, &line_size, &endian);
-	i = 0;
-	while (i < square->side)
+	square->addr = mlx_get_data_addr(square->img, &square->bpp, \
+			&square->line_size, &square->endian);
+	y = -square->half;
+	while (y < square->half)
 	{
-		j = 0;
-		while (j < square->side)
+		x = -square->half;
+		while (x < square->half)
 		{
-			*(unsigned int *)(addr + i * line_size + j * (bpp / 8)) = square->colour;
-			j++;
+			rx = (int)(square->cos_a * x - square->sin_a * y);
+			ry = (int)(square->sin_a * x + square->cos_a * y);
+			if (rx >= 0 && rx < square->side && ry >= 0 && ry < square->side)
+				fill_square(square, rx, ry);
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
@@ -94,9 +104,12 @@ static t_player	*square_init(t_data *data)
 	t_player	*square;
 
 	square = malloc(sizeof(t_player));
-	square->angle = 0;
+	square->angle = 3 * M_PI / 2;
+	square->cos_a = cos(square->angle);
+	square->sin_a = sin(square->angle);
 	square->colour =  0xFF0000;
 	square->side = 300;
+	square->half = square->side / 2;
 	square->a = 0;
 	square->w = 0;
 	square->s = 0;
@@ -104,7 +117,7 @@ static t_player	*square_init(t_data *data)
 	square->img = mlx_new_image(data->mlx, square->side, square->side);
 	square->posx = 600;
 	square->posy = 500;
-	fill_square(square);
+	compute_square(square);
 	return (square);
 }
 

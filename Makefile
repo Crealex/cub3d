@@ -24,7 +24,7 @@ CYAN 	:= \033[0;36m
 TOTAL_FILES := $(words $(SRCS))
 CURRENT_FILE = 0
 
-all:	${NAME} display_ascii
+all:	${NAME} #display_ascii
 
 ${NAME}:	${OBJS}
 	@${CC} ${CFLAGS} ${OBJS} includes/minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm -o ${NAME}
@@ -61,7 +61,7 @@ display_ascii:
 		cat ascii_art.txt; \
 	fi
 	@echo "$(END)"
-	@echo "${BOLD}${L_PURPLE} ✨CPP-Module04-ex01✨ ${GREEN}is ready 🎉 ${END}"
+	@echo "${BOLD}${L_PURPLE} ✨Cub3d✨ ${GREEN}is ready 🎉 ${END}"
 	@echo "${BOLD}${BLUE}➜ Use ./${NAME} to run the program${END}"
 
 party:
