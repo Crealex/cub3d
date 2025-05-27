@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/26 14:59:59 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/27 16:27:53 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,38 @@ static void	dup_square(t_data *data)
 {
 	t_player	*square;
 
-	square = data->square;
-	if (player->posx < player->half)
+	square = data->player;
+	if (square->posx - square->half < square->half)
 	{
-		if (player->posx + player->side < 0)
-			player->posx += data->winsize_x;
+		if (square->posx + square->half < 0)
+			square->posx += data->winsize_x;
 		else
-			mlx_put_image_to_window(data->mlx, data->window, player->img, \
-				player->posx + data->winsize_x, player->posy);
+			mlx_put_image_to_window(data->mlx, data->window, square->img, \
+				square->posx + data->winsize_x - square->half, square->posy - square->half);
 	}
-	if (player->posx + player->side > data->winsize_x)
+	if (square->posx + square->half > data->winsize_x)
 	{
-		if (player->posx > data->winsize_x)
-			player->posx -= data->winsize_x;
+		if (square->posx - square->half > data->winsize_x)
+			square->posx -= data->winsize_x;
 		else
-			mlx_put_image_to_window(data->mlx, data->window, player->img, \
-				player->posx - data->winsize_x, player->posy);
+			mlx_put_image_to_window(data->mlx, data->window, square->img, \
+				square->posx - data->winsize_x - square->half, square->posy - square->half);
 	}
-	if (player->posy < 0)
+	if (square->posy - square->half < 0)
 	{
-		if (player->posy + player->side < 0)
-			player->posy += data->winsize_y;
+		if (square->posy + square->half < 0)
+			square->posy += data->winsize_y;
 		else
-			mlx_put_image_to_window(data->mlx, data->window, player->img, \
-				player->posx, player->posy + data->winsize_y);
+			mlx_put_image_to_window(data->mlx, data->window, square->img, \
+				square->posx - square->half, square->posy + data->winsize_y - square->half);
 	}
-	if (player->posy + player->side > data->winsize_y)
+	if (square->posy + square->half > data->winsize_y)
 	{
-		if (player->posy > data->winsize_y)
-			player->posy -= data->winsize_y;
+		if (square->posy - square->half > data->winsize_y)
+			square->posy -= data->winsize_y;
 		else
-			mlx_put_image_to_window(data->mlx, data->window, player->img, \
-				player->posx, player->posy - data->winsize_y);
+			mlx_put_image_to_window(data->mlx, data->window, square->img, \
+				square->posx - square->half, square->posy - data->winsize_y - square->half);
 	}
 }
 
@@ -61,23 +61,25 @@ void	refresh_window(t_data *data)
 		0, 0);
 	mlx_put_image_to_window(data->mlx, data->window, player->img,\
 		player->posx - player->half, player->posy - player->half);
-	if (player->posx < 0 || player->posx + player->side > data->winsize_x
-		|| player->posy < 0 || player->posy + player->side > data->winsize_y)
-		dup_square(data);
+	dup_square(data);
 }
 
 void	clear_square(t_player *square)
 {
 	int	i;
 	int	j;
+	int	half_tile;
 
-	i = -square->half;
-	while (i < square->half)
+	half_tile = square->tile / 2;
+	i = - half_tile;
+	while (i <=  half_tile)
 	{
-		j = -square->half;
-		while (j < square->half)
+		j = - half_tile;
+		while (j <=  half_tile)
 		{
-			*(unsigned int *)(square->addr) = 0x000000;
+			*(unsigned int *)(square->addr + ((j +  half_tile) * \
+				(square->bpp / 8)) + ((i +  half_tile) * \
+				square->line_size)) = 0x000000;
 			j++;
 		}
 		i++;
@@ -108,9 +110,9 @@ void	compute_square(t_player *square)
 		x = -square->half;
 		while (x < square->half)
 		{
-			rx = (int)(square->cos_a * x - square->sin_a * y);
-			ry = (int)(square->sin_a * x + square->cos_a * y);
-			if (rx >= 0 && rx < square->side && ry >= 0 && ry < square->side)
+			rx = (int)(square->cos_a * x - square->sin_a * y) + square->tile / 2;
+			ry = (int)(square->sin_a * x + square->cos_a * y) + square->tile / 2;
+			if (rx >= 0 && rx < square->tile && ry >= 0 && ry < square->tile)
 				fill_square(square, rx, ry);
 			x++; 
 		}
@@ -127,7 +129,8 @@ static t_player	*square_init(t_data *data)
 	square->cos_a = cos(square->angle);
 	square->sin_a = sin(square->angle);
 	square->colour = 0xFF0000;
-	square->side = 500;
+	square->tile = 500;
+	square->side = (int)(square->tile / sqrt(2));
 	square->half = square->side / 2;
 	square->a = 0;
 	square->w = 0;
@@ -135,9 +138,9 @@ static t_player	*square_init(t_data *data)
 	square->d = 0;
 	square->left = 0;
 	square->right = 0;
-	square->img = mlx_new_image(data->mlx, square->side, square->side);
-	square->posx = 0;
-	square->posy = 0;
+	square->img = mlx_new_image(data->mlx, square->tile, square->tile);
+	square->posx = 500;
+	square->posy = 500;
 	compute_square(square);
 	return (square);
 }

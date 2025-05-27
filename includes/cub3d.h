@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/26 14:26:19 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/05/27 15:28:19 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-# define MOVE_SPD 3
-# define TURN_SPD 0.04
+# define MOVE_SPD 8
+# define TURN_SPD 0.06
 
 typedef struct	s_square
 {
+	int		tile;
 	int		side;
 	int		half;
 	int		colour;
