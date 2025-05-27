@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:42:17 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/26 11:50:02 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/27 11:37:28 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	check_rgb(char *line)
 			return (0);
 		count++;
 		i++;
-		printf("in while of check_rgb\n");
 	}
 	if (count != 3)
 		return (0);
@@ -74,6 +73,7 @@ int check_nb_elem(t_elem elem, int mode)
 				return (1);
 		return (0);
 	}
+	printf("elem.c :%d\nelem.ea: %d\nelem.f: %d\nelem.no: %d\nelem.so: %d\nelem.we: %d\n", elem.c, elem.ea, elem.f, elem.no, elem.so, elem.we);
 	if (elem.c == 1 && elem.ea == 1 && elem.f == 1 && elem.no == 1
 			&& elem.so == 1 && elem.we == 1)
 		return (1);
@@ -83,35 +83,26 @@ int check_nb_elem(t_elem elem, int mode)
 int	check_elem(char **file)
 {
 	int i;
-	//int j;
 	t_elem elem;
 
 	i = 0;
-	//j = 0;
 	init_elem(&elem);
 	while (file[i])
 	{
-		printf("start while\n");
 		if (!ft_strncmp(file[i], "NO ", 3) || !ft_strncmp(file[i], "SO ", 3)
 			|| !ft_strncmp(file[i], "WE ", 3) || !ft_strncmp(file[i], "EA ", 3))
 			elem = check_texture_path(file[i], elem);
 		else if (!ft_strncmp(file[i], "C ", 2) || !ft_strncmp(file[i], "F ", 2))
 			elem = check_colours_format(file[i], elem);
-		else if (file[i][0] == ' ' || file[i][0] == '\n')
-		{
-			i++;
-			printf("test\n");
-			continue;
-		}
-		else
+		else if (is_map_begin(file[i]))
 			break;
+		else
+			return (perror(RED"Bad element in file !\n"RESET), 0);
 		if (!check_nb_elem(elem, 1))
 			return (0);
-		printf("fin de la boucle\n");
 		i++;
 	}
-	printf("sortie boucle while\n");
 	if (!check_nb_elem(elem, 0))
-		return (0);
+		return (perror(RED"Missing element in file !\n"RESET), 0);
 	return (1);
 }

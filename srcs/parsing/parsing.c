@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:19:00 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/26 16:27:04 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/27 11:49:32 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,17 @@ void print_file(char **file)
 
 	i = 0;
 	printf("*****PRINT FILE*****\n");
-	while (file[i])
+	while (file[i] && !is_map_begin(file[i]))
 	{
 		printf("%d: %s\n", i, file[i]);
 		i++;
 	}
+	while (file[i])
+	{
+		printf("%d: %s", i, file[i]);
+		i++;
+	}
+	printf("\n");
 }
 
 // *********************

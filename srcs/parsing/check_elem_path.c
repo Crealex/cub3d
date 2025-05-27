@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:48:33 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/26 11:49:11 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/27 10:43:47 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int check_path_and_ext(char *file)
 		free(path);
 		return (0);
 	}
-	//printf("file[%i] = %c", length - 2, file[length - 2]);
-	if (file[length - 2] != 'm' || file[length - 3] != 'p'
-			|| file[length - 4] != 'x' || file[length - 5] != '.')
+	// printf("file[%i] = %c", length - 1, file[length - 1]);
+	if (file[length - 1] != 'm' || file[length - 2] != 'p'
+			|| file[length - 3] != 'x' || file[length - 4] != '.')
 	{
 		perror(RED"Error,\nInvlaid extention fromat texture file !\n"RESET);
 		free(path);
@@ -77,6 +77,6 @@ t_elem check_texture_path(char *file, t_elem base)
 		return (elem.we++, elem);
 	}
 	if (!check_path_and_ext(file))
-		return (elem.so = -1, elem);
-	return (elem.so++, elem);
+		return (elem.ea = -1, elem);
+	return (elem.ea++, elem);
 }

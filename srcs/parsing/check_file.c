@@ -6,50 +6,31 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:34:58 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/26 16:44:50 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/27 14:05:11 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	tab_size(char **file)
+void	set_var(int *i, int *j, int *jres)
 {
-	int	i;
-	int j;
-	int	count;
-
-	i = 0;
-	j = 0;
-	count = 0;
-	while (file[i])
-	{
-		while (file[i][j] == ' ')
-			j++;
-		if (file[i][j] && file[i][j] != '\n')
-			count++;
-		i++;
-		j = 0;
-	}
-	return (count);
+	*i = *i + 1;
+	*j = 0;
+	*jres = 0;
 }
 
-int	len_wspace(char *str)
+void fill_map(char **file, char **res, int *ires, int i)
 {
-	int	i;
-	int	count;
+	int iresd;
 
-	i = 0;
-	count = 0;
-	printf("in len_wspace\n");
-	while (str[i] && str[i] == ' ')
-		i++;
-	while (str[i])
+	iresd = *ires;
+	while (file[i])
 	{
-		if (!(str[i] && str[i + 1] && str[i] == ' ' && str[i + 1] == ' '))
-			count++;
+		res[iresd] = ft_strdup(file[i]);
+		iresd++;
 		i++;
 	}
-	return (count);
+	*ires = iresd;
 }
 
 char	**format_file(char **file, int j, int ires, int jres)
@@ -59,7 +40,9 @@ char	**format_file(char **file, int j, int ires, int jres)
 
 	i = 0;
 	res = malloc(sizeof(char *) * tab_size(file));
-	while (file[i])
+	if (!res)
+		return (NULL);
+	while (file[i] && !is_map_begin(file[i]))
 	{
 		if (file[i][j] && file[i][j] != '\n')
 		{
@@ -73,13 +56,9 @@ char	**format_file(char **file, int j, int ires, int jres)
 		if (jres > 0 && (!file[i][j] || file[i][j] == '\n'))
 			res[ires++][jres] = '\0';
 		if (!file[i][j] || file[i][j] == '\n')
-		{
-			j = 0;
-			jres = 0;
-			i++;
-		}
-
+			set_var(&i, &j, &jres);
 	}
+	fill_map(file, res, &ires, i);
 	return (free_double_tab(file), res[ires] = NULL, res);
 }
 
@@ -116,9 +95,9 @@ int	check_file(char *path)
 
 	file = fill_file(path);
 	(void)file;
-	// if (!check_elem(file))
-	// 	return (0);
-	// if (!check_map(file))
-	// 	return (0);
+	if (!check_elem(file))
+		return (0);
+	if (!check_map(file))
+		return (0);
 	return (1);
 }
