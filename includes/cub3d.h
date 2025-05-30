@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/27 17:23:32 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/30 10:20:37 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_map
 	char	*ea_path;
 	int		floor[3];
 	int		ceiling[3];
+	int		player_start;
 	char	**matrix;
 }			t_map;
 

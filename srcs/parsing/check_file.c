@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:34:58 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/27 14:05:11 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/05/30 11:54:26 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	**format_file(char **file, int j, int ires, int jres)
 		if (!file[i][j] || file[i][j] == '\n')
 			set_var(&i, &j, &jres);
 	}
+	print_
 	fill_map(file, res, &ires, i);
 	return (free_double_tab(file), res[ires] = NULL, res);
 }
@@ -83,9 +84,11 @@ char	**fill_file(char *path)
 		i++;
 	}
 	file[i] = NULL;
-	file = format_file(file, 0, 0 , 0);
+	printf("BEFORE FOMRAT\n");
 	print_file(file);
-
+	file = format_file(file, 0, 0 , 0);
+	printf("AFTER FORMAT\n");
+	print_file(file);
 	return (file);
 }
 
