@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:19:00 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/27 11:49:32 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/02 15:33:43 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,17 @@ int check_args(int argc, char **argv)
 t_map	*parsing(int argc, char **argv)
 {
 	t_map *map;
+	char **file;
 
 	map = ft_calloc(sizeof(t_map), 1);
-	if (!check_args(argc, argv) || !check_file(argv[1]))
+	if (!check_args(argc, argv))
 		return (NULL);
-	(void)map;
+	file = fill_file(argv[1]);
+	if (!file || !check_file(file))
+		return (NULL);
+	print_file(file);
+	map = fill_struct(file);
+	if (!map)
+		return (NULL);
 	return (map);
 }

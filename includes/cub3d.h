@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/30 10:20:37 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/02 15:40:11 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	free_double_tab(char **tab);
 t_map	*parsing(int argc, char **argv);
 void	init_elem(t_elem *elem);
 void	cpy_elem(t_elem src, t_elem *dst);
-int		check_file(char *path);
+int		check_file(char **file);
+char	**fill_file(char *path);
 int		check_elem(char **file);
 int		count_line(int fd);
 t_elem	check_texture_path(char *file, t_elem base);
@@ -59,6 +60,8 @@ int		is_map_begin(char *line);
 int		tab_size(char **file);
 int		len_wspace(char *str);
 int		is_dir(char c);
+void init_map(t_map *map);
+t_map	*fill_struct(char **file);
 
 // *** TESTING FCT ***
 void print_file(char **file);

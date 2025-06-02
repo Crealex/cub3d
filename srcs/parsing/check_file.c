@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:34:58 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/30 11:54:26 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/02 15:17:06 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ void fill_map(char **file, char **res, int *ires, int i)
 	int iresd;
 
 	iresd = *ires;
-	while (file[i])
+	while (file[i] && file[i][0] != '\n')
 	{
 		res[iresd] = ft_strdup(file[i]);
+		//printf("res[%d]: %s\n", iresd, res[iresd]);
 		iresd++;
 		i++;
-	}
+	};
+	res[iresd] = NULL;
+	//print_file(res);
 	*ires = iresd;
 }
 
@@ -39,7 +42,7 @@ char	**format_file(char **file, int j, int ires, int jres)
 	int		i;
 
 	i = 0;
-	res = malloc(sizeof(char *) * tab_size(file));
+	res = ft_calloc(tab_size(file) + 1, sizeof(char *));
 	if (!res)
 		return (NULL);
 	while (file[i] && !is_map_begin(file[i]))
@@ -58,9 +61,8 @@ char	**format_file(char **file, int j, int ires, int jres)
 		if (!file[i][j] || file[i][j] == '\n')
 			set_var(&i, &j, &jres);
 	}
-	print_
 	fill_map(file, res, &ires, i);
-	return (free_double_tab(file), res[ires] = NULL, res);
+	return (res[ires] = NULL, res);
 }
 
 char	**fill_file(char *path)
@@ -84,20 +86,12 @@ char	**fill_file(char *path)
 		i++;
 	}
 	file[i] = NULL;
-	printf("BEFORE FOMRAT\n");
-	print_file(file);
-	file = format_file(file, 0, 0 , 0);
-	printf("AFTER FORMAT\n");
-	print_file(file);
+	file = format_file(file, 0, 0, 0);
 	return (file);
 }
 
-int	check_file(char *path)
+int	check_file(char **file)
 {
-	char **file;
-
-	file = fill_file(path);
-	(void)file;
 	if (!check_elem(file))
 		return (0);
 	if (!check_map(file))
