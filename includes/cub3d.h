@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/03 14:59:41 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/03 17:27:30 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int 	on_keypress(int keycode, t_data *data);
 int		on_keyrelease(int keycode, t_data *data);
 
 // map init
-void	*bg_init(t_data *data, t_map *mapi);
+void	bg_init(t_data *data, t_map *mapi);
 
 // ray casting
 

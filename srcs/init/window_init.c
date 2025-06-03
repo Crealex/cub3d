@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/03 15:02:06 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/03 17:39:36 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ static t_player	*square_init(t_data *data)
 	square->cos_a = cos(square->angle);
 	square->sin_a = sin(square->angle);
 	square->colour = 0xFF0000;
-	square->tile = 300;
+	square->tile = data->tilesize;
 	square->side = (int)(square->tile / sqrt(2));
 	square->half = square->side / 2;
 	square->a = 0;
@@ -150,7 +150,7 @@ static t_player	*square_init(t_data *data)
 	return (square);
 }
 
-t_data	*data_init(char **map)
+t_data	*data_init(t_map *mapi)
 {
 	t_data	*data;
 
@@ -160,9 +160,8 @@ t_data	*data_init(char **map)
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, data->winsize_x, data->winsize_y, \
 		"dont mind me im just a square");
-	data->map = map_init(data);
-	data->background = bg_init(data, map);
+	data->tilesize = 300;
+	bg_init(data, mapi);
 	data->player = square_init(data);
-	data->map = map;
 	return (data);
 }
