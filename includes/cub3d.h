@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/27 15:28:19 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/03 14:59:41 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@
 # define MOVE_SPD 8
 # define TURN_SPD 0.06
 
+typedef struct	s_map
+{
+	int		len_x;
+	int		len_y;
+	int		bpp;
+	int		line_size;
+	int		endian;
+	char	*addr;
+	char	**map;
+	void	*img;
+}				t_map;
+
 typedef struct	s_square
 {
 	int		tile;
@@ -66,10 +78,12 @@ typedef struct	s_data
 {
 	void		*mlx;
 	void		*window;
+	void		*background;
 	int			winsize_x;
 	int			winsize_y;
-	void		*background;
+	int			tilesize;
 	t_player	*player;
+	t_map		*map;
 }				t_data;
 
 typedef struct s_figure
@@ -97,6 +111,9 @@ void	compute_square(t_player *square);
 void	set_hooks(t_data *data);
 int 	on_keypress(int keycode, t_data *data);
 int		on_keyrelease(int keycode, t_data *data);
+
+// map init
+void	*bg_init(t_data *data, t_map *mapi);
 
 // ray casting
 

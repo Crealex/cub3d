@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/27 16:27:53 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/03 15:02:06 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	clear_square(t_player *square)
 	}
 }
 
-void	fill_square(t_player *square, int rx, int ry)
+void	fill_square(t_player *square, int rx, int ry, int colour)
 {
 	int	offset;
 
 	offset = (rx * (square->bpp / 8)) + (ry * square->line_size);
-	*(unsigned int *)(square->addr + offset) = square->colour;
+	*(unsigned int *)(square->addr + offset) = colour;
 }
 			
 void	compute_square(t_player *square)
@@ -113,7 +113,12 @@ void	compute_square(t_player *square)
 			rx = (int)(square->cos_a * x - square->sin_a * y) + square->tile / 2;
 			ry = (int)(square->sin_a * x + square->cos_a * y) + square->tile / 2;
 			if (rx >= 0 && rx < square->tile && ry >= 0 && ry < square->tile)
-				fill_square(square, rx, ry);
+			{
+				if (-1 <= y && y <= 1 && x >= 0)
+					fill_square(square, rx, ry, 0x000000);
+				else
+					fill_square(square, rx, ry, square->colour);
+			}
 			x++; 
 		}
 		y++;
@@ -129,7 +134,7 @@ static t_player	*square_init(t_data *data)
 	square->cos_a = cos(square->angle);
 	square->sin_a = sin(square->angle);
 	square->colour = 0xFF0000;
-	square->tile = 500;
+	square->tile = 300;
 	square->side = (int)(square->tile / sqrt(2));
 	square->half = square->side / 2;
 	square->a = 0;
@@ -145,7 +150,7 @@ static t_player	*square_init(t_data *data)
 	return (square);
 }
 
-t_data	*data_init()
+t_data	*data_init(char **map)
 {
 	t_data	*data;
 
@@ -155,7 +160,9 @@ t_data	*data_init()
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, data->winsize_x, data->winsize_y, \
 		"dont mind me im just a square");
-	data->background = mlx_new_image(data->mlx, data->winsize_x, data->winsize_y);
+	data->map = map_init(data);
+	data->background = bg_init(data, map);
 	data->player = square_init(data);
+	data->map = map;
 	return (data);
 }
