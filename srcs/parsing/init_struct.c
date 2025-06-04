@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:24:26 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/21 15:33:51 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/04 11:24:22 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ void	cpy_elem(t_elem src, t_elem *dst)
 
 void init_map(t_map *map)
 {
-	map->ceiling[0] = 0;
-	map->ceiling[1] = 0;
-	map->ceiling[2] = 0;
-	map->floor[0] = 0;
-	map->floor[1] = 0;
-	map->floor[2] = 0;
+	map->ceiling = 0;
+	map->floor = 0;
 	map->ea_path = NULL;
 	map->no_path = NULL;
 	map->so_path = NULL;

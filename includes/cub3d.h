@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/02 15:40:11 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/04 14:52:06 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_map
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	int		floor[3];
-	int		ceiling[3];
+	int		floor; // a mettre en hexa
+	int		ceiling; // a mettre en hexa
 	int		player_start;
 	char	**matrix;
 }			t_map;
@@ -57,12 +57,13 @@ int		count_line(int fd);
 t_elem	check_texture_path(char *file, t_elem base);
 int		check_map(char **file);
 int		is_map_begin(char *line);
+int		find_begin(char **file);
 int		tab_size(char **file);
 int		len_wspace(char *str);
 int		is_dir(char c);
-void init_map(t_map *map);
+void	init_map(t_map *map);
 t_map	*fill_struct(char **file);
-
+void	fill_matrix(t_map *map, char **file);
 // *** TESTING FCT ***
 void print_file(char **file);
 

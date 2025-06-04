@@ -10,6 +10,8 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)check_elem_path.c \
 							$(PARSE)check_map.c \
 							$(PARSE)utils.c \
+							$(PARSE)fill_struct.c \
+							$(PARSE)fill_struct2.c \
 							$(UTILS)free.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
