@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/03 17:39:36 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/04 14:28:11 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ static t_player	*square_init(t_data *data)
 	square->d = 0;
 	square->left = 0;
 	square->right = 0;
+	data->background = mlx_new_image(data->mlx, data->winsize_x, data->winsize_y);
 	square->img = mlx_new_image(data->mlx, square->tile, square->tile);
 	square->posx = 500;
 	square->posy = 500;
@@ -161,7 +162,7 @@ t_data	*data_init(t_map *mapi)
 	data->window = mlx_new_window(data->mlx, data->winsize_x, data->winsize_y, \
 		"dont mind me im just a square");
 	data->tilesize = 300;
-	bg_init(data, mapi);
+	//bg_init(data, mapi);
 	data->player = square_init(data);
 	return (data);
 }
