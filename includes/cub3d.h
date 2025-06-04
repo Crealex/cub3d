@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/03 17:27:30 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/04 15:13:30 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct	s_data
 	int			winsize_y;
 	int			tilesize;
 	t_player	*player;
-	t_map		*map;
+	t_map		*mapi;
 }				t_data;
 
 typedef struct s_figure

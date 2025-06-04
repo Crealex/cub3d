@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/04 14:28:11 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/04 15:39:29 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	refresh_window(t_data *data)
 	compute_square(player);
 	mlx_put_image_to_window(data->mlx, data->window, data->background, \
 		0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->mapi->img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->window, player->img,\
 		player->posx - player->half, player->posy - player->half);
 	dup_square(data);
@@ -161,8 +162,12 @@ t_data	*data_init(t_map *mapi)
 	data->mlx = mlx_init();
 	data->window = mlx_new_window(data->mlx, data->winsize_x, data->winsize_y, \
 		"dont mind me im just a square");
-	data->tilesize = 300;
-	//bg_init(data, mapi);
+	data->tilesize = 100;
+	mapi->len_x = 12 * data->tilesize;
+	mapi->len_y = 6 * data->tilesize;
+	mapi->img = mlx_new_image(data->mlx, mapi->len_x, mapi->len_y);
+	data->mapi = mapi;
+	bg_init(data, mapi);
 	data->player = square_init(data);
 	return (data);
 }
