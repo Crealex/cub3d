@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/04 15:38:32 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/09 19:30:38 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ void	fill_map(t_data *data, t_map *mapi, int x, int y)
 		j = 0;
 		while (j < data->tilesize)
 		{
-			if (mapi->map[y][x] == '1' && mapi->map[y + 1])
+			if (mapi->map[y][x] == '1')
 				*(int *)(mapi->addr + ((x * data->tilesize + j) * (mapi->bpp / 8)) + ((y * data->tilesize + i) * mapi->line_size)) = 0x0000FF;
-			// else
-			// 	*(int *)(mapi->addr + ((x * data->tilesize + j) * (mapi->bpp / 8)) + ((y * data->tilesize + i) * mapi->line_size)) = 0x000000;
+			else if (mapi->map[y][x] == '0')
+				*(int *)(mapi->addr + ((x * data->tilesize + j) * (mapi->bpp / 8)) + ((y * data->tilesize + i) * mapi->line_size)) = 0xAAAAAA;\
+			else
+				return ;			
 			j++;
 		}
 		i++;
