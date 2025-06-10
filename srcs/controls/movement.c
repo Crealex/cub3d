@@ -36,21 +36,21 @@ void	player_move_forwards(t_data *data)
 
 	player = data->player;
 	if (data->mapi->map
-		[(int)((player->posy + MOVE_SPD * player->sin_a) / data->tilesize)]
-		[(int)((player->posx + MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 + MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 + MOVE_SPD * player->cos_a) / data->tilesize)]
 		!= '1')
 	{
 		player->posx += MOVE_SPD * player->cos_a;
 		player->posy += MOVE_SPD * player->sin_a;
 	}
 	else if (data->mapi->map
-		[(int)((player->posy) / data->tilesize)]
-		[(int)((player->posx + MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 + MOVE_SPD * player->cos_a) / data->tilesize)]
 		!= '1')
 		player->posx += MOVE_SPD * player->cos_a;
 	else if (data->mapi->map
-		[(int)((player->posy + MOVE_SPD * player->sin_a) / data->tilesize)]
-		[(int)((player->posx) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 + MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2) / data->tilesize)]
 		!= '1')
 		player->posy += MOVE_SPD * player->sin_a;
 }
@@ -61,21 +61,21 @@ void	player_move_left(t_data *data)
 
 	player = data->player;
 	if (data->mapi->map
-		[(int)((player->posy - MOVE_SPD * player->cos_a) / data->tilesize)]
-		[(int)((player->posx + MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 - MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 + MOVE_SPD * player->sin_a) / data->tilesize)]
 		!= '1')
 	{
 		player->posx += MOVE_SPD * player->sin_a;
 		player->posy -= MOVE_SPD * player->cos_a;
 	}
 	else if (data->mapi->map
-		[(int)((player->posy) / data->tilesize)]
-		[(int)((player->posx + MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 + MOVE_SPD * player->sin_a) / data->tilesize)]
 		!= '1')
 		player->posx += MOVE_SPD * player->sin_a;
 	else if (data->mapi->map
-		[(int)((player->posy - MOVE_SPD * player->cos_a) / data->tilesize)]
-		[(int)((player->posx) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 - MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2) / data->tilesize)]
 		!= '1')
 		player->posy -= MOVE_SPD * player->cos_a;
 }
@@ -86,21 +86,21 @@ void	player_move_backwards(t_data *data)
 
 	player = data->player;
 	if (data->mapi->map
-		[(int)((player->posy - MOVE_SPD * player->sin_a) / data->tilesize)]
-		[(int)((player->posx - MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 - MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 - MOVE_SPD * player->cos_a) / data->tilesize)]
 		!= '1')
 	{
 		player->posx -= MOVE_SPD * player->cos_a;
 		player->posy -= MOVE_SPD * player->sin_a;
 	}
 	else if (data->mapi->map
-		[(int)((player->posy) / data->tilesize)]
-		[(int)((player->posx - MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 - MOVE_SPD * player->cos_a) / data->tilesize)]
 		!= '1')
 		player->posx -= MOVE_SPD * player->cos_a;
 	else if (data->mapi->map
-		[(int)((player->posy - MOVE_SPD * player->sin_a) / data->tilesize)]
-		[(int)((player->posx) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 - MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2) / data->tilesize)]
 		!= '1')
 		player->posy -= MOVE_SPD * player->sin_a;
 }
@@ -111,21 +111,21 @@ void	player_move_right(t_data *data)
 
 	player = data->player;
 	if (data->mapi->map
-		[(int)((player->posy + MOVE_SPD * player->cos_a) / data->tilesize)]
-		[(int)((player->posx - MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 + MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 - MOVE_SPD * player->sin_a) / data->tilesize)]
 		!= '1')
 	{
 		player->posx -= MOVE_SPD * player->sin_a;
 		player->posy += MOVE_SPD * player->cos_a;
 	}
 	else if (data->mapi->map
-		[(int)((player->posy) / data->tilesize)]
-		[(int)((player->posx - MOVE_SPD * player->sin_a) / data->tilesize)]
+		[(int)((player->posy + player->half / 2) / data->tilesize)]
+		[(int)((player->posx + player->half / 2 - MOVE_SPD * player->sin_a) / data->tilesize)]
 		!= '1')
 		player->posx -= MOVE_SPD * player->sin_a;
 	else if (data->mapi->map
-		[(int)((player->posy + MOVE_SPD * player->cos_a) / data->tilesize)]
-		[(int)((player->posx) / data->tilesize)]
+		[(int)((player->posy + player->half / 2 + MOVE_SPD * player->cos_a) / data->tilesize)]
+		[(int)((player->posx + player->half / 2) / data->tilesize)]
 		!= '1')
 		player->posy += MOVE_SPD * player->cos_a;
 }

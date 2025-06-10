@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/10 16:37:11 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/10 17:23:35 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 #  define M_PI 3.14159265358979323846
 # endif
 # define MOVE_SPD 2
-# define TURN_SPD 0.02
+# define TURN_SPD 0.035
 
 typedef struct	s_map
 {
