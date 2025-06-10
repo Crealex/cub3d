@@ -8,6 +8,6 @@ int main(int argc, char **argv)
 	salut = parsing(argc, argv);
 	if (!salut)
 		return (1);
-	(void)salut;
+	free_struct(salut);
 	return (0);
 }

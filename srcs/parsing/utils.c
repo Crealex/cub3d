@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:36:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/27 16:30:26 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:30:23 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_map_begin(char *line)
 	int	one;
 
 	i = 0;
-	one =0;
+	one = 0;
 	if (!line)
 		return (0);
 	while (line && line[i] == ' ')
@@ -36,7 +36,7 @@ int	is_map_begin(char *line)
 int	tab_size(char **file)
 {
 	int	i;
-	int j;
+	int	j;
 	int	count;
 
 	i = 0;
@@ -77,4 +77,15 @@ int	is_dir(char c)
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	return (0);
+}
+
+int	try_open(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	return (1);
 }

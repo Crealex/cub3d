@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:42:17 by atomasi           #+#    #+#             */
-/*   Updated: 2025/05/27 11:37:28 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:51:39 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_rgb(char *line)
 {
 	int	value;
 	int	i;
-	int count;
+	int	count;
 
 	value = 0;
 	i = 2;
@@ -40,7 +40,7 @@ int	check_rgb(char *line)
 	return (1);
 }
 
-t_elem check_colours_format(char *line, t_elem base)
+t_elem	check_colours_format(char *line, t_elem base)
 {
 	t_elem	elem;
 
@@ -56,34 +56,33 @@ t_elem check_colours_format(char *line, t_elem base)
 		return (elem);
 	}
 	if (!check_rgb(line))
-		{
-			perror(RED"Error, \nBad rgb format !\n");
-			return (elem.c = -1, elem);
-		}
+	{
+		perror(RED"Error, \nBad rgb format !\n");
+		return (elem.c = -1, elem);
+	}
 	elem.c++;
 	return (elem);
 }
 
-int check_nb_elem(t_elem elem, int mode)
+int	check_nb_elem(t_elem elem, int mode)
 {
 	if (mode == 1)
 	{
 		if (elem.c != -1 && elem.ea != -1 && elem.f != -1 && elem.no != -1
-				&& elem.so != -1 && elem.we != -1)
-				return (1);
+			&& elem.so != -1 && elem.we != -1)
+			return (1);
 		return (0);
 	}
-	printf("elem.c :%d\nelem.ea: %d\nelem.f: %d\nelem.no: %d\nelem.so: %d\nelem.we: %d\n", elem.c, elem.ea, elem.f, elem.no, elem.so, elem.we);
 	if (elem.c == 1 && elem.ea == 1 && elem.f == 1 && elem.no == 1
-			&& elem.so == 1 && elem.we == 1)
+		&& elem.so == 1 && elem.we == 1)
 		return (1);
 	return (0);
 }
 
 int	check_elem(char **file)
 {
-	int i;
-	t_elem elem;
+	int		i;
+	t_elem	elem;
 
 	i = 0;
 	init_elem(&elem);
@@ -95,7 +94,7 @@ int	check_elem(char **file)
 		else if (!ft_strncmp(file[i], "C ", 2) || !ft_strncmp(file[i], "F ", 2))
 			elem = check_colours_format(file[i], elem);
 		else if (is_map_begin(file[i]))
-			break;
+			break ;
 		else
 			return (perror(RED"Bad element in file !\n"RESET), 0);
 		if (!check_nb_elem(elem, 1))

@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:34:58 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/02 15:17:06 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:47:47 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,18 @@ void	set_var(int *i, int *j, int *jres)
 	*jres = 0;
 }
 
-void fill_map(char **file, char **res, int *ires, int i)
+void	fill_map(char **file, char **res, int *ires, int i)
 {
-	int iresd;
+	int	iresd;
 
 	iresd = *ires;
 	while (file[i] && file[i][0] != '\n')
 	{
 		res[iresd] = ft_strdup(file[i]);
-		//printf("res[%d]: %s\n", iresd, res[iresd]);
 		iresd++;
 		i++;
-	};
+	}
 	res[iresd] = NULL;
-	//print_file(res);
 	*ires = iresd;
 }
 
@@ -49,9 +47,9 @@ char	**format_file(char **file, int j, int ires, int jres)
 	{
 		if (file[i][j] && file[i][j] != '\n')
 		{
-			if (jres == 0)
-				res[ires] = malloc(sizeof(char) * (len_wspace(file[i]) + 2));
-			if (!(file[i][j] && file[i][j + 1] && file[i][j] == ' ' && file[i][j + 1] == ' '))
+			if (jres == 0 && file[i][j] != ' ')
+				res[ires] = ft_calloc(sizeof(char), (len_wspace(file[i]) + 2));
+			if (!is_two_spaces(i, j, file))
 				if (!(jres == 0 && file[i][j] == ' '))
 					res[ires][jres++] = file[i][j];
 			j++;
@@ -62,7 +60,7 @@ char	**format_file(char **file, int j, int ires, int jres)
 			set_var(&i, &j, &jres);
 	}
 	fill_map(file, res, &ires, i);
-	return (res[ires] = NULL, res);
+	return (free_double_tab(file), res[ires] = NULL, res);
 }
 
 char	**fill_file(char *path)
@@ -82,11 +80,12 @@ char	**fill_file(char *path)
 	{
 		file[i] = get_next_line(fd);
 		if (!file[i])
-			break;
+			break ;
 		i++;
 	}
 	file[i] = NULL;
 	file = format_file(file, 0, 0, 0);
+	close(fd);
 	return (file);
 }
 

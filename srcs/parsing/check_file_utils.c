@@ -1,46 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   check_file_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 13:36:59 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:31:01 by atomasi          ###   ########.fr       */
+/*   Created: 2025/06/10 10:43:35 by atomasi           #+#    #+#             */
+/*   Updated: 2025/06/10 10:49:44 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
-void	free_double_tab(char **tab)
+int	is_two_spaces(int i, int j, char **file)
 {
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
+	if (file[i][j] && file[i][j + 1])
 	{
-		free(tab[i]);
-		i++;
+		if (file[i][j] == ' ' && file[i][j + 1] == ' ')
+			return (1);
 	}
-	free(tab);
-}
-
-void	free_struct(t_map *map)
-{
-	free(map->no_path);
-	free(map->ea_path);
-	free(map->so_path);
-	free(map->we_path);
-	free_double_tab(map->matrix);
-	free(map);
-}
-
-void	clean_exit(char **file, t_map *map)
-{
-	if (file)
-		free_double_tab(file);
-	if (map)
-		free_struct(map);
+	return (0);
 }

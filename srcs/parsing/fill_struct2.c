@@ -6,11 +6,24 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 11:41:16 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/04 15:03:49 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:38:08 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+int	find_return_value(char c)
+{
+	if (c == 'N')
+		return (3);
+	else if (c == 'S')
+		return (1);
+	else if (c == 'W')
+		return (2);
+	else if (c == 'E')
+		return (0);
+	return (-1);
+}
 
 int	find_orientation(char **map)
 {
@@ -35,21 +48,13 @@ int	find_orientation(char **map)
 		i++;
 		j = 0;
 	}
-	if (map[i][j] == 'N')
-		return (3);
-	else if (map[i][j] == 'S')
-		return (1);
-	else if (map[i][j] == 'W')
-		return (2);
-	else if (map[i][j] == 'E')
-		return (0);
-	return (-1);
+	return (find_return_value(map[i][j]));
 }
 
 void	fill_matrix(t_map *map, char **file)
 {
 	int	i;
-	int imap;
+	int	imap;
 
 	i = find_begin(file);
 	imap = 0;

@@ -5,6 +5,7 @@ UTILS = utils/
 SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)parsing.c \
 							$(PARSE)check_file.c \
+							$(PARSE)check_file_utils.c \
 							$(PARSE)init_struct.c \
 							$(PARSE)check_elem.c \
 							$(PARSE)check_elem_path.c \
@@ -12,6 +13,7 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)utils.c \
 							$(PARSE)fill_struct.c \
 							$(PARSE)fill_struct2.c \
+							$(PARSE)for_testing.c \
 							$(UTILS)free.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
@@ -54,6 +56,9 @@ ${OBJDIR}/%.o: %.c | ${OBJDIR}
 
 ${OBJDIR}:
 	@echo "${BOLD}${BLUE}📁 Created objects directory${END}"
+
+leaks: ${NAME}
+	valgrind --leak-check=full --log-file="leakslog.txt" --track-fds=yes ./${NAME} ./assets/maps/novalid.cub
 
 clean:
 	@echo "${BOLD}${YELLOW}🧹 Cleaning objects...${END}"

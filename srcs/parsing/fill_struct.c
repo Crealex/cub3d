@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:33:55 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/04 14:52:33 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:38:56 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*find_path(char *tofind, char **file)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(file[i])
+	while (file[i])
 	{
 		if (!ft_strncmp(file[i], tofind, 2))
-			return (ft_strdup(file[i]));
+			return (ft_strdup(&file[i][3]));
 		i++;
 	}
 	return (NULL);
@@ -42,8 +42,7 @@ int	*extract_colours(char *target, char **file)
 
 	i = 0;
 	j = 0;
-
-	res = malloc(sizeof(int) * 3);
+	res = ft_calloc(sizeof(int), 3);
 	if (!res)
 		return (NULL);
 	while (file[i] && ft_strncmp(target, file[i], 1))
@@ -78,13 +77,12 @@ t_map	*fill_struct(char **file)
 	t_map	*map;
 
 	map = ft_calloc(1, sizeof(t_map));
+	if (!map)
+		return (NULL);
 	init_map(map);
-	//remplir les paths
 	fill_path(map, file);
-	//remplir les rgb
 	fill_rgb(map, file);
-	//remplir le start du joueur
-	//remplir la matrice de la map
 	fill_matrix(map, file);
+	print_struct(map);
 	return (map);
 }

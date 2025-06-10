@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/04 14:52:06 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 10:55:11 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@
 # include <fcntl.h>
 # include "../includes/libft/libft.h"
 
-
 typedef struct s_map
 {
 	char	*no_path;
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	int		floor; // a mettre en hexa
-	int		ceiling; // a mettre en hexa
+	int		floor;
+	int		ceiling;
 	int		player_start;
 	char	**matrix;
 }			t_map;
@@ -35,22 +34,25 @@ typedef struct s_map
 typedef struct s_elem
 {
 	int	no;
-	int so;
-	int we;
-	int ea;
-	int f;
-	int c;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
 }			t_elem;
 
 // *** UTILS ***
 
 void	free_double_tab(char **tab);
+void	free_struct(t_map *map);
+void	clean_exit(char **file, t_map *map);
 
 // *** PARSING ***
 t_map	*parsing(int argc, char **argv);
 void	init_elem(t_elem *elem);
 void	cpy_elem(t_elem src, t_elem *dst);
 int		check_file(char **file);
+int		is_two_spaces(int i, int j, char **file);
 char	**fill_file(char *path);
 int		check_elem(char **file);
 int		count_line(int fd);
@@ -61,11 +63,12 @@ int		find_begin(char **file);
 int		tab_size(char **file);
 int		len_wspace(char *str);
 int		is_dir(char c);
+int		try_open(char *path);
 void	init_map(t_map *map);
 t_map	*fill_struct(char **file);
 void	fill_matrix(t_map *map, char **file);
 // *** TESTING FCT ***
-void print_file(char **file);
-
+void	print_struct(t_map *map);
+void	print_file(char **file);
 
 #endif
