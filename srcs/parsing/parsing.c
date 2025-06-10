@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:19:00 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:32:05 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:49:43 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_args(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 	{
-		perror(RED"Error,\nOne argument is excepted!!\n"RESET);
+		ft_putstr_fd(RED"Error,\nOne argument is excepted!!\n"RESET, 2);
 		return (0);
 	}
 	if (!try_open(argv[1]))
@@ -50,7 +50,7 @@ int	check_args(int argc, char **argv)
 	if (i < 5 || argv[1][i] != 'b' || argv[1][i - 1] != 'u'
 			|| argv[1][i - 2] != 'c' || argv[1][i - 3] != '.')
 	{
-		perror(RED"Error,\nInvalid extension!\n"RESET);
+		ft_putstr_fd(RED"Error,\nInvalid extension!\n"RESET, 2);
 		return (0);
 	}
 	return (1);

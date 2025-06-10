@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:42:17 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:51:39 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:51:35 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_elem	check_colours_format(char *line, t_elem base)
 	{
 		if (!check_rgb(line))
 		{
-			perror(RED"Error, \nBad rgb format !\n");
+			ft_putstr_fd(RED"Error, \nBad rgb format for F !\n"RESET, 2);
 			return (elem.f = -1, elem);
 		}
 		elem.f++;
@@ -57,7 +57,7 @@ t_elem	check_colours_format(char *line, t_elem base)
 	}
 	if (!check_rgb(line))
 	{
-		perror(RED"Error, \nBad rgb format !\n");
+		ft_putstr_fd(RED"Error, \nBad rgb format for C!\n"RESET, 2);
 		return (elem.c = -1, elem);
 	}
 	elem.c++;
@@ -96,12 +96,12 @@ int	check_elem(char **file)
 		else if (is_map_begin(file[i]))
 			break ;
 		else
-			return (perror(RED"Bad element in file !\n"RESET), 0);
+			return (ft_putstr_fd(RED"Error,\nFile: Bad element !\n"RESET, 2), 0);
 		if (!check_nb_elem(elem, 1))
 			return (0);
 		i++;
 	}
 	if (!check_nb_elem(elem, 0))
-		return (perror(RED"Missing element in file !\n"RESET), 0);
+		return (ft_putstr_fd(RED"Error,\nFile: Missing element!\n"RESET, 2), 0);
 	return (1);
 }

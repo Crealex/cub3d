@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:48:33 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:53:09 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:41:56 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_path_and_ext(char *file)
 	if (file[length - 1] != 'm' || file[length - 2] != 'p'
 		|| file[length - 3] != 'x' || file[length - 4] != '.')
 	{
-		perror(RED"Error,\nInvlaid extention fromat texture file !\n"RESET);
+		perror(RED"Error,\nInvalid extention fromat for texture file !\n"RESET);
 		free(path);
 		return (0);
 	}

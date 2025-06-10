@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 11:41:16 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:38:08 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 11:48:26 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	find_orientation(char **map)
 	{
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			printf("map[%d][%d]: %c\n", i, j, map[i][j]);
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 					|| map[i][j] == 'W')
 				break ;
@@ -67,5 +66,4 @@ void	fill_matrix(t_map *map, char **file)
 	}
 	map->matrix[imap] = NULL;
 	map->player_start = find_orientation(map->matrix);
-	printf("valuer player start : %d\n", map->player_start);
 }

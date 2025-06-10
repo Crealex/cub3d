@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:40:06 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 13:41:32 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_zero(int i, char **file, int no)
 	return (0);
 }
 
-int	check_line(char *line, char **file, int no)
+int	check_line(char *line, char **file, int no, int first_line)
 {
 	int	i;
 	int	player;
@@ -53,14 +53,14 @@ int	check_line(char *line, char **file, int no)
 	{
 		if (line[i] == '0')
 		{
-			if (!check_zero(i, file, no))
-				return (perror(RED"Error,\nMap doesn't close !"RESET), 0);
+			if (!check_zero(i, file, no) || no == first_line)
+				return (ft_putstr_fd(RED"Error,\nMap doesn't close !\n"RESET, 2), 0);
 		}
 		else if (is_dir(line[i]))
 			player++;
 		if (player > 1 || (!is_dir(line[i]) && line[i] != '0' && line[i] != '1'
 				&& line[i] != ' ' && line[i] != '\n'))
-			return (perror(RED"Error,\nInvalid char in the map !\n"RESET), 0);
+			return (ft_putstr_fd(RED"Error,\nInvalid char in the map !\n"RESET, 2), 0);
 		i++;
 	}
 	return (1);
@@ -69,11 +69,13 @@ int	check_line(char *line, char **file, int no)
 int	check_map(char **file)
 {
 	int	i;
+	int	first_line;
 
 	i = find_begin(file);
+	first_line = i;
 	while (file[i])
 	{
-		if (!check_line(file[i], file, i))
+		if (!check_line(file[i], file, i, first_line))
 		{
 			return (0);
 		}

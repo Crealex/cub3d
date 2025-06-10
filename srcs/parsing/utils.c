@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:36:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:30:23 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/10 11:40:12 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_map_begin(char *line)
 		return (0);
 	while (line && line[i] == ' ')
 		i++;
-	while (line && line[i] == '1')
+	while (line && (line[i] == '1' || line[i] == '0'))
 	{
 		one++;
 		i++;

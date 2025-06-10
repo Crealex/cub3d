@@ -3,11 +3,11 @@
 
 int main(int argc, char **argv)
 {
-	t_map *salut;
+	t_map *map;
 
-	salut = parsing(argc, argv);
-	if (!salut)
+	map = parsing(argc, argv);
+	if (!map)
 		return (1);
-	free_struct(salut);
+	free_struct(map);
 	return (0);
 }

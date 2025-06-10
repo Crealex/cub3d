@@ -73,6 +73,15 @@ fclean: clean
 
 re: fclean all
 
+caca:
+	@for color in 31 32 33 34 35 36 37 38 39 40; do \
+		clear; \
+		tput setaf $$color; \
+		cat poop.txt; \
+		tput sgr0; \
+		sleep 0.3; \
+	done
+
 .PHONY: all clean fclean re display_ascii
 
 display_ascii:
