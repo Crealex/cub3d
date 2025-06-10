@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/09 19:24:16 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:37:11 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-# define MOVE_SPD 6
-# define TURN_SPD 0.04
+# define MOVE_SPD 2
+# define TURN_SPD 0.02
 
 typedef struct	s_map
 {
@@ -105,7 +105,6 @@ void	player_rotate_right(t_data *data);
 // window init
 t_data	*data_init();
 void	refresh_window(t_data *data);
-void	compute_square(t_player *square);
 
 // controls init
 void	set_hooks(t_data *data);
@@ -113,7 +112,14 @@ int 	on_keypress(int keycode, t_data *data);
 int		on_keyrelease(int keycode, t_data *data);
 
 // map init
+void	find_player_pos(t_data *data, t_player *square, t_map *mapi);
 void	bg_init(t_data *data, t_map *mapi);
+
+// player init
+void		compute_square(t_data *data, t_player *square);
+void		clear_square(t_data *data, t_player *square);
+void		dup_square(t_data *data);
+t_player	*square_init(t_data *data);
 
 // ray casting
 

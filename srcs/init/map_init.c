@@ -6,11 +6,18 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/09 19:30:38 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/10 15:37:01 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+static int	is_empty(char c)
+{
+	if (c == '0' || c == 'E' || c == 'O' || c == 'W' || c == 'S')
+		return (1);
+	return (0);
+}
 
 void	fill_map(t_data *data, t_map *mapi, int x, int y)
 {
@@ -24,9 +31,13 @@ void	fill_map(t_data *data, t_map *mapi, int x, int y)
 		while (j < data->tilesize)
 		{
 			if (mapi->map[y][x] == '1')
-				*(int *)(mapi->addr + ((x * data->tilesize + j) * (mapi->bpp / 8)) + ((y * data->tilesize + i) * mapi->line_size)) = 0x0000FF;
-			else if (mapi->map[y][x] == '0')
-				*(int *)(mapi->addr + ((x * data->tilesize + j) * (mapi->bpp / 8)) + ((y * data->tilesize + i) * mapi->line_size)) = 0xAAAAAA;\
+				*(int *)(mapi->addr + ((x * data->tilesize + j) * \
+				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
+				mapi->line_size)) = 0x0000FF;
+			else if (is_empty(mapi->map[y][x]))
+				*(int *)(mapi->addr + ((x * data->tilesize + j) * \
+				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
+				mapi->line_size)) = 0xAAAAAA;
 			else
 				return ;			
 			j++;
@@ -48,6 +59,29 @@ void	bg_init(t_data *data, t_map *mapi)
 		while (mapi->map[i][j])
 		{
 			fill_map(data, mapi, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	find_player_pos(t_data *data, t_player *square, t_map *mapi)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (mapi->map[i])
+	{
+		j = 0;
+		while (mapi->map[i][j])
+		{
+			if (mapi->map[i][j] == 'E' || mapi->map[i][j] == 'S' \
+			|| mapi->map[i][j] == 'O' || mapi->map[i][j] == 'W')
+			{
+				square->posx = j * data->tilesize + square->half;
+				square->posy = i * data->tilesize + square->half;
+			}
 			j++;
 		}
 		i++;
