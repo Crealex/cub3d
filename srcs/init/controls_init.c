@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:05:43 by psoulie           #+#    #+#             */
-/*   Updated: 2025/05/26 14:03:22 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/11 10:28:21 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	on_keyrelease(int keycode, t_data *data)
 int	on_keypress(int keycode, t_data *data)
 {
 	if (keycode == ESC)
-		exit(0);
+		proper_exit(data);
 	if (keycode == RIGHT)
 		data->player->right = 1;
 	if (keycode == LEFT)
@@ -48,15 +48,9 @@ int	on_keypress(int keycode, t_data *data)
 	return (0);
 }
 
-int	fuck(int tamere)
-{
-	exit(tamere);
-}
-
 void	set_hooks(t_data *data)
 {
-	int tamere = 0;
 	mlx_hook(data->window, 02, 1L<<0, on_keypress, data);
-	mlx_hook(data->window, 17, 0, fuck, &tamere);
+	mlx_hook(data->window, 17, 0, proper_exit, data);
 	mlx_hook(data->window, 03, 1L<<1, on_keyrelease, data);
 }

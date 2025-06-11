@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/10 15:37:01 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/11 20:46:13 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ void	fill_map(t_data *data, t_map *mapi, int x, int y)
 				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
 				mapi->line_size)) = 0xAAAAAA;
 			else
-				return ;			
+				*(int *)(mapi->addr + ((x * data->tilesize + j) * \
+				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
+				mapi->line_size)) = 0x000000;			
 			j++;
 		}
 		i++;
 	}
 }
 
-void	bg_init(t_data *data, t_map *mapi)
+void	map_init(t_data *data, t_map *mapi)
 {
 	int	i;
 	int	j;

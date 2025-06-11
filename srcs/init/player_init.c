@@ -6,13 +6,13 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/10 16:39:48 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/11 21:11:52 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	dup_square(t_data *data)
+/* void	dup_square(t_data *data)
 {
 	t_player	*square;
 
@@ -49,8 +49,7 @@ void	dup_square(t_data *data)
 			mlx_put_image_to_window(data->mlx, data->window, square->img, \
 				square->posx - square->half, square->posy - data->winsize_y - square->half);
 	}
-}
-
+} */
 
 void	clear_square(t_data *data, t_player *square)
 {
@@ -93,14 +92,14 @@ void	compute_square(t_data *data, t_player *square)
 	square->addr = mlx_get_data_addr(square->img, &square->bpp, \
 			&square->line_size, &square->endian);
 	clear_square(data, square);
-	y = -square->half;
-	while (y < square->half)
+	y = -square->side / 2;
+	while (y < square->side / 2)
 	{
-		x = -square->half;
-		while (x < square->half)
+		x = -square->side / 2;
+		while (x < square->side / 2)
 		{
-			rx = (int)(square->cos_a * x - square->sin_a * y) + square->tile / 2;
-			ry = (int)(square->sin_a * x + square->cos_a * y) + square->tile / 2;
+			rx = (int)(square->cos_a * x - square->sin_a * y) + square->half;
+			ry = (int)(square->sin_a * x + square->cos_a * y) + square->half;
 			if (rx >= 0 && rx < square->tile && ry >= 0 && ry < square->tile)
 			{
 				if (-1 <= y && y <= 1 && x >= 0)
@@ -125,15 +124,13 @@ t_player	*square_init(t_data *data)
 	square->colour = 0xFF0000;
 	square->tile = data->tilesize;
 	square->side = (int)(square->tile / sqrt(2));
-	square->half = square->side / 2;
+	square->half = square->tile / 2;
 	square->a = 0;
 	square->w = 0;
 	square->s = 0;
 	square->d = 0;
 	square->left = 0;
 	square->right = 0;
-	data->background = \
-		mlx_new_image(data->mlx, data->winsize_x, data->winsize_y);
 	square->img = mlx_new_image(data->mlx, square->tile, square->tile);
 	find_player_pos(data, square, data->mapi);
 	compute_square(data, square);

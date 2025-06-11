@@ -6,11 +6,18 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/10 17:07:00 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:58:05 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+int	proper_exit(t_data *data)
+{
+	(void)data;
+	exit(0);
+	return (0);
+}
 
 t_map	*create_map()
 {
