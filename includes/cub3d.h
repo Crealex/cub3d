@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:55:11 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/12 14:44:37 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <colours.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../includes/libft/libft.h"
 
 typedef struct s_map
@@ -40,6 +41,30 @@ typedef struct s_elem
 	int	f;
 	int	c;
 }			t_elem;
+
+typedef struct s_square
+{
+	double	angle;
+	double	posx;
+	double	posy;
+}			t_player;
+
+typedef struct s_dda
+{
+	double	side_distx;
+	double	side_disty;
+	double	delta_distx;
+	double	delta_disty;
+	double	ray_dirx;
+	double	ray_diry;
+	double	perp_wall_dist;
+	int		hit;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
+	int		side;
+}			t_dda;
 
 // *** UTILS ***
 
@@ -67,6 +92,9 @@ int		try_open(char *path);
 void	init_map(t_map *map);
 t_map	*fill_struct(char **file);
 void	fill_matrix(t_map *map, char **file);
+// *** DDA ***
+double	ray_cast(t_player *player, t_map *map);
+int		ft_abs(double n);
 // *** TESTING FCT ***
 void	print_struct(t_map *map);
 void	print_file(char **file);

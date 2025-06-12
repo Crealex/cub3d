@@ -2,6 +2,7 @@ NAME = cub3d
 LIBFT = includes/libft/libft.a
 PARSE = parsing/
 UTILS = utils/
+DDA = DDA_algorithm/
 SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)parsing.c \
 							$(PARSE)check_file.c \
@@ -15,6 +16,8 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)fill_struct2.c \
 							$(PARSE)for_testing.c \
 							$(UTILS)free.c \
+							$(DDA)dda.c \
+							$(DDA)utils.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Werror -Wextra -Wall -g -Iincludes
@@ -39,7 +42,7 @@ CURRENT_FILE = 0
 all:	${NAME} display_ascii
 
 ${NAME}:	${OBJS}  ${LIBFT}
-	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -lm -o ${NAME}
 	@echo "${BOLD}${GREEN}📦 Link complete: ${NAME}${END}"
 
 ${LIBFT}:
@@ -74,7 +77,7 @@ fclean: clean
 re: fclean all
 
 caca:
-	@for color in 31 32 33 34 35 36 37 38 39 40; do \
+	@for color in 30 31 32 33 34 35 36 37 38 39 40; do \
 		clear; \
 		tput setaf $$color; \
 		cat poop.txt; \
