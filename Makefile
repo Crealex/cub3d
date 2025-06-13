@@ -77,10 +77,15 @@ fclean: clean
 re: fclean all
 
 caca:
-	@for color in 30 31 32 33 34 35 36 37 38 39 40; do \
+	@for color in 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40; do \
 		clear; \
 		tput setaf $$color; \
-		cat poop.txt; \
+		echo $$color; \
+		if [ $$(( $$color % 2)) -eq 0 ]; then \
+			cat poop.txt; \
+		else \
+			cat poop2.txt; \
+		fi; \
 		tput sgr0; \
 		sleep 0.3; \
 	done

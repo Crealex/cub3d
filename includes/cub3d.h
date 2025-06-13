@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/12 14:44:37 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/13 10:18:14 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_map	*fill_struct(char **file);
 void	fill_matrix(t_map *map, char **file);
 // *** DDA ***
 double	ray_cast(t_player *player, t_map *map);
-int		ft_abs(double n);
+double	ft_abs(double n);
 // *** TESTING FCT ***
 void	print_struct(t_map *map);
 void	print_file(char **file);

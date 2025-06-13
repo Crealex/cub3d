@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/12 16:54:29 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/13 14:58:40 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,25 @@ void	perform_dda(t_dda *data, t_map *map)
 			data->mapy += data->stepy;
 			data->side = 1;
 		}
-		if (map->matrix[data->mapx][data->mapy] == '1') // peut etre revenir en arriere de une etape
+		if (map->matrix[data->mapy][data->mapx] == '1')
 			data->hit = 1;
 	}
 }
 
 double	ray_cast(t_player *player, t_map *map)
 {
-	t_dda data;
+	t_dda	data;
 
 	data.ray_dirx = cos(player->angle);
 	data.ray_diry = sin(player->angle);
-	data.delta_distx = ft_abs(1 / data.ray_dirx);
-	data.delta_disty = ft_abs(1 / data.ray_diry);
+	if (data.ray_dirx == 0)
+		data.delta_distx = 1e30;
+	else
+		data.delta_distx = ft_abs(1.0 / data.ray_dirx);
+	if (data.ray_diry == 0)
+		data.delta_disty = 1e30;
+	else
+		data.delta_disty = ft_abs(1.0 / data.ray_diry);
 	data.mapx = (int)player->posx;
 	data.mapy = (int)player->posy;
 	data.stepx = define_step(data.ray_dirx);
@@ -73,10 +79,9 @@ double	ray_cast(t_player *player, t_map *map)
 	data.side_distx = define_side_dist(data, 'x', *player);
 	data.side_disty = define_side_dist(data, 'y', *player);
 	perform_dda(&data, map);
-	printf("sidDistX: %f, deltaDistx: %f", data.side_distx, data.delta_distx);
 	if (data.side == 0)
 		data.perp_wall_dist = (data.side_distx - data.delta_distx);
 	else
-		data.perp_wall_dist = (data.side_disty - data.side_disty);
+		data.perp_wall_dist = (data.side_disty - data.delta_disty);
 	return (data.perp_wall_dist);
 }
