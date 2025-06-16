@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 13:41:32 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/16 10:41:43 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	check_line(char *line, char **file, int no, int first_line)
 		if (line[i] == '0')
 		{
 			if (!check_zero(i, file, no) || no == first_line)
-				return (ft_putstr_fd(RED"Error,\nMap doesn't close !\n"RESET, 2), 0);
+				return (ft_putstr_fd(RED"Error,\nMissing wall!\n"RESET, 2), 0);
 		}
 		else if (is_dir(line[i]))
 			player++;
 		if (player > 1 || (!is_dir(line[i]) && line[i] != '0' && line[i] != '1'
 				&& line[i] != ' ' && line[i] != '\n'))
-			return (ft_putstr_fd(RED"Error,\nInvalid char in the map !\n"RESET, 2), 0);
+			return (ft_putstr_fd(RED"Error,\nInvalid char in map!\n"RESET, 2), 0);
 		i++;
 	}
 	return (1);
