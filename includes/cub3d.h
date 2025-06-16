@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 23:24:56 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:35:51 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-# define MOVE_SPD 1.2
-# define TURN_SPD 0.02
+# define MOVE_SPD 1.7
+# define TURN_SPD 0.03
 # define FOV M_PI / 3
 
-typedef struct	s_map
+typedef struct	s_minimap
 {
 	int		len_x;
 	int		len_y;
@@ -49,7 +49,7 @@ typedef struct	s_map
 	char	*addr;
 	char	**map;
 	void	*img;
-}				t_map;
+}				t_minimap;
 
 typedef struct	s_background
 {
@@ -58,6 +58,8 @@ typedef struct	s_background
 	int		endian;
 	char	*addr;
 	void	*img;
+	float	cos_a;
+	float	sin_a;
 }				t_background;
 
 typedef struct	s_square
@@ -92,9 +94,38 @@ typedef struct	s_data
 	int			winsize_y;
 	int			tilesize;
 	t_player	*player;
-	t_map		*mapi;
+	t_minimap		*mapi;
 	t_background *background;
 }				t_data;
+
+typedef struct s_map
+{
+    char    *no_path;
+    char    *so_path;
+    char    *we_path;
+    char    *ea_path;
+    int        floor;
+    int        ceiling;
+    int        player_start;
+    char    **matrix;
+}            t_map;
+
+typedef struct s_dda
+{
+    double    side_distx;
+    double    side_disty;
+    double    delta_distx;
+    double    delta_disty;
+    double    ray_dirx;
+    double    ray_diry;
+    double    perp_wall_dist;
+    int        hit;
+    int        mapx;
+    int        mapy;
+    int        stepx;
+    int        stepy;
+    int        side;
+}            t_dda;
 
 // movement
 void	player_move_forwards(t_data *data);
@@ -123,8 +154,8 @@ int 	on_keypress(int keycode, t_data *data);
 int		on_keyrelease(int keycode, t_data *data);
 
 // map init
-void	find_player_pos(t_data *data, t_player *square, t_map *mapi);
-void	map_init(t_data *data, t_map *mapi);
+void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi);
+void	map_init(t_data *data, t_minimap *mapi);
 
 // player init
 void		compute_square(t_data *data, t_player *square);
@@ -139,5 +170,8 @@ void	place_wall(t_data *data, double dist, double offset, double iter);
 
 // end
 int	proper_exit(t_data *data);
+
+double	ray_cast(t_player *player, t_map *map, double offset);
+double	ft_abs(double n);
 
 #endif

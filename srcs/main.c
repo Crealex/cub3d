@@ -6,27 +6,49 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 14:58:05 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/16 14:33:28 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 int	proper_exit(t_data *data)
 {
-	(void)data;
+	mlx_destroy_image(data->mlx, data->player->img);
+	free(data->player);
+	mlx_destroy_image(data->mlx, data->background->img);
+	free(data->background);
+	// free_tab(data->mapi->map);
+	free(data->mapi->map);
+	mlx_destroy_image(data->mlx, data->mapi->img);
+	free(data->mapi);
+	mlx_destroy_window(data->mlx, data->window);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	free(data);
 	exit(0);
 	return (0);
 }
 
-t_map	*create_map()
+t_minimap	*create_map()
 {
-	t_map	*mapi;
+	t_minimap	*mapi;
 
-	mapi = malloc(sizeof(t_map));
+	mapi = malloc(sizeof(t_minimap));
 	mapi->map = (char **)malloc(8 * sizeof(char *));
-	for (int i = 0; i < 8; i++)
-		mapi->map[i] = (char *)malloc(14 * sizeof(char));
 	mapi->map[7] = NULL;
 	mapi->map[0] = "1111111111111";
 	mapi->map[1] = "1000000001001";
@@ -41,7 +63,7 @@ t_map	*create_map()
 int main()
 {
 	t_data	*data;
-	t_map	*mapi;
+	t_minimap	*mapi;
 
 	mapi = create_map();
 	data = data_init(mapi);

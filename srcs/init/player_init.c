@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 21:11:52 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/16 10:39:22 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	clear_square(t_data *data, t_player *square)
 {
 	int		i;
 	int		j;
-	t_map	*mapi;
+	t_minimap	*mapi;
 
 	i = 0;
 	mapi = data->mapi;

@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 20:46:13 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/16 10:39:19 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_empty(char c)
 	return (0);
 }
 
-void	fill_map(t_data *data, t_map *mapi, int x, int y)
+void	fill_map(t_data *data, t_minimap *mapi, int x, int y)
 {
 	int	i;
 	int	j;
@@ -48,7 +48,7 @@ void	fill_map(t_data *data, t_map *mapi, int x, int y)
 	}
 }
 
-void	map_init(t_data *data, t_map *mapi)
+void	map_init(t_data *data, t_minimap *mapi)
 {
 	int	i;
 	int	j;
@@ -67,7 +67,7 @@ void	map_init(t_data *data, t_map *mapi)
 	}
 }
 
-void	find_player_pos(t_data *data, t_player *square, t_map *mapi)
+void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi)
 {
 	int	i;
 	int	j;

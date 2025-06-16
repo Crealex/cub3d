@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 23:27:17 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/16 10:39:23 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_background	*background_init(t_data *data)
 	return (bg);
 }
 
-t_data	*data_init(t_map *mapi)
+t_data	*data_init(t_minimap *mapi)
 {
 	t_data	*data;
 

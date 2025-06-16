@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 23:34:08 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/16 13:31:54 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ double	find_wall_size(t_data *data, double dist, double offset)
 
 	angle = M_PI / 2 - offset;
 	perp_dist = sin(angle) * dist;
-	wall_size = data->winsize_y / (perp_dist / (data->winsize_x / 70));
+	wall_size = data->winsize_y / (perp_dist);
 	if (wall_size <= 0)
 		wall_size = 0.1;
 	if (wall_size > data->winsize_y)
@@ -67,12 +67,8 @@ void	place_wall(t_data *data, double dist, double offset, double iter)
 	while (i < wall_size / 2)
 	{
 		x = (int)((offset + FOV / 2) * data->winsize_x);
-		while (x < (int)((offset + 1 / (FOV * 180 / M_PI) + FOV / 2) * data->winsize_x))
-		{
-			if (x < data->winsize_x)
+			if (x < data->winsize_x )
 				*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = 0xA19CB3;
-			x++;
-		}
 		i++;
 	}
 }
