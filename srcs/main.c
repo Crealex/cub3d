@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/16 14:33:28 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/17 11:56:05 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,31 @@ int	proper_exit(t_data *data)
 	return (0);
 }
 
-t_minimap	*create_map()
+t_minimap	*create_map(t_map *map)
 {
 	t_minimap	*mapi;
 
 	mapi = malloc(sizeof(t_minimap));
-	mapi->map = (char **)malloc(8 * sizeof(char *));
-	mapi->map[7] = NULL;
-	mapi->map[0] = "1111111111111";
-	mapi->map[1] = "1000000001001";
-	mapi->map[2] = "1111001101001";
-	mapi->map[3] = "1111001111101";
-	mapi->map[4] = "1100000001101";
-	mapi->map[5] = "11E0000000001";
-	mapi->map[6] = "1111111111111";
+	mapi->map = tab_dup(map->matrix);
 	return (mapi);
 }
 
-int main()
-{
-	t_data	*data;
-	t_minimap	*mapi;
+#include <cub3d.h>
 
-	mapi = create_map();
-	data = data_init(mapi);
+int main(int argc, char **argv)
+{
+	t_data		*data;
+	t_minimap	*mapi;
+	t_map 		*map;
+
+	map = parsing(argc, argv);
+	if (!map)
+		return (1);
+	mapi = create_map(map);
+	data = data_init(mapi, map);
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, loop, data);
 	mlx_loop(data->mlx);
+	free_struct(map);
 	return (0);
 }

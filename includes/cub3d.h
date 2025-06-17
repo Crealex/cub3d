@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/16 13:35:51 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/17 11:53:51 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include "minilibx-linux/mlx.h"
 # include <X11/ap_keysym.h>
+# include <cub3d2.h>
 
 // keycodes
 # define ESC 65307
@@ -88,44 +89,16 @@ typedef struct	s_square
 
 typedef struct	s_data
 {
-	void		*mlx;
-	void		*window;
-	int			winsize_x;
-	int			winsize_y;
-	int			tilesize;
-	t_player	*player;
+	void			*mlx;
+	void			*window;
+	int				winsize_x;
+	int				winsize_y;
+	int				tilesize;
+	t_player		*player;
 	t_minimap		*mapi;
-	t_background *background;
+	t_background	*background;
+	t_map			*map;
 }				t_data;
-
-typedef struct s_map
-{
-    char    *no_path;
-    char    *so_path;
-    char    *we_path;
-    char    *ea_path;
-    int        floor;
-    int        ceiling;
-    int        player_start;
-    char    **matrix;
-}            t_map;
-
-typedef struct s_dda
-{
-    double    side_distx;
-    double    side_disty;
-    double    delta_distx;
-    double    delta_disty;
-    double    ray_dirx;
-    double    ray_diry;
-    double    perp_wall_dist;
-    int        hit;
-    int        mapx;
-    int        mapy;
-    int        stepx;
-    int        stepy;
-    int        side;
-}            t_dda;
 
 // movement
 void	player_move_forwards(t_data *data);
@@ -145,7 +118,7 @@ void	player_rotate_right(t_data *data);
 
 // window init
 void			refresh_window(t_data *data);
-t_data			*data_init();
+t_data			*data_init(t_minimap *mapi, t_map *map);
 t_background	*background_init(t_data *data);
 
 // controls init
@@ -171,6 +144,10 @@ void	place_wall(t_data *data, double dist, double offset, double iter);
 // end
 int	proper_exit(t_data *data);
 
+// utils
+char	**tab_dup(char **tab);
+
+// DDA de alex le big boos qui est Karim
 double	ray_cast(t_player *player, t_map *map, double offset);
 double	ft_abs(double n);
 

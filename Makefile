@@ -1,4 +1,22 @@
 NAME = cub3d
+LIBFT = includes/libft/libft.a
+PARSE = parsing/
+UTILS = utils/
+# SRCS = $(addprefix srcs/,	main.c \
+# 							$(PARSE)parsing.c \
+# 							$(PARSE)check_file.c \
+# 							$(PARSE)check_file_utils.c \
+# 							$(PARSE)init_struct.c \
+# 							$(PARSE)check_elem.c \
+# 							$(PARSE)check_elem_path.c \
+# 							$(PARSE)check_map.c \
+# 							$(PARSE)utils.c \
+# 							$(PARSE)fill_struct.c \
+# 							$(PARSE)fill_struct2.c \
+# 							$(PARSE)for_testing.c \
+# 							$(UTILS)free.c \
+# 							)
+
 SRCS = $(shell find srcs -name "*.c")
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Wextra -Wall -g -Iincludes
@@ -26,18 +44,27 @@ CURRENT_FILE = 0
 all:	${NAME} display_ascii
 
 ${NAME}:	${OBJS}
-	@${CC} ${CFLAGS} ${OBJS} includes/minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} includes/minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm -o ${NAME}
 	@echo "${BOLD}${GREEN}📦 Link complete: ${NAME}${END}"
+
+${LIBFT}:
+	@echo "${BOLD}${BLUE}🔨 Building LIBFT...${END}"
+	@${MAKE} -C ./includes/libft/ bonus
+	@echo "${BOLD}${GREEN}✓ LIBFT ready${END}"
 
 ${OBJDIR}/%.o: %.c | ${OBJDIR}
 	@mkdir -p $(dir $@)
 	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE)+1))))
+	@mkdir -p $(dir $@)
 	@printf "${BOLD}${L_PURPLE}⚡ [%2d/%2d] Compiling: %-20s ${END}" $(CURRENT_FILE) $(TOTAL_FILES) "$<"
 	@${CC} ${CFLAGS} -I./includes/minilibx_linux -c -o $@ $<
 	@echo "${BOLD}${GREEN}✓${END}"
 
 ${OBJDIR}:
 	@echo "${BOLD}${BLUE}📁 Created objects directory${END}"
+
+leaks: ${NAME}
+	valgrind --leak-check=full --log-file="leakslog.txt" --track-fds=yes ./${NAME} ./assets/maps/novalid.cub
 
 clean:
 	@echo "${BOLD}${YELLOW}🧹 Cleaning objects...${END}"
@@ -51,6 +78,15 @@ fclean: clean
 	@echo "${BOLD}${GREEN}✨ All clean ✨${END}"
 
 re: fclean all
+
+caca:
+	@for color in 31 32 33 34 35 36 37 38 39 40; do \
+		clear; \
+		tput setaf $$color; \
+		cat poop.txt; \
+		tput sgr0; \
+		sleep 0.3; \
+	done
 
 .PHONY: all clean fclean re display_ascii
 

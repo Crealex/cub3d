@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/16 10:39:19 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/17 11:59:28 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_empty(char c)
 	return (0);
 }
 
-void	fill_map(t_data *data, t_minimap *mapi, int x, int y)
+void	colour_map(t_data *data, t_minimap *mapi, int x, int y)
 {
 	int	i;
 	int	j;
@@ -60,7 +60,7 @@ void	map_init(t_data *data, t_minimap *mapi)
 		j = 0;
 		while (mapi->map[i][j])
 		{
-			fill_map(data, mapi, j, i);
+			colour_map(data, mapi, j, i);
 			j++;
 		}
 		i++;
