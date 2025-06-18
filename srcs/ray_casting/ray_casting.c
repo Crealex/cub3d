@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/16 13:31:54 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 13:58:14 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	base_bg(t_data *data)
 		{
 			if (i < data->winsize_y / 2)
 				*(int *)(bg->addr + j * (bg->bpp / 8) + i * bg->line_size)
-				= 0x99CAE4;
+				= data->map->ceiling;
 			else
 				*(int *)(bg->addr + j * (bg->bpp / 8) + i * bg->line_size)
-				= 0x663300;
+				= data->map->floor;
 			j++;
 		}
 		i++;

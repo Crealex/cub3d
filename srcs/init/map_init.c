@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/17 11:59:28 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 13:48:41 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_empty(char c)
 {
-	if (c == '0' || c == 'E' || c == 'O' || c == 'W' || c == 'S')
+	if (c == '0' || c == 'E' || c == 'N' || c == 'W' || c == 'S')
 		return (1);
 	return (0);
 }
@@ -79,7 +79,7 @@ void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi)
 		while (mapi->map[i][j])
 		{
 			if (mapi->map[i][j] == 'E' || mapi->map[i][j] == 'S' \
-			|| mapi->map[i][j] == 'O' || mapi->map[i][j] == 'W')
+			|| mapi->map[i][j] == 'N' || mapi->map[i][j] == 'W')
 			{
 				square->posx = j * data->tilesize + square->half;
 				square->posy = i * data->tilesize + square->half;

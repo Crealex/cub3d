@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/17 11:56:05 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 14:50:44 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	proper_exit(t_data *data)
 	free(data->player);
 	mlx_destroy_image(data->mlx, data->background->img);
 	free(data->background);
-	// free_tab(data->mapi->map);
-	free(data->mapi->map);
+	free_double_tab(data->mapi->map);
 	mlx_destroy_image(data->mlx, data->mapi->img);
 	free(data->mapi);
 	mlx_destroy_window(data->mlx, data->window);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	free_struct(data->map);
 	free(data);
 	exit(0);
 	return (0);
@@ -68,6 +68,5 @@ int main(int argc, char **argv)
 	set_hooks(data);
 	mlx_loop_hook(data->mlx, loop, data);
 	mlx_loop(data->mlx);
-	free_struct(map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/17 11:53:51 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 11:55:46 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int	proper_exit(t_data *data);
 
 // utils
 char	**tab_dup(char **tab);
+int	tab_width(char **tab);
 
 // DDA de alex le big boos qui est Karim
 double	ray_cast(t_player *player, t_map *map, double offset);

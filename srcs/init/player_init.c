@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/16 10:39:22 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 13:52:06 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_player	*square_init(t_data *data)
 	t_player	*square;
 
 	square = malloc(sizeof(t_player));
-	square->angle = 3 * M_PI / 2;
+	square->angle = data->map->player_start * M_PI / 2;
 	square->cos_a = cos(square->angle);
 	square->sin_a = sin(square->angle);
 	square->colour = 0xFF0000;
