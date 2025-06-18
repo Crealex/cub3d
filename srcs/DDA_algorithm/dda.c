@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/18 15:17:16 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:39:46 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ double	define_side_dist(t_dda data, char c, t_player player)
 	return (0);
 }
 
-void	perform_dda(t_dda *data, t_map *map)
+static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 {
 	data->hit = 0;
 	while (data->hit == 0)
@@ -53,12 +53,18 @@ void	perform_dda(t_dda *data, t_map *map)
 			data->mapy += data->stepy;
 			data->side = 1;
 		}
-		if (map->matrix[data->mapy][data->mapx] == '1')
-			data->hit = 1;
+		if (map->matrix[data->mapy][data->mapx] == '1'
+				|| map->matrix[data->mapy][data->mapx] == 'C')
+			{
+				hit->type = map->matrix[data->mapy][data->mapy];
+				hit->x = data->mapx;
+				hit->y = data->mapy;
+				data->hit = 1;
+			}
 	}
 }
 
-double	ray_cast(t_player *player, t_map *map, double offset)
+void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 {
 	t_dda	data;
 
@@ -78,7 +84,8 @@ double	ray_cast(t_player *player, t_map *map, double offset)
 	data.stepy = define_step(data.ray_diry);
 	data.side_distx = define_side_dist(data, 'x', *player);
 	data.side_disty = define_side_dist(data, 'y', *player);
-	perform_dda(&data, map);
+	perform_dda(&data, map, hit);
+	hit->side = define_side_hit(player->angle + offset);
 	if (data.side == 0)
 		data.perp_wall_dist = (data.side_distx - data.delta_distx);
 	else

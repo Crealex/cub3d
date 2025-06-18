@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/18 15:24:22 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:25:00 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ typedef struct s_dda
 	int		stepy;
 	int		side;
 }			t_dda;
+
+typedef struct s_hit
+{
+	char	type;
+	int		x;
+	int		y;
+	char	side;
+	double	dist;
+}			t_hit;
 
 // *** UTILS ***
 
