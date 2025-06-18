@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d2.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:06:03 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:24:22 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void	fill_matrix(t_map *map, char **file);
 // *** TESTING FCT ***
 void	print_struct(t_map *map);
 void	print_file(char **file);
+int		is_door(int i, char **file, int no);
 
 #endif
