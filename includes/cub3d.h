@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/13 10:18:14 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/18 10:00:30 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int		try_open(char *path);
 void	init_map(t_map *map);
 t_map	*fill_struct(char **file);
 void	fill_matrix(t_map *map, char **file);
+// *** DOORS ***
+int		is_door(int i, char **file, int no);
 // *** DDA ***
 double	ray_cast(t_player *player, t_map *map);
 double	ft_abs(double n);

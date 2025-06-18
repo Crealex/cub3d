@@ -6,11 +6,19 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 10:41:43 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:10:10 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	print_error(int i, char **file, int no)
+{
+	if (file[no][i] == 'C' || file[no][i] == 'O')
+		ft_putstr_fd(RED"Error,\nInvalid door placement!\n"RESET, 2);
+	else
+		ft_putstr_fd(RED"Error,\nInvalid char in map!\n"RESET, 2);
+}
 
 int	find_begin(char **file)
 {
@@ -59,8 +67,8 @@ int	check_line(char *line, char **file, int no, int first_line)
 		else if (is_dir(line[i]))
 			player++;
 		if (player > 1 || (!is_dir(line[i]) && line[i] != '0' && line[i] != '1'
-				&& line[i] != ' ' && line[i] != '\n'))
-			return (ft_putstr_fd(RED"Error,\nInvalid char in map!\n"RESET, 2), 0);
+				&& line[i] != ' ' && line[i] != '\n' && !is_door(i, file, no)))
+			return (print_error(i, file, no), 0);
 		i++;
 	}
 	return (1);

@@ -15,6 +15,7 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(PARSE)fill_struct.c \
 							$(PARSE)fill_struct2.c \
 							$(PARSE)for_testing.c \
+							$(PARSE)check_doors.c \
 							$(UTILS)free.c \
 							$(DDA)dda.c \
 							$(DDA)utils.c \
