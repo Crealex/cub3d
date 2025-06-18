@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 11:52:00 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:17:16 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ double	define_side_dist(t_dda data, char c, t_player player)
 	if (c == 'x')
 	{
 		if (data.ray_dirx < 0)
-			return ((player.posx - data.mapx) * data.delta_distx);
-		return ((data.mapx + 1.0 - player.posx) * data.delta_distx);
+			return ((player.posx / 25 - data.mapx) * data.delta_distx);
+		return ((data.mapx + 1.0 - player.posx / 25) * data.delta_distx);
 	}
 	else if (c == 'y')
 	{
 		if (data.ray_diry < 0)
-			return ((player.posy - data.mapy) * data.delta_disty);
-		return ((data.mapy + 1.0 - player.posy) * data.delta_disty);
+			return ((player.posy / 25 - data.mapy) * data.delta_disty);
+		return ((data.mapy + 1.0 - player.posy / 25) * data.delta_disty);
 	}
 	return (0);
 }
@@ -58,12 +58,12 @@ void	perform_dda(t_dda *data, t_map *map)
 	}
 }
 
-double	ray_cast(t_player *player, t_map *map)
+double	ray_cast(t_player *player, t_map *map, double offset)
 {
 	t_dda	data;
 
-	data.ray_dirx = cos(player->angle);
-	data.ray_diry = sin(player->angle);
+	data.ray_dirx = cos(player->angle + offset);
+	data.ray_diry = sin(player->angle + offset);
 	if (data.ray_dirx == 0)
 		data.delta_distx = 1e30;
 	else
@@ -72,8 +72,8 @@ double	ray_cast(t_player *player, t_map *map)
 		data.delta_disty = 1e30;
 	else
 		data.delta_disty = ft_abs(1.0 / data.ray_diry);
-	data.mapx = (int)player->posx;
-	data.mapy = (int)player->posy;
+	data.mapx = (int)(player->posx / 25);
+	data.mapy = (int)(player->posy / 25);
 	data.stepx = define_step(data.ray_dirx);
 	data.stepy = define_step(data.ray_diry);
 	data.side_distx = define_side_dist(data, 'x', *player);

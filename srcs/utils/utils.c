@@ -1,46 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 13:36:59 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:04:09 by psoulie          ###   ########.fr       */
+/*   Created: 2025/06/17 11:28:26 by psoulie           #+#    #+#             */
+/*   Updated: 2025/06/18 11:56:48 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	free_double_tab(char **tab)
+char	**tab_dup(char **tab)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	**new_tab;
 
 	i = 0;
-	if (!tab)
-		return ;
+	while (tab[i])
+		i++;
+	i++;
+	new_tab = malloc(i * sizeof(char *));
+	i = 0;
 	while (tab[i])
 	{
-		free(tab[i]);
+		new_tab[i] = ft_strdup(tab[i]);
 		i++;
 	}
-	free(tab);
+	new_tab[i] = NULL;
+	return (new_tab);
 }
 
-void	free_struct(t_map *map)
+int	tab_width(char **tab)
 {
-	free(map->no_path);
-	free(map->ea_path);
-	free(map->so_path);
-	free(map->we_path);
-	free_double_tab(map->matrix);
-	free(map);
-}
+	int	i;
+	int	len;
+	int	max_len;
 
-void	clean_exit(char **file, t_map *map)
-{
-	if (file)
-		free_double_tab(file);
-	if (map)
-		free_struct(map);
+	i = 0;
+	max_len = 0;
+	len = 0;
+	while (tab[i])
+	{
+		len = ft_strlen(tab[i]);
+		if (len > max_len)
+			max_len = len;
+		i++;
+	}
+	return (max_len);
 }

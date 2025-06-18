@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_elem_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:48:33 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 13:41:56 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/16 15:02:24 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 char	*extract_path(char *file)
 {

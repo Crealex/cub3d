@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/18 10:00:30 by atomasi          ###   ########.fr       */
+/*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
+/*   Updated: 2025/06/18 15:14:06 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,90 +15,141 @@
 # define CUB3D_H
 
 # include <stdio.h>
-# include <colours.h>
-# include <fcntl.h>
 # include <math.h>
-# include "../includes/libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include "minilibx-linux/mlx.h"
+# include <X11/ap_keysym.h>
+# include <cub3d2.h>
 
-typedef struct s_map
-{
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		floor;
-	int		ceiling;
-	int		player_start;
-	char	**matrix;
-}			t_map;
+// keycodes
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define RIGHT 65363
+# define LEFT 65361
 
-typedef struct s_elem
-{
-	int	no;
-	int	so;
-	int	we;
-	int	ea;
-	int	f;
-	int	c;
-}			t_elem;
 
-typedef struct s_square
+// macros
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+# define MOVE_SPD 1.7
+# define TURN_SPD 0.03
+# define FOV M_PI / 3
+
+typedef struct	s_minimap
 {
+	int		len_x;
+	int		len_y;
+	int		bpp;
+	int		line_size;
+	int		endian;
+	char	*addr;
+	char	**map;
+	void	*img;
+}				t_minimap;
+
+typedef struct	s_background
+{
+	int		bpp;
+	int		line_size;
+	int		endian;
+	char	*addr;
+	void	*img;
+	float	cos_a;
+	float	sin_a;
+}				t_background;
+
+typedef struct	s_square
+{
+	int		tile;
+	int		side;
+	int		half;
+	int		colour;
 	double	angle;
+	double	cos_a;
+	double	sin_a;
 	double	posx;
 	double	posy;
-}			t_player;
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		left;
+	int		right;
+	void	*img;
+	int		bpp;
+	int		line_size;
+	int		endian;
+	char	*addr;
+}				t_player;
 
-typedef struct s_dda
+typedef struct	s_data
 {
-	double	side_distx;
-	double	side_disty;
-	double	delta_distx;
-	double	delta_disty;
-	double	ray_dirx;
-	double	ray_diry;
-	double	perp_wall_dist;
-	int		hit;
-	int		mapx;
-	int		mapy;
-	int		stepx;
-	int		stepy;
-	int		side;
-}			t_dda;
+	void			*mlx;
+	void			*window;
+	int				winsize_x;
+	int				winsize_y;
+	int				tilesize;
+	t_player		*player;
+	t_minimap		*mapi;
+	t_background	*background;
+	t_map			*map;
+}				t_data;
 
-// *** UTILS ***
+// movement
+void	player_move_forwards(t_data *data);
+void	player_move_right(t_data *data);
+void	player_move_left(t_data *data);
+void	player_move_backwards(t_data *data);
+int		loop(t_data *data);
 
-void	free_double_tab(char **tab);
-void	free_struct(t_map *map);
-void	clean_exit(char **file, t_map *map);
+// collision
+int	forward_collision(t_data *data, t_player *player);
+int	h_forward_collision(t_data *data, t_player *player);
+int	v_forward_collision(t_data *data, t_player *player);
 
-// *** PARSING ***
-t_map	*parsing(int argc, char **argv);
-void	init_elem(t_elem *elem);
-void	cpy_elem(t_elem src, t_elem *dst);
-int		check_file(char **file);
-int		is_two_spaces(int i, int j, char **file);
-char	**fill_file(char *path);
-int		check_elem(char **file);
-int		count_line(int fd);
-t_elem	check_texture_path(char *file, t_elem base);
-int		check_map(char **file);
-int		is_map_begin(char *line);
-int		find_begin(char **file);
-int		tab_size(char **file);
-int		len_wspace(char *str);
-int		is_dir(char c);
-int		try_open(char *path);
-void	init_map(t_map *map);
-t_map	*fill_struct(char **file);
-void	fill_matrix(t_map *map, char **file);
-// *** DOORS ***
-int		is_door(int i, char **file, int no);
-// *** DDA ***
-double	ray_cast(t_player *player, t_map *map);
+// rotation
+void	player_rotate_left(t_data *data);
+void	player_rotate_right(t_data *data);
+
+// window init
+void			refresh_window(t_data *data);
+t_data			*data_init(t_minimap *mapi, t_map *map);
+t_background	*background_init(t_data *data);
+
+// controls init
+void	set_hooks(t_data *data);
+int 	on_keypress(int keycode, t_data *data);
+int		on_keyrelease(int keycode, t_data *data);
+
+// map init
+void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi);
+void	map_init(t_data *data, t_minimap *mapi);
+
+// player init
+void		compute_square(t_data *data, t_player *square);
+void		clear_square(t_data *data, t_player *square);
+void		dup_square(t_data *data);
+t_player	*square_init(t_data *data);
+
+// ray casting
+void	show_rays(t_data *data, t_player *player);
+void	base_bg(t_data *data);
+void	place_wall(t_data *data, double dist, double offset, double iter);
+
+// end
+int	proper_exit(t_data *data);
+
+// utils
+char	**tab_dup(char **tab);
+int	tab_width(char **tab);
+
+// DDA de alex le big boos qui est Karim
+double	ray_cast(t_player *player, t_map *map, double offset);
 double	ft_abs(double n);
-// *** TESTING FCT ***
-void	print_struct(t_map *map);
-void	print_file(char **file);
 
 #endif
