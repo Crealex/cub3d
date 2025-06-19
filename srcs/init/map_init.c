@@ -6,13 +6,13 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 13:48:41 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/18 16:01:33 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int	is_empty(char c)
+int	is_empty(char c)
 {
 	if (c == '0' || c == 'E' || c == 'N' || c == 'W' || c == 'S')
 		return (1);

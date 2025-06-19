@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 15:14:06 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/18 15:53:36 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int		on_keyrelease(int keycode, t_data *data);
 // map init
 void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi);
 void	map_init(t_data *data, t_minimap *mapi);
+int	is_empty(char c);
 
 // player init
 void		compute_square(t_data *data, t_player *square);
