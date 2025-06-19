@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 13:58:14 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:35:26 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ double	find_wall_size(t_data *data, double dist, double offset)
 	return (wall_size);
 }
 
-void	place_wall(t_data *data, double dist, double offset, double iter)
+void	place_wall(t_data *data, t_hit hit, double offset, double iter)
 {
 	t_background	*bg;
 	double			wall_size;
@@ -62,7 +62,7 @@ void	place_wall(t_data *data, double dist, double offset, double iter)
 
 	(void)iter;
 	bg = data->background;
-	wall_size = find_wall_size(data, dist, offset);
+	wall_size = find_wall_size(data, hit.dist, offset);
 	i = - wall_size / 2;
 	while (i < wall_size / 2)
 	{

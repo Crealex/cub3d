@@ -6,11 +6,30 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/18 16:39:46 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:28:47 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+static char	define_side_hit(double angle, int side)
+{
+	if (side == 0)
+	{
+		if (angle >= 0 && angle <= M_PI)
+			return ('S');
+		else
+			return ('N');
+	}
+	else
+	{
+		if (angle >= M_PI / 2 && angle <= 3 * M_PI / 2)
+			return ('E');
+		else
+			return ('W');
+	}
+	return (0);
+}
 
 int	define_step(double n)
 {
@@ -57,8 +76,8 @@ static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 				|| map->matrix[data->mapy][data->mapx] == 'C')
 			{
 				hit->type = map->matrix[data->mapy][data->mapy];
-				hit->x = data->mapx;
-				hit->y = data->mapy;
+				hit->x = data->side_distx;
+				hit->y = data->side_disty;
 				data->hit = 1;
 			}
 	}
@@ -85,10 +104,9 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 	data.side_distx = define_side_dist(data, 'x', *player);
 	data.side_disty = define_side_dist(data, 'y', *player);
 	perform_dda(&data, map, hit);
-	hit->side = define_side_hit(player->angle + offset);
+	hit->side = define_side_hit(player->angle + offset, data.side);
 	if (data.side == 0)
-		data.perp_wall_dist = (data.side_distx - data.delta_distx);
+		hit->dist = (data.side_distx - data.delta_distx);
 	else
-		data.perp_wall_dist = (data.side_disty - data.delta_disty);
-	return (data.perp_wall_dist);
+		hit->dist = (data.side_disty - data.delta_disty);
 }

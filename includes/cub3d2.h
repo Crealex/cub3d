@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/18 16:25:00 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/19 17:05:24 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ typedef struct s_hit
 	char	side;
 	double	dist;
 }			t_hit;
+
+typedef struct s_img
+{
+
+}			t_img;
 
 // *** UTILS ***
 

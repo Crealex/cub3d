@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 16:20:26 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:35:47 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ t_player	*square_init(t_data *data);
 // ray casting
 void	show_rays(t_data *data, t_player *player);
 void	base_bg(t_data *data);
-void	place_wall(t_data *data, double dist, double offset, double iter);
+void	place_wall(t_data *data, t_hit hit, double offset, double iter);
 
 // end
 int	proper_exit(t_data *data);

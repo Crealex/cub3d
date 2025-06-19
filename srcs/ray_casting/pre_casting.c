@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 14:59:53 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 14:18:33 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/19 11:35:02 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	draw_ray(t_data *data, t_player *player, double offset, double iter, t_map *map)
 {
-	double	dist;
+	t_hit	hit;
 
 	data->background->cos_a = cos(player->angle + offset);
 	data->background->sin_a = sin(player->angle + offset);
-	dist = ray_cast(player, map, offset);
-	place_wall(data, dist, offset, iter);
+	ray_cast(player, map, offset, &hit);
+	place_wall(data, hit, offset, iter);
 }
 
 void	show_rays(t_data *data, t_player *player)
