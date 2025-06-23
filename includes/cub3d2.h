@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/19 17:05:24 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/23 11:03:43 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,23 @@ typedef struct s_hit
 
 typedef struct s_img
 {
-
+	void	*img;
+	char	*addr;
+	char	*path;
+	int		bpp; // bit per pixel
+	int		line_size;
+	int		endian;
+	int		width;
+	int		height;
 }			t_img;
+
+typedef struct s_texture
+{
+	t_img	no;
+	t_img	so;
+	t_img	ea;
+	t_img	we;
+}			t_texture;
 
 // *** UTILS ***
 
