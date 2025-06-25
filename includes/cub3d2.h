@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d2.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/23 11:03:43 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/25 22:27:11 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int		try_open(char *path);
 void	init_map(t_map *map);
 t_map	*fill_struct(char **file);
 void	fill_matrix(t_map *map, char **file);
+// *** TEXTURES ***
 // *** TESTING FCT ***
 void	print_struct(t_map *map);
 void	print_file(char **file);

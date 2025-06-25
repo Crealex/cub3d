@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/19 11:35:47 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/25 22:28:13 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,8 @@ int	tab_width(char **tab);
 // DDA de alex le big boos qui est Karim
 void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
 double	ft_abs(double n);
+
+// texture de alex le big boos qui est Karim (inclus ici pour les erreurs de compilations)
+int		define_pix_texture(t_hit hit, t_data *data);
 
 #endif
