@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/19 11:28:47 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/26 16:44:42 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 		data.delta_disty = ft_abs(1.0 / data.ray_diry);
 	data.mapx = (int)(player->posx / 25);
 	data.mapy = (int)(player->posy / 25);
+	hit->ray_x = data.ray_dirx;
+	hit->ray_y = data.ray_diry;
 	data.stepx = define_step(data.ray_dirx);
 	data.stepy = define_step(data.ray_diry);
 	data.side_distx = define_side_dist(data, 'x', *player);

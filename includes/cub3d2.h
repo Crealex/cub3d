@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d2.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/25 22:27:11 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/06/26 16:44:08 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ typedef struct s_dda
 typedef struct s_hit
 {
 	char	type;
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 	char	side;
 	double	dist;
+	double	ray_x;
+	double	ray_y;
 }			t_hit;
 
 typedef struct s_img
@@ -82,10 +84,10 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	t_img	no;
-	t_img	so;
-	t_img	ea;
-	t_img	we;
+	t_img	*no;
+	t_img	*so;
+	t_img	*ea;
+	t_img	*we;
 }			t_texture;
 
 // *** UTILS ***

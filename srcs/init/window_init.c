@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 14:10:01 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/26 10:22:35 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	refresh_window(t_data *data)
 {
 	t_player	*player;
-	
+
 	player = data->player;
 	compute_square(data, player);
 	show_rays(data, player);
@@ -45,7 +45,7 @@ t_data	*data_init(t_minimap *mapi, t_map *map)
 	data->winsize_x = 2000;
 	data->winsize_y = 1300;
 	data->window = mlx_new_window(data->mlx, data->winsize_x, data->winsize_y, \
-		"dont mind me im just a square");
+		"cacaboudin");
 	data->tilesize = 25;
 	mapi->len_x = tab_width(map->matrix);
 	mapi->len_y = tab_size(map->matrix);
@@ -55,5 +55,6 @@ t_data	*data_init(t_minimap *mapi, t_map *map)
 	data->background = background_init(data);
 	data->map = map;
 	data->player = square_init(data);
+	data->textures = textures_init(data);
 	return (data);
 }

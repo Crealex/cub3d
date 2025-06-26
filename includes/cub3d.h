@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/25 22:28:13 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/06/26 16:15:22 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct	s_data
 	t_minimap		*mapi;
 	t_background	*background;
 	t_map			*map;
+	t_texture		*textures;
 }				t_data;
 
 // movement
@@ -153,6 +154,7 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
 double	ft_abs(double n);
 
 // texture de alex le big boos qui est Karim (inclus ici pour les erreurs de compilations)
-int		define_pix_texture(t_hit hit, t_data *data);
+unsigned int	define_pix_texture(t_hit hit, t_data *data, int i, double wall_size);
+t_texture		*textures_init(t_data *data);
 
 #endif
