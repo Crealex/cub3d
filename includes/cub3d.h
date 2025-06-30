@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 15:53:36 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/30 11:55:50 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,18 @@
 # define MOVE_SPD 1.7
 # define TURN_SPD 0.03
 # define FOV M_PI / 3
+# define MINIMAP_SIZE 7
 
 typedef struct	s_minimap
 {
 	int		len_x;
 	int		len_y;
+	int		cx;
+	int		cy;
+	int		ix;
+	int		iy;
+	int		mx;
+	int		my;
 	int		bpp;
 	int		line_size;
 	int		endian;
@@ -127,8 +134,8 @@ int 	on_keypress(int keycode, t_data *data);
 int		on_keyrelease(int keycode, t_data *data);
 
 // map init
-void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi);
-void	map_init(t_data *data, t_minimap *mapi);
+void	find_player_pos(t_data *data, t_player *square, t_map *mapi);
+void	map_init(t_data *data, t_player *player, t_minimap *mapi);
 int	is_empty(char c);
 
 // player init
@@ -148,6 +155,7 @@ int	proper_exit(t_data *data);
 // utils
 char	**tab_dup(char **tab);
 int	tab_width(char **tab);
+int	ftt_strlen(char *str);
 
 // DDA de alex le big boos qui est Karim
 double	ray_cast(t_player *player, t_map *map, double offset);

@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 13:52:06 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/06/30 11:40:40 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	clear_square(t_data *data, t_player *square)
 		{
 			*(unsigned int *)(square->addr + (j * (square->bpp / 8)) + \
 				(i * square->line_size)) = *(unsigned int *)(mapi->addr + \
-				((int)square->posx - square->half + j) * (mapi->bpp / 8) + \
-				((int)square->posy - square->half + i) * mapi->line_size);
+				((int)3 * data->tilesize + j) * (mapi->bpp / 8) + \
+				((int)3 * data->tilesize + i) * mapi->line_size);
 			j++;
 		}
 		i++;
@@ -132,7 +132,6 @@ t_player	*square_init(t_data *data)
 	square->left = 0;
 	square->right = 0;
 	square->img = mlx_new_image(data->mlx, square->tile, square->tile);
-	find_player_pos(data, square, data->mapi);
-	compute_square(data, square);
+	find_player_pos(data, square, data->map);
 	return (square);
 }
