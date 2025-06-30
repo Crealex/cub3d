@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/26 16:44:08 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/30 17:02:31 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ typedef struct s_hit
 	double	dist;
 	double	ray_x;
 	double	ray_y;
+	int		tex_x;
+	int		i;
+	double	wall_size;
 }			t_hit;
 
 typedef struct s_img

@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/26 16:44:42 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:29:49 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static char	define_side_hit(double angle, int side)
 {
 	if (side == 0)
 	{
-		if (angle >= 0 && angle <= M_PI)
-			return ('S');
+		if (cos(angle) > 0)
+			return ('W');
 		else
-			return ('N');
+			return ('E');
 	}
 	else
 	{
-		if (angle >= M_PI / 2 && angle <= 3 * M_PI / 2)
-			return ('E');
+		if (sin(angle) > 0)
+			return ('N');
 		else
-			return ('W');
+			return ('S');
 	}
 	return (0);
 }
@@ -55,6 +55,7 @@ double	define_side_dist(t_dda data, char c, t_player player)
 	return (0);
 }
 
+
 static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 {
 	data->hit = 0;
@@ -76,8 +77,6 @@ static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 				|| map->matrix[data->mapy][data->mapx] == 'C')
 			{
 				hit->type = map->matrix[data->mapy][data->mapy];
-				hit->x = data->side_distx;
-				hit->y = data->side_disty;
 				data->hit = 1;
 			}
 	}
@@ -111,4 +110,7 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 		hit->dist = (data.side_distx - data.delta_distx);
 	else
 		hit->dist = (data.side_disty - data.delta_disty);
+	hit->x = (player->posx / TILE_SIZE) + hit->dist * data.ray_dirx;
+	hit->y = (player->posy / TILE_SIZE) + hit->dist * data.ray_diry;
+	hit->dist *= cos(offset);
 }

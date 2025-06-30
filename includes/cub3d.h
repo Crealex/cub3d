@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/26 16:15:22 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/06/30 18:24:23 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define MOVE_SPD 1.7
 # define TURN_SPD 0.03
 # define FOV M_PI / 3
+# define TILE_SIZE 25
 
 typedef struct	s_minimap
 {
@@ -140,7 +141,7 @@ t_player	*square_init(t_data *data);
 // ray casting
 void	show_rays(t_data *data, t_player *player);
 void	base_bg(t_data *data);
-void	place_wall(t_data *data, t_hit hit, double offset, double iter);
+void	place_wall(t_data *data, t_hit hit, double offset, int x);
 
 // end
 int	proper_exit(t_data *data);
@@ -154,7 +155,8 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
 double	ft_abs(double n);
 
 // texture de alex le big boos qui est Karim (inclus ici pour les erreurs de compilations)
-unsigned int	define_pix_texture(t_hit hit, t_data *data, int i, double wall_size);
+unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex);
 t_texture		*textures_init(t_data *data);
+t_img			*define_tex(t_hit hit, t_data *data);
 
 #endif
