@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/30 11:47:22 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/01 11:40:43 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,47 +21,44 @@ int	is_empty(char c)
 
 static void	put_colour(t_data *data, t_minimap *mapi, int colour)
 {
-	*(int *)(mapi->addr + (((mapi->mx) * data->tilesize + mapi->ix) * \
-				(mapi->bpp / 8)) + (((mapi->my) * data->tilesize + mapi->iy) * \
+	(void)data;
+	*(int *)(mapi->addr + ((mapi->mx) * \
+				(mapi->bpp / 8)) + ((mapi->my) * \
 				mapi->line_size)) = colour;
 }
 
 static void	colour_map(t_data *data, t_minimap *mapi)
 {
-	mapi->iy = 0;
-	while (mapi->iy < data->tilesize)
-	{
-		mapi->ix = 0;
-		while (mapi->ix < data->tilesize)
-		{
-			if (mapi->cy < 0 || mapi->cx < 0 || mapi->cy > mapi->len_y || mapi->cx > ftt_strlen(mapi->map[mapi->cy]))
-			{
+	// mapi->iy = 0;
+	// while (mapi->iy < MINIMAP_SIZE * data->tilesize)
+	// {
+	// 	mapi->ix = 0;
+	// 	while (mapi->ix < MINIMAP_SIZE * data->tilesize)
+	// 	{
+			if (mapi->cy < 0 || mapi->cx < 0 || mapi->cy >= mapi->len_y * data->tilesize || mapi->cx > (int)ft_strlen(mapi->map[mapi->cy / data->tilesize]) * data->tilesize)
 				put_colour(data, mapi, 0x000000);
-				mapi->ix++;
-				continue ;
-			}
-			if (mapi->map[mapi->cy][mapi->cx] == '1')
+			else if (mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize] == '1')
 				put_colour(data, mapi, 0x0000FF);
-			else if (is_empty(mapi->map[mapi->cy][mapi->cx]))
+			else if (is_empty(mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize]))
 				put_colour(data, mapi, 0xAAAAAA);
 			else
 				put_colour(data, mapi, 0x000000);
-			mapi->ix++;
-		}
-		mapi->iy++;
-	}
+	// 		mapi->ix++;
+	// 	}
+	// 	mapi->iy++;
+	// }
 }
 
 void	map_init(t_data *data, t_player *player, t_minimap *mapi)
 {
 	mapi->my = 0;
-	mapi->cy = (int)(player->posy - player->half) / data->tilesize - MINIMAP_SIZE / 2;
+	mapi->cy = (int)(player->posy - player->half) - (MINIMAP_SIZE / 2 * data->tilesize);
 	mapi->addr = mlx_get_data_addr(mapi->img, &mapi->bpp, &mapi->line_size, &mapi->endian);
-	while (mapi->cy < (int)(player->posy - player->half) / data->tilesize + MINIMAP_SIZE / 2)
+	while (mapi->cy <= (int)(player->posy + player->half) + (MINIMAP_SIZE / 2 * data->tilesize))
 	{
 		mapi->mx = 0;
-		mapi->cx = (int)(player->posx - player->half) / data->tilesize - MINIMAP_SIZE / 2;
-		while (mapi->cx < (int)(player->posx - player->half) / data->tilesize + MINIMAP_SIZE / 2)
+		mapi->cx = (int)(player->posx - player->half) - (MINIMAP_SIZE / 2 * data->tilesize);
+		while (mapi->cx <= (int)(player->posx + player->half) + (MINIMAP_SIZE / 2 * data->tilesize))
 		{
 			colour_map(data, mapi);
 			mapi->mx++;

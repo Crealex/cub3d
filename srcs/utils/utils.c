@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:28:26 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/30 10:46:42 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/01 11:40:23 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,4 @@ int	tab_width(char **tab)
 		i++;
 	}
 	return (max_len);
-}
-
-int	ftt_strlen(char *str)
-{
-	int	i;
-
-	while (str && str[i])
-		i++;
-	return (i);
 }
