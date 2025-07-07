@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:28:26 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/01 11:40:23 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:24:52 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,11 @@ int	tab_width(char **tab)
 		i++;
 	}
 	return (max_len);
+}
+
+int	is_door_or_wall(char c)
+{
+	if (c == 'C' || c == 'O' || c == '1')
+		return (1);
+	return (0);
 }

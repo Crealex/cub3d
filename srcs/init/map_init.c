@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/01 11:40:43 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:58:12 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_empty(char c)
 {
-	if (c == '0' || c == 'E' || c == 'N' || c == 'W' || c == 'S')
+	if (c == '0' || c == 'E' || c == 'N' || c == 'W' || c == 'S' || c == 'O')
 		return (1);
 	return (0);
 }
@@ -29,24 +29,16 @@ static void	put_colour(t_data *data, t_minimap *mapi, int colour)
 
 static void	colour_map(t_data *data, t_minimap *mapi)
 {
-	// mapi->iy = 0;
-	// while (mapi->iy < MINIMAP_SIZE * data->tilesize)
-	// {
-	// 	mapi->ix = 0;
-	// 	while (mapi->ix < MINIMAP_SIZE * data->tilesize)
-	// 	{
 			if (mapi->cy < 0 || mapi->cx < 0 || mapi->cy >= mapi->len_y * data->tilesize || mapi->cx > (int)ft_strlen(mapi->map[mapi->cy / data->tilesize]) * data->tilesize)
 				put_colour(data, mapi, 0x000000);
 			else if (mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize] == '1')
 				put_colour(data, mapi, 0x0000FF);
+			else if (mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize] == 'C')
+				put_colour(data, mapi, 0x12B261);
 			else if (is_empty(mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize]))
 				put_colour(data, mapi, 0xAAAAAA);
 			else
 				put_colour(data, mapi, 0x000000);
-	// 		mapi->ix++;
-	// 	}
-	// 	mapi->iy++;
-	// }
 }
 
 void	map_init(t_data *data, t_player *player, t_minimap *mapi)

@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/01 11:33:23 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:38:28 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define D 100
 # define RIGHT 65363
 # define LEFT 65361
+# define SPACE 32
 
 
 // macros
@@ -87,6 +88,8 @@ typedef struct	s_square
 	int		d;
 	int		left;
 	int		right;
+	int		sx;
+	int		sy;
 	void	*img;
 	int		bpp;
 	int		line_size;
@@ -123,6 +126,9 @@ int	v_forward_collision(t_data *data, t_player *player);
 void	player_rotate_left(t_data *data);
 void	player_rotate_right(t_data *data);
 
+// doors
+void	check_door(t_data *data);
+
 // window init
 void			refresh_window(t_data *data);
 t_data			*data_init(t_minimap *mapi, t_map *map);
@@ -156,6 +162,7 @@ int	proper_exit(t_data *data);
 char	**tab_dup(char **tab);
 int	tab_width(char **tab);
 int	ftt_strlen(char *str);
+int	is_door_or_wall(char c);
 
 // DDA de alex le big boos qui est Karim
 double	ray_cast(t_player *player, t_map *map, double offset);
