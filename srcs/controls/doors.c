@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:49:51 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/07 11:59:02 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/07 14:09:35 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	check_door(t_data *data)
 	int	dist;
 	
 	dist = mini_dda(data, data->player);
-	if (dist < data->tilesize)
+	if (dist < data->tilesize && dist > 1)
 		toggle_door(data, data->player);
 }
