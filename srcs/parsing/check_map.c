@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/18 15:18:10 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/07 17:07:35 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	print_error(int i, char **file, int no)
+static void	print_error(int i, char **file, int no, int player)
 {
 	if (file[no][i] == 'C' || file[no][i] == 'O')
 		ft_putstr_fd(RED"Error,\nInvalid door placement!\n"RESET, 2);
+	else if (player > 1)
+		ft_putstr_fd(RED"Error,\nToo many players!\n"RESET, 2);
 	else
 		ft_putstr_fd(RED"Error,\nInvalid char in map!\n"RESET, 2);
 }
@@ -53,10 +55,9 @@ int	check_zero(int i, char **file, int no)
 int	check_line(char *line, char **file, int no, int first_line)
 {
 	int	i;
-	int	player;
+	static int	player = 0;
 
 	i = 0;
-	player = 0;
 	while (line[i])
 	{
 		if (line[i] == '0')
@@ -66,10 +67,16 @@ int	check_line(char *line, char **file, int no, int first_line)
 		}
 		else if (is_dir(line[i]))
 			player++;
+		printf("player: %d\n", player);
 		if (player > 1 || (!is_dir(line[i]) && line[i] != '0' && line[i] != '1'
 				&& line[i] != ' ' && line[i] != '\n' && !is_door(i, file, no)))
-			return (print_error(i, file, no), 0);
+			return (print_error(i, file, no, player), 0);
 		i++;
+	}
+	if (player == 0 && !file[no + 1])
+	{
+		ft_putstr_fd(RED"Error,\nNo player found!\n"RESET, 2);
+		return (0);
 	}
 	return (1);
 }

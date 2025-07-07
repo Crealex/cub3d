@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d2.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/30 17:02:31 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/07 16:05:42 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_texture
 	t_img	*so;
 	t_img	*ea;
 	t_img	*we;
+	t_img	*door;
 }			t_texture;
 
 // *** UTILS ***

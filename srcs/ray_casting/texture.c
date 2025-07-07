@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/30 18:19:50 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/07 16:25:09 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_texture	*textures_init(t_data *data)
 	tex->no = side_init(data, data->map->no_path);
 	tex->so = side_init(data, data->map->so_path);
 	tex->we = side_init(data, data->map->we_path);
+	tex->door = side_init(data, "./assets/textures/door.xpm");
 	return (tex);
 }
 
@@ -47,6 +48,11 @@ t_img	*define_tex(t_hit hit, t_data *data)
 	t_img	*tex;
 
 	//printf("hit.side: %d, ray_x: %f, ray y: %f\n", hit.side, hit.ray_x, hit.ray_y);
+	if (hit.type == 'C')
+	{
+		tex = data->textures->door;
+		return (tex);
+	}
 	if (hit.side == 'W')
 		tex = data->textures->we;
 	else if (hit.side == 'E')
