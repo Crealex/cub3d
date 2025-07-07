@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/30 18:28:57 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/02 10:15:26 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 		hit.i = i;
 		//x = (int)((offset + FOV / 2) * data->winsize_x);
 			if (x < data->winsize_x )
-				*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = define_pix_texture(hit, data, tex);//0xA19CB3;//define pix_texture
+				*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = define_pix_texture(hit, data, tex);
 		i++;
 	}
 }

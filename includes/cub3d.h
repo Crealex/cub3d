@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/30 18:24:23 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/02 10:24:48 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ int	tab_width(char **tab);
 // DDA de alex le big boos qui est Karim
 void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
 double	ft_abs(double n);
+int		define_step(double n);
 
 // texture de alex le big boos qui est Karim (inclus ici pour les erreurs de compilations)
 unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex);

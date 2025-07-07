@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/30 18:29:49 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/02 10:25:02 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ static char	define_side_hit(double angle, int side)
 			return ('S');
 	}
 	return (0);
-}
-
-int	define_step(double n)
-{
-	if (n < 0)
-		return (-1);
-	return (1);
 }
 
 double	define_side_dist(t_dda data, char c, t_player player)
@@ -76,10 +69,20 @@ static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 		if (map->matrix[data->mapy][data->mapx] == '1'
 				|| map->matrix[data->mapy][data->mapx] == 'C')
 			{
-				hit->type = map->matrix[data->mapy][data->mapy];
+				hit->type = map->matrix[data->mapy][data->mapx];
 				data->hit = 1;
 			}
 	}
+}
+
+static void	setup_data(t_dda *data, t_player *player)
+{
+	data->mapx = (int)(player->posx / TILE_SIZE);
+	data->mapy= (int)(player->posy / TILE_SIZE);
+	data->stepx = define_step(data->ray_dirx);
+	data->stepy = define_step(data->ray_diry);
+	data->side_distx = define_side_dist(*data, 'x', *player);
+	data->side_disty = define_side_dist(*data, 'y', *player);
 }
 
 void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
@@ -96,14 +99,9 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 		data.delta_disty = 1e30;
 	else
 		data.delta_disty = ft_abs(1.0 / data.ray_diry);
-	data.mapx = (int)(player->posx / 25);
-	data.mapy = (int)(player->posy / 25);
 	hit->ray_x = data.ray_dirx;
 	hit->ray_y = data.ray_diry;
-	data.stepx = define_step(data.ray_dirx);
-	data.stepy = define_step(data.ray_diry);
-	data.side_distx = define_side_dist(data, 'x', *player);
-	data.side_disty = define_side_dist(data, 'y', *player);
+	setup_data(&data, player);
 	perform_dda(&data, map, hit);
 	hit->side = define_side_hit(player->angle + offset, data.side);
 	if (data.side == 0)
