@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/07 16:25:09 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/08 13:19:17 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex)
 	int				tex_x;
 	int				tex_y;
 
-	//color = *(unsigned int *)(addr + (tex_y * line_size) + (tex_x * (bpp / 8)));
 	(void)data;
 	color = 0;
 	tex_x = hit.tex_x;
@@ -86,6 +85,5 @@ unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex)
 	if (!tex || !tex->addr || !tex->line_size || !tex->bpp )
 		return (0xffffffff);
 	color = *(unsigned int *)(tex->addr + (tex->line_size * tex_y) + (tex_x * (tex->bpp / 8)));
-	//printf("color: %d\n", color);
 	return (color);
 }

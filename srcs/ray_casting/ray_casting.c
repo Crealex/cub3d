@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 13:49:51 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:53:32 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ double	find_wall_size(t_data *data, double dist, double offset)
 	wall_size = data->winsize_y / dist;
 	if (wall_size <= 0.0001)
 		wall_size = 0.0001;
-	if (wall_size > data->winsize_y)
-		wall_size = data->winsize_y;
-		
 	return (wall_size);
 }
 
@@ -71,21 +68,21 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 {
 	t_background	*bg;
 	double			wall_size;
-	//int				x;
 	int				i;
 	t_img			*tex;
 
 	bg = data->background;
 	wall_size = find_wall_size(data, hit.dist, offset);
 	i = - wall_size / 2;
+	if (i < -data->winsize_y / 2)
+		i = -data->winsize_y / 2;
 	hit.wall_size = wall_size;
 	tex = define_tex(hit, data);
 	hit.tex_x = define_tex_x(hit, tex);
-	while (i < wall_size / 2)
+	while (i < wall_size / 2 && i < data->winsize_y / 2)
 	{
 		hit.i = i;
-		//x = (int)((offset + FOV / 2) * data->winsize_x);
-			if (x < data->winsize_x )
+			if (x < data->winsize_x)
 				*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = define_pix_texture(hit, data, tex);
 		i++;
 	}
