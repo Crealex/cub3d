@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 11:21:00 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 14:18:02 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_data	*data_init(t_minimap *mapi, t_map *map)
 
 	data = malloc(sizeof(t_data));
 	data->mlx = mlx_init();
-	data->winsize_x = 2000;
-	data->winsize_y = 1300;
+	data->winsize_x = 1920;
+	data->winsize_y = 1080;
 	data->window = mlx_new_window(data->mlx, data->winsize_x, data->winsize_y, \
 		"cacaboudin");
 	data->tilesize = 25;

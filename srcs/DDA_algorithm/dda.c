@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/02 10:25:02 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 22:43:38 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 			data->mapy += data->stepy;
 			data->side = 1;
 		}
-		if (map->matrix[data->mapy][data->mapx] == '1'
+		if (map->matrix[data->mapy][data->mapx] == '1' \
 				|| map->matrix[data->mapy][data->mapx] == 'C')
 			{
 				hit->type = map->matrix[data->mapy][data->mapx];

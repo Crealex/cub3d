@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:24:26 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:03:03 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/08 22:47:15 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_map(t_map *map)
 {
 	map->ceiling = 0;
 	map->floor = 0;
+	map->timer = 0;
 	map->ea_path = NULL;
 	map->no_path = NULL;
 	map->so_path = NULL;

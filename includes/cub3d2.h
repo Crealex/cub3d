@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/07 16:05:42 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/08 22:59:44 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_map
 	int		floor;
 	int		ceiling;
 	int		player_start;
+	int		door_anim; // 0 static, 1 need animation
+	double	timer;
 	char	**matrix;
 }			t_map;
 
@@ -92,6 +94,9 @@ typedef struct s_texture
 	t_img	*ea;
 	t_img	*we;
 	t_img	*door;
+	t_img	*door_2;
+	t_img	*door_3;
+	t_img	*door_4;
 }			t_texture;
 
 // *** UTILS ***

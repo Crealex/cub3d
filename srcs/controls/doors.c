@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:49:51 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/07 14:09:35 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/08 16:08:17 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	toggle_door(t_data *data, t_player *player)
 		[player->sy][player->sx];
 	if (c == 'O')
 	{
+		data->map->door_anim = 1;
 		data->mapi->map
 		[player->sy][player->sx] = 'C';
 		data->map->matrix
@@ -27,6 +28,7 @@ static void	toggle_door(t_data *data, t_player *player)
 	}
 	else if (c == 'C')
 	{
+		data->map->door_anim = 1;
 		data->mapi->map
 			[player->sy][player->sx] = 'O';
 		data->map->matrix
@@ -57,7 +59,7 @@ static int	mini_dda(t_data *data, t_player *player)
 void	check_door(t_data *data)
 {
 	int	dist;
-	
+
 	dist = mini_dda(data, data->player);
 	if (dist < data->tilesize && dist > 1)
 		toggle_door(data, data->player);

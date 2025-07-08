@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 13:19:17 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 23:02:51 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,20 @@ t_texture	*textures_init(t_data *data)
 	tex->so = side_init(data, data->map->so_path);
 	tex->we = side_init(data, data->map->we_path);
 	tex->door = side_init(data, "./assets/textures/door.xpm");
+	tex->door_2 = side_init(data, "./assets/textures/door_2.xpm");
+	tex->door_3 = side_init(data, "./assets/textures/door_3.xpm");
+	tex->door_4 = side_init(data, "./assets/textures/door_4.xpm");
 	return (tex);
+}
+
+t_img	*display_anim(t_data *data)
+{
+	if (data->map->timer < 25000000)
+		return (data->textures->door_4);
+	else if (data->map->timer < 50000000)
+		return (data->textures->door_3);
+	else
+		return (data->textures->door_2);
 }
 
 t_img	*define_tex(t_hit hit, t_data *data)
@@ -50,16 +63,22 @@ t_img	*define_tex(t_hit hit, t_data *data)
 	//printf("hit.side: %d, ray_x: %f, ray y: %f\n", hit.side, hit.ray_x, hit.ray_y);
 	if (hit.type == 'C')
 	{
-		tex = data->textures->door;
+		if (data->map->door_anim == 1)
+		{
+			tex = display_anim(data);
+		}
+		else
+			tex = data->textures->door;
 		return (tex);
 	}
+
 	if (hit.side == 'W')
 		tex = data->textures->we;
 	else if (hit.side == 'E')
 		tex =data->textures->ea;
 	else if (hit.side == 'N')
 		tex = data->textures->no;
-	else
+	else if (hit.side == 'S')
 		tex = data->textures->so;
 	return (tex);
 }

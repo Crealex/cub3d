@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 13:37:43 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 23:00:10 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,16 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 	while (i < wall_size / 2 && i < data->winsize_y / 2)
 	{
 		hit.i = i;
-			if (x < data->winsize_x)
-				*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = define_pix_texture(hit, data, tex);
+		if (x < data->winsize_x)
+			*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = define_pix_texture(hit, data, tex);
 		i++;
+		if (data->map->door_anim == 1)
+			data->map->timer += 1;
+		if (data->map->timer > 100000000)
+		{
+			data->map->door_anim = 0;
+			data->map->timer = 0;
+		}
 	}
 }
 

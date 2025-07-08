@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   for_testing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:09:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:33:56 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 23:01:05 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	print_struct(t_map *map)
 	printf("ceiling: %x\n", map->ceiling);
 	printf("player_start: %d\n", map->player_start);
 	printf("matrix: \n");
+	printf("timer: %f\n", map->timer);
 	while (map->matrix[i])
 	{
 		printf("%s", map->matrix[i]);
