@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/26 10:22:35 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:21:00 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	refresh_window(t_data *data)
 	player = data->player;
 	compute_square(data, player);
 	show_rays(data, player);
+	map_init(data, player, data->mapi);
 	mlx_put_image_to_window(data->mlx, data->window, data->background->img, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->window, data->mapi->img, data->winsize_x - data->mapi->len_x * data->tilesize, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->mapi->img, data->winsize_x - MINIMAP_SIZE * data->tilesize, 0);
 	mlx_put_image_to_window(data->mlx, data->window, player->img,
-		player->posx - player->half + data->winsize_x - data->mapi->len_x * data->tilesize, player->posy - player->half);
+		data->winsize_x - (MINIMAP_SIZE / 2 + 1) * data->tilesize, (MINIMAP_SIZE / 2) * data->tilesize);
 	// dup_square(data);
 }
 
@@ -49,12 +50,12 @@ t_data	*data_init(t_minimap *mapi, t_map *map)
 	data->tilesize = 25;
 	mapi->len_x = tab_width(map->matrix);
 	mapi->len_y = tab_size(map->matrix);
-	mapi->img = mlx_new_image(data->mlx, mapi->len_x * data->tilesize, mapi->len_y * data->tilesize);
+	mapi->img = mlx_new_image(data->mlx, MINIMAP_SIZE * data->tilesize, MINIMAP_SIZE * data->tilesize);
 	data->mapi = mapi;
-	map_init(data, mapi);
 	data->background = background_init(data);
 	data->map = map;
 	data->player = square_init(data);
+	map_init(data, data->player, mapi);
 	data->textures = textures_init(data);
 	return (data);
 }

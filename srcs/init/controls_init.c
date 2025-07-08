@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:05:43 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/11 10:28:21 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:43:00 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	on_keypress(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		proper_exit(data);
+	if (keycode == SPACE)
+		check_door(data);
 	if (keycode == RIGHT)
 		data->player->right = 1;
 	if (keycode == LEFT)

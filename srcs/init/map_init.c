@@ -6,80 +6,74 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 13:26:32 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 13:48:41 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:58:12 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int	is_empty(char c)
+int	is_empty(char c)
 {
-	if (c == '0' || c == 'E' || c == 'N' || c == 'W' || c == 'S')
+	if (c == '0' || c == 'E' || c == 'N' || c == 'W' || c == 'S' || c == 'O')
 		return (1);
 	return (0);
 }
 
-void	colour_map(t_data *data, t_minimap *mapi, int x, int y)
+static void	put_colour(t_data *data, t_minimap *mapi, int colour)
 {
-	int	i;
-	int	j;
+	(void)data;
+	*(int *)(mapi->addr + ((mapi->mx) * \
+				(mapi->bpp / 8)) + ((mapi->my) * \
+				mapi->line_size)) = colour;
+}
 
-	i = 0;
-	while (i < data->tilesize)
-	{
-		j = 0;
-		while (j < data->tilesize)
-		{
-			if (mapi->map[y][x] == '1')
-				*(int *)(mapi->addr + ((x * data->tilesize + j) * \
-				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
-				mapi->line_size)) = 0x0000FF;
-			else if (is_empty(mapi->map[y][x]))
-				*(int *)(mapi->addr + ((x * data->tilesize + j) * \
-				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
-				mapi->line_size)) = 0xAAAAAA;
+static void	colour_map(t_data *data, t_minimap *mapi)
+{
+			if (mapi->cy < 0 || mapi->cx < 0 || mapi->cy >= mapi->len_y * data->tilesize || mapi->cx > (int)ft_strlen(mapi->map[mapi->cy / data->tilesize]) * data->tilesize)
+				put_colour(data, mapi, 0x000000);
+			else if (mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize] == '1')
+				put_colour(data, mapi, 0x0000FF);
+			else if (mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize] == 'C')
+				put_colour(data, mapi, 0x12B261);
+			else if (is_empty(mapi->map[mapi->cy / data->tilesize][mapi->cx / data->tilesize]))
+				put_colour(data, mapi, 0xAAAAAA);
 			else
-				*(int *)(mapi->addr + ((x * data->tilesize + j) * \
-				(mapi->bpp / 8)) + ((y * data->tilesize + i) * \
-				mapi->line_size)) = 0x000000;			
-			j++;
-		}
-		i++;
-	}
+				put_colour(data, mapi, 0x000000);
 }
 
-void	map_init(t_data *data, t_minimap *mapi)
+void	map_init(t_data *data, t_player *player, t_minimap *mapi)
 {
-	int	i;
-	int	j;
-
-	i = 0;
+	mapi->my = 0;
+	mapi->cy = (int)(player->posy - player->half) - (MINIMAP_SIZE / 2 * data->tilesize);
 	mapi->addr = mlx_get_data_addr(mapi->img, &mapi->bpp, &mapi->line_size, &mapi->endian);
-	while (mapi->map[i])
+	while (mapi->cy <= (int)(player->posy + player->half) + (MINIMAP_SIZE / 2 * data->tilesize))
 	{
-		j = 0;
-		while (mapi->map[i][j])
+		mapi->mx = 0;
+		mapi->cx = (int)(player->posx - player->half) - (MINIMAP_SIZE / 2 * data->tilesize);
+		while (mapi->cx <= (int)(player->posx + player->half) + (MINIMAP_SIZE / 2 * data->tilesize))
 		{
-			colour_map(data, mapi, j, i);
-			j++;
+			colour_map(data, mapi);
+			mapi->mx++;
+			mapi->cx++;
 		}
-		i++;
+		mapi->my++;
+		mapi->cy++;
 	}
 }
 
-void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi)
+void	find_player_pos(t_data *data, t_player *square, t_map *mapi)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (mapi->map[i])
+	while (mapi->matrix[i])
 	{
 		j = 0;
-		while (mapi->map[i][j])
+		while (mapi->matrix[i][j])
 		{
-			if (mapi->map[i][j] == 'E' || mapi->map[i][j] == 'S' \
-			|| mapi->map[i][j] == 'N' || mapi->map[i][j] == 'W')
+			if (mapi->matrix[i][j] == 'E' || mapi->matrix[i][j] == 'S' \
+			|| mapi->matrix[i][j] == 'N' || mapi->matrix[i][j] == 'W')
 			{
 				square->posx = j * data->tilesize + square->half;
 				square->posy = i * data->tilesize + square->half;

@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/02 10:24:48 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:20:31 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define D 100
 # define RIGHT 65363
 # define LEFT 65361
+# define SPACE 32
 
 
 // macros
@@ -39,12 +40,19 @@
 # define MOVE_SPD 1.7
 # define TURN_SPD 0.03
 # define FOV M_PI / 3
+# define MINIMAP_SIZE 7
 # define TILE_SIZE 25
 
 typedef struct	s_minimap
 {
 	int		len_x;
 	int		len_y;
+	int		cx;
+	int		cy;
+	int		ix;
+	int		iy;
+	int		mx;
+	int		my;
 	int		bpp;
 	int		line_size;
 	int		endian;
@@ -81,6 +89,8 @@ typedef struct	s_square
 	int		d;
 	int		left;
 	int		right;
+	int		sx;
+	int		sy;
 	void	*img;
 	int		bpp;
 	int		line_size;
@@ -118,6 +128,9 @@ int	v_forward_collision(t_data *data, t_player *player);
 void	player_rotate_left(t_data *data);
 void	player_rotate_right(t_data *data);
 
+// doors
+void	check_door(t_data *data);
+
 // window init
 void			refresh_window(t_data *data);
 t_data			*data_init(t_minimap *mapi, t_map *map);
@@ -129,8 +142,9 @@ int 	on_keypress(int keycode, t_data *data);
 int		on_keyrelease(int keycode, t_data *data);
 
 // map init
-void	find_player_pos(t_data *data, t_player *square, t_minimap *mapi);
-void	map_init(t_data *data, t_minimap *mapi);
+void	find_player_pos(t_data *data, t_player *square, t_map *mapi);
+void	map_init(t_data *data, t_player *player, t_minimap *mapi);
+int	is_empty(char c);
 
 // player init
 void		compute_square(t_data *data, t_player *square);
@@ -149,6 +163,8 @@ int	proper_exit(t_data *data);
 // utils
 char	**tab_dup(char **tab);
 int	tab_width(char **tab);
+int	ftt_strlen(char *str);
+int	is_door_or_wall(char c);
 
 // DDA de alex le big boos qui est Karim
 void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
