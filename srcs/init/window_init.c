@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 11:21:00 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:36:54 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	refresh_window(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->window, data->mapi->img, data->winsize_x - MINIMAP_SIZE * data->tilesize, 0);
 	mlx_put_image_to_window(data->mlx, data->window, player->img,
 		data->winsize_x - (MINIMAP_SIZE / 2 + 1) * data->tilesize, (MINIMAP_SIZE / 2) * data->tilesize);
-	// dup_square(data);
 }
 
 t_background	*background_init(t_data *data)

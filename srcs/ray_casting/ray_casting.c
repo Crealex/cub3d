@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 11:27:40 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:49:51 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ double	find_wall_size(t_data *data, double dist, double offset)
 		wall_size = 0.0001;
 	if (wall_size > data->winsize_y)
 		wall_size = data->winsize_y;
+		
 	return (wall_size);
 }
 

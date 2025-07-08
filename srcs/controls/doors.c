@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:49:51 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/07 14:09:35 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:03:42 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	toggle_door(t_data *data, t_player *player)
 {
 	char	c;
 
-	c = data->mapi->map
+	c = data->mapi->map \
 		[player->sy][player->sx];
 	if (c == 'O')
 	{
@@ -27,7 +27,7 @@ static void	toggle_door(t_data *data, t_player *player)
 	}
 	else if (c == 'C')
 	{
-		data->mapi->map
+		data->mapi->map \
 			[player->sy][player->sx] = 'O';
 		data->map->matrix
 		[player->sy][player->sx] = 'O';
@@ -42,7 +42,7 @@ static int	mini_dda(t_data *data, t_player *player)
 	i = 1;
 	check_space[0] = player->posx;
 	check_space[1] = player->posy;
-	while (i < data->tilesize && !is_door_or_wall(data->mapi->map
+	while (i < data->tilesize && !is_door_or_wall(data->mapi->map \
 		[check_space[1] / data->tilesize][check_space[0] / data->tilesize]))
 	{
 		check_space[0] = player->posx + (int)(i * cos(player->angle));
@@ -57,7 +57,7 @@ static int	mini_dda(t_data *data, t_player *player)
 void	check_door(t_data *data)
 {
 	int	dist;
-	
+
 	dist = mini_dda(data, data->player);
 	if (dist < data->tilesize && dist > 1)
 		toggle_door(data, data->player);
