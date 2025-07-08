@@ -3,24 +3,37 @@ LIBFT = includes/libft/libft.a
 PARSE = parsing/
 UTILS = utils/
 DDA = DDA_algorithm/
-# SRCS = $(addprefix srcs/,	main.c \
-# 							$(PARSE)parsing.c \
-# 							$(PARSE)check_file.c \
-# 							$(PARSE)check_file_utils.c \
-# 							$(PARSE)init_struct.c \
-# 							$(PARSE)check_elem.c \
-# 							$(PARSE)check_elem_path.c \
-# 							$(PARSE)check_map.c \
-# 							$(PARSE)utils.c \
-# 							$(PARSE)fill_struct.c \
-# 							$(PARSE)fill_struct2.c \
-# 							$(PARSE)for_testing.c \
-# 							$(PARSE)check_doors.c \
-# 							$(UTILS)free.c \
-# 							$(DDA)dda.c \
-# 							$(DDA)utils.c \
-# 							)
-SRCS = $(shell find srcs -name "*.c")
+INIT = init/
+RC = ray_casting/
+CTRLS = controls/
+SRCS = $(addprefix srcs/,	main.c \
+							$(PARSE)parsing.c \
+							$(PARSE)check_file.c \
+							$(PARSE)check_file_utils.c \
+							$(PARSE)init_struct.c \
+							$(PARSE)check_elem.c \
+							$(PARSE)check_elem_path.c \
+							$(PARSE)check_map.c \
+							$(PARSE)utils.c \
+							$(PARSE)fill_struct.c \
+							$(PARSE)fill_struct2.c \
+							$(PARSE)for_testing.c \
+							$(PARSE)check_doors.c \
+							$(UTILS)free.c \
+							$(UTILS)utils.c \
+							$(DDA)dda.c \
+							$(DDA)utils.c \
+							$(CTRLS)doors.c \
+							$(CTRLS)movement.c \
+							$(CTRLS)rotation.c \
+							$(INIT)window_init.c \
+							$(INIT)player_init.c \
+							$(INIT)controls_init.c \
+							$(INIT)map_init.c \
+							$(RC)ray_casting.c \
+							$(RC)pre_casting.c \
+							$(RC)texture.c \
+							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Wextra -Wall -g -Iincludes
 CC = gcc

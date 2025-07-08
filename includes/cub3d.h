@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 11:20:31 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 14:31:14 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ t_player	*square_init(t_data *data);
 // ray casting
 void	show_rays(t_data *data, t_player *player);
 void	base_bg(t_data *data);
-void	place_wall(t_data *data, t_hit hit, double offset, int x);
+void	place_wall(t_data *data, t_hit hit, int x);
 
 // end
 int	proper_exit(t_data *data);

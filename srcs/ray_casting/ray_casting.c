@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 13:53:32 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/08 14:30:34 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	base_bg(t_data *data)
 	}
 }
 
-double	find_wall_size(t_data *data, double dist, double offset)
+static double	find_wall_size(t_data *data, double dist)
 {
 	double	wall_size;
 
@@ -64,7 +64,7 @@ static int	define_tex_x(t_hit hit, t_img *tex)
 }
 
 
-void	place_wall(t_data *data, t_hit hit, double offset, int x)
+void	place_wall(t_data *data, t_hit hit, int x)
 {
 	t_background	*bg;
 	double			wall_size;
@@ -72,7 +72,7 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 	t_img			*tex;
 
 	bg = data->background;
-	wall_size = find_wall_size(data, hit.dist, offset);
+	wall_size = find_wall_size(data, hit.dist);
 	i = - wall_size / 2;
 	if (i < -data->winsize_y / 2)
 		i = -data->winsize_y / 2;

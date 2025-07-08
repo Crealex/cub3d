@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/18 15:14:23 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 14:16:46 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ t_minimap	*create_map(t_map *map)
 	return (mapi);
 }
 
-#include <cub3d.h>
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data		*data;
 	t_minimap	*mapi;
-	t_map 		*map;
+	t_map		*map;
 
 	map = parsing(argc, argv);
 	// player.posx = 2.48;
@@ -76,4 +74,3 @@ int main(int argc, char **argv)
 	mlx_loop(data->mlx);
 	return (0);
 }
-
