@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 11:21:23 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:27:40 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,7 @@ void	base_bg(t_data *data)
 double	find_wall_size(t_data *data, double dist, double offset)
 {
 	double	wall_size;
-	double	angle;
-	double	perp_dist;
 
-	// angle = M_PI / 2 - offset;
-	// perp_dist = sin(angle) * dist;
-	// wall_size = data->winsize_y / (perp_dist);
-	// if (wall_size <= 0)
-	// 	wall_size = 0.1;
-	// if (wall_size > data->winsize_y)
-	// 	wall_size = data->winsize_y;
 	wall_size = data->winsize_y / dist;
 	if (wall_size <= 0.0001)
 		wall_size = 0.0001;

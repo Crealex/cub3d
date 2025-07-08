@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/07 17:07:35 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/08 11:28:42 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	check_line(char *line, char **file, int no, int first_line)
 		}
 		else if (is_dir(line[i]))
 			player++;
-		printf("player: %d\n", player);
 		if (player > 1 || (!is_dir(line[i]) && line[i] != '0' && line[i] != '1'
 				&& line[i] != ' ' && line[i] != '\n' && !is_door(i, file, no)))
 			return (print_error(i, file, no, player), 0);

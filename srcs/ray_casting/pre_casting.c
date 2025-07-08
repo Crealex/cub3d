@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 14:59:53 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/30 18:30:46 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:26:44 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,6 @@ void	draw_ray(t_data *data, t_player *player, double offset, int x, double iter,
 void	show_rays(t_data *data, t_player *player)
 {
 	double	offset;
-	// double	i;
-
-	// base_bg(data);
-	// offset = - FOV / 2;
-	// i = 0;
-	// while (offset < FOV / 2)
-	// {
-	// 	draw_ray(data, player, offset, i, data->map);
-	// 	i++;
-	// 	offset += 0.01 / (FOV * 180 / M_PI);
-	// }
-
-
-	// plus opti
 	int	x;
 
 	base_bg(data);
