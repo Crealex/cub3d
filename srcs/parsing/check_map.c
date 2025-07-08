@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 11:28:42 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:03:49 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,7 @@ int	check_map(char **file)
 	while (file[i])
 	{
 		if (!check_line(file[i], file, i, first_line))
-		{
 			return (0);
-		}
 		i++;
 	}
 	return (1);
