@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 23:02:51 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/09 20:40:49 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,73 @@ t_texture	*textures_init(t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	//printf("data->map->ea_path: %s\n", data->map->ea_path);
-	//printf("tex->ea.path: %s\n", tex->ea.path);
 	tex->ea = side_init(data, data->map->ea_path);
 	tex->no = side_init(data, data->map->no_path);
 	tex->so = side_init(data, data->map->so_path);
 	tex->we = side_init(data, data->map->we_path);
 	tex->door = side_init(data, "./assets/textures/door.xpm");
+	tex->door_1 = side_init(data, "./assets/textures/door_1.xpm");
 	tex->door_2 = side_init(data, "./assets/textures/door_2.xpm");
 	tex->door_3 = side_init(data, "./assets/textures/door_3.xpm");
 	tex->door_4 = side_init(data, "./assets/textures/door_4.xpm");
+	tex->door_5 = side_init(data, "./assets/textures/door_5.xpm");
+	tex->door_6 = side_init(data, "./assets/textures/door_6.xpm");
+	tex->door_7 = side_init(data, "./assets/textures/door_7.xpm");
+	tex->door_8 = side_init(data, "./assets/textures/door_8.xpm");
+	tex->door_9 = side_init(data, "./assets/textures/door_9.xpm");
+	tex->door_10 = side_init(data, "./assets/textures/door_10.xpm");
 	return (tex);
 }
 
-t_img	*display_anim(t_data *data)
+t_img	*display_anim_open(t_data *data)
 {
-	if (data->map->timer < 25000000)
+	if (data->map->timer < 10000000)
+		return (data->textures->door_1);
+	else if (data->map->timer < 20000000)
+		return (data->textures->door_2);
+	else if (data->map->timer < 30000000)
+		return (data->textures->door_3);
+	else if (data->map->timer < 40000000)
 		return (data->textures->door_4);
 	else if (data->map->timer < 50000000)
-		return (data->textures->door_3);
+		return (data->textures->door_5);
+	else if (data->map->timer < 60000000)
+		return (data->textures->door_6);
+	else if (data->map->timer < 70000000)
+		return (data->textures->door_7);
+	else if (data->map->timer < 80000000)
+		return (data->textures->door_8);
+	else if (data->map->timer < 90000000)
+		return (data->textures->door_9);
 	else
+	{
+		data->map->matrix[data->player->sy][data->player->sx] = 'O';
+		return (data->textures->door_10);
+	}
+}
+
+t_img	*display_anim_close(t_data *data)
+{
+	if (data->map->timer < 10000000)
+		return (data->textures->door_10);
+	else if (data->map->timer < 20000000)
+		return (data->textures->door_9);
+	else if (data->map->timer < 30000000)
+		return (data->textures->door_8);
+	else if (data->map->timer < 40000000)
+		return (data->textures->door_7);
+	else if (data->map->timer < 50000000)
+		return (data->textures->door_6);
+	else if (data->map->timer < 60000000)
+		return (data->textures->door_5);
+	else if (data->map->timer < 70000000)
+		return (data->textures->door_4);
+	else if (data->map->timer < 80000000)
+		return (data->textures->door_3);
+	else if (data->map->timer < 90000000)
 		return (data->textures->door_2);
+	else
+		return (data->textures->door_1);
 }
 
 t_img	*define_tex(t_hit hit, t_data *data)
@@ -64,9 +111,9 @@ t_img	*define_tex(t_hit hit, t_data *data)
 	if (hit.type == 'C')
 	{
 		if (data->map->door_anim == 1)
-		{
-			tex = display_anim(data);
-		}
+			tex = display_anim_close(data);
+		else if (data->map->door_anim == 2)
+			tex = display_anim_open(data);
 		else
 			tex = data->textures->door;
 		return (tex);
@@ -104,5 +151,7 @@ unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex)
 	if (!tex || !tex->addr || !tex->line_size || !tex->bpp )
 		return (0xffffffff);
 	color = *(unsigned int *)(tex->addr + (tex->line_size * tex_y) + (tex_x * (tex->bpp / 8)));
+	// if (data->map->door_anim == 1 || data->map->door_anim == 2)
+	// 	printf("color: %x\n", color);
 	return (color);
 }

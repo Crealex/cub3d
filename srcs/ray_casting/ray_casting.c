@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 23:00:10 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/09 20:51:54 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ static int	define_tex_x(t_hit hit, t_img *tex)
 	return (res);
 }
 
+static void	handle_timer(t_data *data)
+{
+	if (data->map->door_anim == 1 || data->map->door_anim == 2)
+		data->map->timer += 1;
+	if (data->map->timer > 100000000)
+	{
+		data->map->door_anim = 0;
+		data->map->timer = 0;
+	}
+}
 
 void	place_wall(t_data *data, t_hit hit, double offset, int x)
 {
@@ -70,6 +80,7 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 	double			wall_size;
 	int				i;
 	t_img			*tex;
+	unsigned int	pixel;
 
 	bg = data->background;
 	wall_size = find_wall_size(data, hit.dist, offset);
@@ -82,16 +93,11 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 	while (i < wall_size / 2 && i < data->winsize_y / 2)
 	{
 		hit.i = i;
-		if (x < data->winsize_x)
-			*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = define_pix_texture(hit, data, tex);
+		pixel = define_pix_texture(hit, data, tex);
+		if (x < data->winsize_x) // && pixel != 0xff000000
+			*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = pixel;
 		i++;
-		if (data->map->door_anim == 1)
-			data->map->timer += 1;
-		if (data->map->timer > 100000000)
-		{
-			data->map->door_anim = 0;
-			data->map->timer = 0;
-		}
+		handle_timer(data);
 	}
 }
 

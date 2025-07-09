@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 22:59:44 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/09 14:54:36 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,16 @@ typedef struct s_texture
 	t_img	*ea;
 	t_img	*we;
 	t_img	*door;
+	t_img	*door_1;
 	t_img	*door_2;
 	t_img	*door_3;
 	t_img	*door_4;
+	t_img	*door_5;
+	t_img	*door_6;
+	t_img	*door_7;
+	t_img	*door_8;
+	t_img	*door_9;
+	t_img	*door_10;
 }			t_texture;
 
 // *** UTILS ***
