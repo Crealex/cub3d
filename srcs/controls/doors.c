@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:49:51 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/09 15:47:25 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/10 14:10:44 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@ static void	toggle_door(t_data *data, t_player *player)
 		[player->sy][player->sx] = 'C';
 		data->map->matrix
 		[player->sy][player->sx] = 'C';
+		data->map->anim_x = player->sx;
+		data->map->anim_y = player->sy;
 	}
 	else if (c == 'C')
 	{
 		data->map->door_anim = 2;
 		data->mapi->map
 			[player->sy][player->sx] = 'O';
+		data->map->anim_x = player->sx;
+		data->map->anim_y = player->sy;
 	}
 }
 

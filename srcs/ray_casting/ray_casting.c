@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/09 20:51:54 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/10 22:34:07 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static int	define_tex_x(t_hit hit, t_img *tex)
 		res = tex->width - res - 1;
 	res = fmax(0, fmin(res, tex->width - 1));
 	return (res);
+
 }
 
 static void	handle_timer(t_data *data)
@@ -74,30 +75,68 @@ static void	handle_timer(t_data *data)
 	}
 }
 
-void	place_wall(t_data *data, t_hit hit, double offset, int x)
+static void	put_pixel(t_data *data, int x, int y, unsigned int color)
 {
 	t_background	*bg;
+
+	bg = data->background;
+	if (x >= 0 && x < data->winsize_x && y >= 0 && y < data->winsize_y)
+	{
+		*(unsigned int *)(bg->addr
+			+ (x * (bg->bpp / 8))
+			+ y * bg->line_size) = color;
+	}
+}
+
+void	anim_door(t_data *data, t_hit hit, double offset, int x)
+{
+	double			door_size;
+	t_img			*door_tex;
+	int				j;
+	unsigned int	door_pix;
+
+	door_size = find_wall_size(data, hit.door_hit->dist, offset);
+	hit.door_hit->wall_size = door_size;
+	door_tex = define_tex(*hit.door_hit, data);
+	if (door_tex == NULL || !door_tex->addr)
+		return ;
+	hit.door_hit->tex_x = define_tex_x(*hit.door_hit, door_tex);
+	j = -door_size / 2;
+	if (j < -data->winsize_y / 2)
+		j = -data->winsize_y / 2;
+	while (j < door_size / 2 && j < data->winsize_y / 2)
+	{
+		hit.door_hit->i = j;
+		door_pix = define_pix_texture(*hit.door_hit, data, door_tex);
+		if (door_pix != 0xff000000)
+			put_pixel(data, x, data->winsize_y / 2 + j, door_pix);
+		j++;
+	}
+}
+
+void	place_wall(t_data *data, t_hit hit, double offset, int x)
+{
 	double			wall_size;
 	int				i;
 	t_img			*tex;
 	unsigned int	pixel;
 
-	bg = data->background;
 	wall_size = find_wall_size(data, hit.dist, offset);
+	hit.wall_size = wall_size;
+	tex = define_tex(hit, data);
 	i = - wall_size / 2;
 	if (i < -data->winsize_y / 2)
 		i = -data->winsize_y / 2;
-	hit.wall_size = wall_size;
-	tex = define_tex(hit, data);
 	hit.tex_x = define_tex_x(hit, tex);
 	while (i < wall_size / 2 && i < data->winsize_y / 2)
 	{
 		hit.i = i;
 		pixel = define_pix_texture(hit, data, tex);
-		if (x < data->winsize_x) // && pixel != 0xff000000
-			*(unsigned int *)(bg->addr + (x * (bg->bpp / 8)) + (data->winsize_y / 2 + i) * bg->line_size) = pixel;
+		put_pixel(data, x, data->winsize_y / 2 + i, pixel);
 		i++;
 		handle_timer(data);
 	}
+	if (hit.door_hit && (int)(hit.door_hit->x) == data->map->anim_x)
+		anim_door(data, hit, offset, x);
 }
 

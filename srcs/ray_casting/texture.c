@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/09 20:40:49 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/10 21:55:21 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ t_img	*define_tex(t_hit hit, t_data *data)
 	t_img	*tex;
 
 	//printf("hit.side: %d, ray_x: %f, ray y: %f\n", hit.side, hit.ray_x, hit.ray_y);
-	if (hit.type == 'C')
+	tex = malloc(sizeof(t_img));
+	if (hit.type == 'C' || hit.type == 'O')
 	{
 		if (data->map->door_anim == 1)
 			tex = display_anim_close(data);
@@ -148,8 +149,11 @@ unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex)
 		tex_y = 0;
 	if (tex_y >= tex->height)
 		tex_y = tex->height - 1;
-	if (!tex || !tex->addr || !tex->line_size || !tex->bpp )
+	//printf("tex->heigth: %d\n", tex->height);
+	if (!tex || !tex->addr || !tex->line_size || !tex->bpp)
 		return (0xffffffff);
+	//printf("tex->addr: %p, tex->line_size: %d, tex_x: %d, tex_y: %d, tex->bpp: %d\n", tex->addr, tex->line_size, tex_x, tex_y, tex->bpp);
+	//printf("after\n");
 	color = *(unsigned int *)(tex->addr + (tex->line_size * tex_y) + (tex_x * (tex->bpp / 8)));
 	// if (data->map->door_anim == 1 || data->map->door_anim == 2)
 	// 	printf("color: %x\n", color);

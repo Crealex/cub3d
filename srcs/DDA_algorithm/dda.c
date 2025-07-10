@@ -6,13 +6,13 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 22:43:38 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/10 13:16:45 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static char	define_side_hit(double angle, int side)
+char	define_side_hit(double angle, int side)
 {
 	if (side == 0)
 	{
@@ -66,12 +66,13 @@ static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 			data->mapy += data->stepy;
 			data->side = 1;
 		}
-		if (map->matrix[data->mapy][data->mapx] == '1' \
-				|| map->matrix[data->mapy][data->mapx] == 'C')
-			{
-				hit->type = map->matrix[data->mapy][data->mapx];
-				data->hit = 1;
-			}
+		if (map->matrix[data->mapy][data->mapx] == '1')
+		{
+			hit->type = map->matrix[data->mapy][data->mapx];
+			data->hit = 1;
+		}
+		if (hit_door(map, data))
+			handle_door(map, data, hit);
 	}
 }
 
@@ -89,6 +90,7 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 {
 	t_dda	data;
 
+	fill_data(&data, player, offset);
 	data.ray_dirx = cos(player->angle + offset);
 	data.ray_diry = sin(player->angle + offset);
 	if (data.ray_dirx == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 11:20:31 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/10 13:18:23 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,12 @@ int	is_door_or_wall(char c);
 void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
 double	ft_abs(double n);
 int		define_step(double n);
+char	define_side_hit(double angle, int side);
+void	fill_data(t_dda *data, t_player *player, double offset);
+
+// handle_door DDA
+void	handle_door(t_map *map, t_dda *data, t_hit *hit);
+int		hit_door(t_map *map, t_dda *data);
 
 // texture de alex le big boos qui est Karim (inclus ici pour les erreurs de compilations)
 unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex);

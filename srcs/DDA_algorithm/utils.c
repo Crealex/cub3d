@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:04:06 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/02 10:24:23 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/10 11:08:16 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ int	define_step(double n)
 	if (n < 0)
 		return (-1);
 	return (1);
+}
+
+void	fill_data(t_dda *data, t_player *player, double offset)
+{
+	data->player = player;
+	data->offset = offset;
 }

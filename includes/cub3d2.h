@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/09 14:54:36 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/10 14:43:21 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_map
 	int		ceiling;
 	int		player_start;
 	int		door_anim; // 0 static, 1 need animation
+	double		anim_x;
+	int		anim_y;
 	double	timer;
 	char	**matrix;
 }			t_map;
@@ -44,22 +46,28 @@ typedef struct s_elem
 	int	c;
 }			t_elem;
 
+typedef struct s_square t_player;
+
 typedef struct s_dda
 {
-	double	side_distx;
-	double	side_disty;
-	double	delta_distx;
-	double	delta_disty;
-	double	ray_dirx;
-	double	ray_diry;
-	double	perp_wall_dist;
-	int		hit;
-	int		mapx;
-	int		mapy;
-	int		stepx;
-	int		stepy;
-	int		side;
+	double		side_distx;
+	double		side_disty;
+	double		delta_distx;
+	double		delta_disty;
+	double		ray_dirx;
+	double		ray_diry;
+	double		perp_wall_dist;
+	int			hit;
+	int			mapx;
+	int			mapy;
+	int			stepx;
+	int			stepy;
+	int			side;
+	double		offset;
+	t_player	*player;
 }			t_dda;
+
+typedef struct s_hit t_hit;
 
 typedef struct s_hit
 {
@@ -73,6 +81,7 @@ typedef struct s_hit
 	int		tex_x;
 	int		i;
 	double	wall_size;
+	t_hit	*door_hit;
 }			t_hit;
 
 typedef struct s_img
@@ -128,6 +137,7 @@ int		find_begin(char **file);
 int		tab_size(char **file);
 int		len_wspace(char *str);
 int		is_dir(char c);
+int		is_door(int i, char **file, int no);
 int		try_open(char *path);
 void	init_map(t_map *map);
 t_map	*fill_struct(char **file);
@@ -136,6 +146,5 @@ void	fill_matrix(t_map *map, char **file);
 // *** TESTING FCT ***
 void	print_struct(t_map *map);
 void	print_file(char **file);
-int		is_door(int i, char **file, int no);
 
 #endif
