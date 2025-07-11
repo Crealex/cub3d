@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/10 13:18:23 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 10:06:31 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ t_player	*square_init(t_data *data);
 // ray casting
 void	show_rays(t_data *data, t_player *player);
 void	base_bg(t_data *data);
-void	place_wall(t_data *data, t_hit hit, double offset, int x);
+void	place_wall(t_data *data, t_hit hit, int x);
 
 // end
 int	proper_exit(t_data *data);

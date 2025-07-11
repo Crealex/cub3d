@@ -6,13 +6,13 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 14:59:53 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/10 20:18:05 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 10:08:03 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	draw_ray(t_data *data, t_player *player, double offset, int x, double iter, t_map *map)
+void	draw_ray(t_data *data, t_player *player, double offset, int x)
 {
 	t_hit	hit;
 
@@ -28,14 +28,14 @@ void	draw_ray(t_data *data, t_player *player, double offset, int x, double iter,
 void	show_rays(t_data *data, t_player *player)
 {
 	double	offset;
-	int	x;
+	int		x;
 
 	base_bg(data);
 	x = 0;
 	while (x < data->winsize_x)
 	{
 		offset = ((double)x / data->winsize_x) * FOV - FOV / 2;
-		draw_ray(data, player, offset, x, x, data->map); // x = position écran
+		draw_ray(data, player, offset, x);
 		x++;
 	}
 }

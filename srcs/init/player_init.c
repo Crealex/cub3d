@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/06/30 11:40:40 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/08 14:09:43 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 
 void	clear_square(t_data *data, t_player *square)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	t_minimap	*mapi;
 
 	i = 0;
@@ -93,10 +93,10 @@ void	compute_square(t_data *data, t_player *square)
 			&square->line_size, &square->endian);
 	clear_square(data, square);
 	y = -square->side / 2;
-	while (y < square->side / 2)
+	while (y++ < square->side / 2)
 	{
 		x = -square->side / 2;
-		while (x < square->side / 2)
+		while (x++ < square->side / 2)
 		{
 			rx = (int)(square->cos_a * x - square->sin_a * y) + square->half;
 			ry = (int)(square->sin_a * x + square->cos_a * y) + square->half;
@@ -107,9 +107,7 @@ void	compute_square(t_data *data, t_player *square)
 				else
 					fill_square(square, rx, ry, square->colour);
 			}
-			x++; 
 		}
-		y++;
 	}
 }
 

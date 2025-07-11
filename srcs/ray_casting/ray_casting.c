@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/10 22:34:07 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 10:09:06 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	base_bg(t_data *data)
 	}
 }
 
-double	find_wall_size(t_data *data, double dist, double offset)
+static double	find_wall_size(t_data *data, double dist)
 {
 	double	wall_size;
 

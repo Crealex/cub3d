@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:49:51 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/10 14:10:44 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 10:07:24 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	toggle_door(t_data *data, t_player *player)
 {
 	char	c;
 
-	c = data->mapi->map
+	c = data->mapi->map \
 		[player->sy][player->sx];
 	if (c == 'O')
 	{
@@ -31,7 +31,7 @@ static void	toggle_door(t_data *data, t_player *player)
 	else if (c == 'C')
 	{
 		data->map->door_anim = 2;
-		data->mapi->map
+		data->mapi->map \
 			[player->sy][player->sx] = 'O';
 		data->map->anim_x = player->sx;
 		data->map->anim_y = player->sy;
@@ -46,7 +46,7 @@ static int	mini_dda(t_data *data, t_player *player)
 	i = 1;
 	check_space[0] = player->posx;
 	check_space[1] = player->posy;
-	while (i < data->tilesize && !is_door_or_wall(data->mapi->map
+	while (i < data->tilesize && !is_door_or_wall(data->mapi->map \
 		[check_space[1] / data->tilesize][check_space[0] / data->tilesize]))
 	{
 		check_space[0] = player->posx + (int)(i * cos(player->angle));
