@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 10:09:06 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 10:13:24 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ static void	put_pixel(t_data *data, int x, int y, unsigned int color)
 	}
 }
 
-void	anim_door(t_data *data, t_hit hit, double offset, int x)
+void	anim_door(t_data *data, t_hit hit, int x)
 {
 	double			door_size;
 	t_img			*door_tex;
 	int				j;
 	unsigned int	door_pix;
 
-	door_size = find_wall_size(data, hit.door_hit->dist, offset);
+	door_size = find_wall_size(data, hit.door_hit->dist);
 	hit.door_hit->wall_size = door_size;
 	door_tex = define_tex(*hit.door_hit, data);
 	if (door_tex == NULL || !door_tex->addr)
@@ -114,14 +114,14 @@ void	anim_door(t_data *data, t_hit hit, double offset, int x)
 	}
 }
 
-void	place_wall(t_data *data, t_hit hit, double offset, int x)
+void	place_wall(t_data *data, t_hit hit, int x)
 {
 	double			wall_size;
 	int				i;
 	t_img			*tex;
 	unsigned int	pixel;
 
-	wall_size = find_wall_size(data, hit.dist, offset);
+	wall_size = find_wall_size(data, hit.dist);
 	hit.wall_size = wall_size;
 	tex = define_tex(hit, data);
 	i = - wall_size / 2;
@@ -137,6 +137,6 @@ void	place_wall(t_data *data, t_hit hit, double offset, int x)
 		handle_timer(data);
 	}
 	if (hit.door_hit && (int)(hit.door_hit->x) == data->map->anim_x)
-		anim_door(data, hit, offset, x);
+		anim_door(data, hit, x);
 }
 

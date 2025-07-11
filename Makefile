@@ -23,6 +23,7 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(UTILS)utils.c \
 							$(DDA)dda.c \
 							$(DDA)utils.c \
+							$(DDA)handle_doors.c \
 							$(CTRLS)doors.c \
 							$(CTRLS)movement.c \
 							$(CTRLS)rotation.c \
