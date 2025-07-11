@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 10:13:24 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 11:14:45 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	place_wall(t_data *data, t_hit hit, int x)
 
 	wall_size = find_wall_size(data, hit.dist);
 	hit.wall_size = wall_size;
+	tex = NULL;
 	tex = define_tex(hit, data);
 	i = - wall_size / 2;
 	if (i < -data->winsize_y / 2)
@@ -138,5 +139,6 @@ void	place_wall(t_data *data, t_hit hit, int x)
 	}
 	if (hit.door_hit && (int)(hit.door_hit->x) == data->map->anim_x)
 		anim_door(data, hit, x);
+	//free_img(tex, data); // <-------- ici
 }
 

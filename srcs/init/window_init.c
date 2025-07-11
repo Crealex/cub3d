@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 10:07:48 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 11:39:47 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_data	*data_init(t_minimap *mapi, t_map *map)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(sizeof(t_data), 1);
 	data->mlx = mlx_init();
 	data->winsize_x = 1920;
 	data->winsize_y = 1080;

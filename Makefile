@@ -34,6 +34,7 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(RC)ray_casting.c \
 							$(RC)pre_casting.c \
 							$(RC)texture.c \
+							$(RC)free_tex.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Wextra -Wall -g -Iincludes
@@ -81,7 +82,7 @@ ${OBJDIR}:
 	@echo "${BOLD}${BLUE}📁 Created objects directory${END}"
 
 leaks: ${NAME}
-	valgrind --leak-check=full --log-file="leakslog.txt" --track-fds=yes ./${NAME} ./assets/maps/novalid.cub
+	valgrind --leak-check=full --log-file="leakslog.txt" --track-fds=yes ./${NAME} ./assets/maps/test.cub
 
 clean:
 	@echo "${BOLD}${YELLOW}🧹 Cleaning objects...${END}"

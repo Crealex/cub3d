@@ -6,18 +6,32 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 14:59:53 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 10:12:28 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 11:41:29 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+static void	hit_init(t_hit *hit)
+{
+	hit->dist = 0;
+	hit->i = 0;
+	hit->ray_x = 0;
+	hit->ray_y = 0;
+	hit->side = '.';
+	hit->tex_x = 0;
+	hit->type = '.';
+	hit->wall_size = 0;
+	hit->x = 0;
+	hit->y = 0;
+}
+
 void	draw_ray(t_data *data, t_player *player, double offset, int x)
 {
 	t_hit	hit;
 
+	hit_init(&hit);
 	hit.door_hit = malloc(sizeof(t_hit));
-	//hit.door_hit = NULL;
 	data->background->cos_a = cos(player->angle + offset);
 	data->background->sin_a = sin(player->angle + offset);
 	ray_cast(player, data->map, offset, &hit);

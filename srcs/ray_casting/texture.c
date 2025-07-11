@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/10 21:55:21 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/11 11:09:00 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ t_img	*define_tex(t_hit hit, t_data *data)
 {
 	t_img	*tex;
 
-	//printf("hit.side: %d, ray_x: %f, ray y: %f\n", hit.side, hit.ray_x, hit.ray_y);
-	tex = malloc(sizeof(t_img));
 	if (hit.type == 'C' || hit.type == 'O')
 	{
 		if (data->map->door_anim == 1)
@@ -128,6 +126,8 @@ t_img	*define_tex(t_hit hit, t_data *data)
 		tex = data->textures->no;
 	else if (hit.side == 'S')
 		tex = data->textures->so;
+	else
+		return (NULL);
 	return (tex);
 }
 
