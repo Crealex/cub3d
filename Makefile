@@ -35,6 +35,7 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(RC)pre_casting.c \
 							$(RC)texture.c \
 							$(RC)free_tex.c \
+							$(RC)anim.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
 CFLAGS = -Wextra -Wall -g -Iincludes

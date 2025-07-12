@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:28:26 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/07 11:24:52 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/12 18:19:46 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**tab_dup(char **tab)
 	while (tab[i])
 		i++;
 	i++;
-	new_tab = malloc(i * sizeof(char *));
+	new_tab = ft_calloc(sizeof(char *), i);
 	i = 0;
 	while (tab[i])
 	{

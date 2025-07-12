@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 10:47:23 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/12 19:16:15 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,10 @@ unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex);
 t_texture		*textures_init(t_data *data);
 t_img			*define_tex(t_hit hit, t_data *data);
 void			free_img(t_img *img, t_data *data);
+t_img			*display_anim_open(t_data *data);
+t_img			*display_anim_close(t_data *data);
+void			anim_door(t_data *data, t_hit hit, int x);
+void			handle_timer(t_data *data);
 void			free_tex(t_texture *tex, t_data *data);
 
 #endif

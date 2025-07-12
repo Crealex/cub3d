@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:15:39 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 10:51:28 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/12 18:18:36 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_minimap	*create_map(t_map *map)
 {
 	t_minimap	*mapi;
 
-	mapi = malloc(sizeof(t_minimap));
+	mapi = ft_calloc(sizeof(t_minimap), 1);
 	mapi->map = tab_dup(map->matrix);
 	return (mapi);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 14:09:43 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/12 18:18:50 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_player	*square_init(t_data *data)
 {
 	t_player	*square;
 
-	square = malloc(sizeof(t_player));
+	square = ft_calloc(sizeof(t_player), 1);
 	square->angle = data->map->player_start * M_PI / 2;
 	square->cos_a = cos(square->angle);
 	square->sin_a = sin(square->angle);

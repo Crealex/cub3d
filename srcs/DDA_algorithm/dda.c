@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/10 13:16:45 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/12 18:50:09 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ double	define_side_dist(t_dda data, char c, t_player player)
 	return (0);
 }
 
-
 static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 {
 	data->hit = 0;
@@ -79,7 +78,7 @@ static void	perform_dda(t_dda *data, t_map *map, t_hit *hit)
 static void	setup_data(t_dda *data, t_player *player)
 {
 	data->mapx = (int)(player->posx / TILE_SIZE);
-	data->mapy= (int)(player->posy / TILE_SIZE);
+	data->mapy = (int)(player->posy / TILE_SIZE);
 	data->stepx = define_step(data->ray_dirx);
 	data->stepy = define_step(data->ray_diry);
 	data->side_distx = define_side_dist(*data, 'x', *player);

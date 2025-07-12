@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:36:54 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/11 11:39:47 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/12 18:33:28 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_background	*background_init(t_data *data)
 {
 	t_background	*bg;
 
-	bg = malloc(sizeof(t_background));
+	bg = ft_calloc(sizeof(t_background), 1);
 	bg->img = mlx_new_image(data->mlx, data->winsize_x, data->winsize_y);
 	bg->addr = mlx_get_data_addr(bg->img, &bg->bpp, \
 		&bg->line_size, &bg->endian);

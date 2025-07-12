@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:45:52 by alexandre         #+#    #+#             */
-/*   Updated: 2025/07/10 20:18:00 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/12 18:56:54 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	hit_door(t_map *map, t_dda *data)
 {
-	if (map->matrix[data->mapy][data->mapx] == 'O' \
-		|| map->matrix[data->mapy][data->mapx] == 'C')
+	if (map->matrix[data->mapy][data->mapx] == 'O' ||
+		map->matrix[data->mapy][data->mapx] == 'C')
 	{
 		return (1);
 	}
@@ -29,17 +29,16 @@ void	handle_door(t_map *map, t_dda *data, t_hit *hit)
 		hit->door_hit->type = map->matrix[data->mapy][data->mapx];
 		hit->door_hit->ray_x = data->ray_dirx;
 		hit->door_hit->ray_y = data->ray_diry;
-		hit->door_hit->side = define_side_hit(data->player->angle + \
-			data->offset , data->side);
-
+		hit->door_hit->side = define_side_hit(data->player->angle
+				+ data->offset, data->side);
 		if (data->side == 0)
 			hit->door_hit->dist = (data->side_distx - data->delta_distx);
 		else
 			hit->door_hit->dist = (data->side_disty - data->delta_disty);
-		hit->door_hit->x = (data->player->posx / TILE_SIZE) + hit->door_hit->dist * \
-			data->ray_dirx;
-		hit->door_hit->y = (data->player->posy / TILE_SIZE) + hit->door_hit->dist * \
-			data->ray_diry;
+		hit->door_hit->x = (data->player->posx / TILE_SIZE)
+			+ hit->door_hit->dist * data->ray_dirx;
+		hit->door_hit->y = (data->player->posy / TILE_SIZE)
+			+ hit->door_hit->dist * data->ray_diry;
 		hit->door_hit->dist *= cos(data->offset);
 	}
 	else if (map->matrix[data->mapy][data->mapx] == 'C')
@@ -48,4 +47,3 @@ void	handle_door(t_map *map, t_dda *data, t_hit *hit)
 		data->hit = 1;
 	}
 }
-

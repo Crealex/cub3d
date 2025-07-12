@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:04:06 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/10 11:08:16 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/12 18:49:14 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ double	ft_abs(double n)
 		return (n);
 	return (n * -1.0);
 }
-
 
 int	define_step(double n)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 13:03:49 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/12 18:58:34 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_zero(int i, char **file, int no)
 
 int	check_line(char *line, char **file, int no, int first_line)
 {
-	int	i;
+	int			i;
 	static int	player = 0;
 
 	i = 0;

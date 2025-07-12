@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:42:17 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:02:25 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/12 18:58:13 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_elem(char **file)
 		else if (is_map_begin(file[i]))
 			break ;
 		else
-			return (ft_putstr_fd(RED"Error,\nFile: Bad element !\n"RESET, 2), 0);
+			return (ft_putstr_fd(RED"Error,\nFile: Bad element!\n"RESET, 2), 0);
 		if (!check_nb_elem(elem, 1))
 			return (0);
 		i++;
