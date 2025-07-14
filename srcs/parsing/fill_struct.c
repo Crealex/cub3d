@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 15:33:55 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 10:38:56 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:05:32 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ t_map	*fill_struct(char **file)
 	fill_path(map, file);
 	fill_rgb(map, file);
 	fill_matrix(map, file);
-	print_struct(map);
 	return (map);
 }

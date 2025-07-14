@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:19:00 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:02:48 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:05:48 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_map	*parsing(int argc, char **argv)
 	file = fill_file(argv[1]);
 	if (!file || !check_file(file))
 		return (clean_exit(file, NULL), NULL);
-	print_file(file);
 	map = fill_struct(file);
 	if (!map)
 		return (clean_exit(file, map), NULL);
