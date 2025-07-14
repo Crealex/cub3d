@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:34:58 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 13:29:53 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:28:19 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fill_map(char **file, char **res, int *ires, int i)
 	int	iresd;
 
 	iresd = *ires;
-	while (file[i] && file[i][0] != '\n')
+	while (file[i])
 	{
 		res[iresd] = ft_strdup(file[i]);
 		iresd++;

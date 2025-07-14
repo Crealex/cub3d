@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:36:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:02:27 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:25:10 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int	tab_size(char **file)
 	{
 		while (file[i][j] == ' ')
 			j++;
-		if (file[i][j] && file[i][j] != '\n')
-			count++;
+		count++;
 		i++;
 		j = 0;
 	}

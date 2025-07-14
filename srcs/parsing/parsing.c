@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:19:00 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 11:05:48 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:28:52 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_args(int argc, char **argv)
 	}
 	if (!try_open(argv[1]))
 	{
-		perror(RED"Error,\nInvalid path with a map!\n"RESET);
+		ft_putstr_fd(RED"Error,\nInvalid path with a map!\n"RESET, 2);
 		return (0);
 	}
 	while (argv[1][i])

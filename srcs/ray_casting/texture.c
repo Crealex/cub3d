@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/12 19:12:28 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 14:29:27 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_img	*side_init(t_data *data, char *path)
 	res = ft_calloc(sizeof(t_img), 1);
 	if (!res)
 	{
-		perror("Error allocating memory for t_img");
+		ft_putstr_fd("Error allocating memory for t_img", 2);
 		exit(EXIT_FAILURE);
 	}
 	res->path = ft_strdup(path);
@@ -37,7 +37,7 @@ t_texture	*textures_init(t_data *data)
 	tex = ft_calloc(sizeof(t_texture), 1);
 	if (!tex)
 	{
-		perror("Error allocating memory for textures");
+		ft_putstr_fd("Error allocating memory for textures", 2);
 		exit(EXIT_FAILURE);
 	}
 	tex->ea = side_init(data, data->map->ea_path);

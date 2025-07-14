@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elem_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:48:33 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/16 15:02:24 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:30:53 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	check_path_and_ext(char *file)
 	if (length < 5 || file[3] != '.' || file[4] != '/'
 		|| !try_open(path))
 	{
-		perror(RED"Error,\nInvalid texture path !\n"RESET);
+		ft_putstr_fd(RED"Error,\nInvalid texture path !\n"RESET, 2);
 		free(path);
 		return (0);
 	}
 	if (file[length - 1] != 'm' || file[length - 2] != 'p'
 		|| file[length - 3] != 'x' || file[length - 4] != '.')
 	{
-		perror(RED"Error,\nInvalid extention fromat for texture file !\n"RESET);
+		ft_putstr_fd(RED"Error,\nInvalid texture file extension!\n"RESET, 2);
 		free(path);
 		return (0);
 	}

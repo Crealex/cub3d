@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 11:41:16 by atomasi           #+#    #+#             */
-/*   Updated: 2025/06/10 11:48:26 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 14:28:13 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fill_matrix(t_map *map, char **file)
 	i = find_begin(file);
 	imap = 0;
 	map->matrix = ft_calloc(sizeof(char *), tab_size(file) + 1);
-	while (file[i])
+	while (file[i] && file[i][0] != '\n')
 	{
 		map->matrix[imap] = ft_strdup(file[i]);
 		imap++;

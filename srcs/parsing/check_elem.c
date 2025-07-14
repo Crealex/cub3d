@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:42:17 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/12 18:58:13 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 13:33:14 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ int	check_nb_elem(t_elem elem, int mode)
 	if (elem.c == 1 && elem.ea == 1 && elem.f == 1 && elem.no == 1
 		&& elem.so == 1 && elem.we == 1)
 		return (1);
+	if (elem.c < 1 || elem.ea < 1 || elem.f < 1 || elem.no < 1
+		|| elem.so < 1 || elem.we < 1)
+		return (0);
+	if (elem.c > 1 || elem.ea > 1 || elem.f > 1 || elem.no > 1
+		|| elem.so > 1 || elem.we > 1)
+		return (2);
 	return (0);
 }
 
@@ -103,5 +109,7 @@ int	check_elem(char **file)
 	}
 	if (!check_nb_elem(elem, 0))
 		return (ft_putstr_fd(RED"Error,\nFile: Missing element!\n"RESET, 2), 0);
+	if (check_nb_elem(elem, 0) == 2)
+		return (ft_putstr_fd(RED"Error,\nFile: Extra elements!\n"RESET, 2), 0);
 	return (1);
 }

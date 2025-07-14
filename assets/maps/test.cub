@@ -1,8 +1,8 @@
-NO ./assets/textures/no.xpm
-EA ./assets/textures/ea.xpm
+NO ./assets/textures/psoulie.xpm
+EA ./assets/textures/lpittet.xpm
 
-WE     ./assets/textures/we.xpm
-                                      SO                           ./assets/textures/so.xpm
+WE     ./assets/textures/atomasi.xpm
+                                      SO                           ./assets/textures/vrey.xpm
 
 
            F   102,51,0
@@ -21,6 +21,30 @@ C   150,195,212
    10000000000000000000000000000000001
    10000000000000000000000000000000001
    11111111111111111111111111111111111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
