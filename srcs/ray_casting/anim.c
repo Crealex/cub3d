@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   anim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:08:00 by alexandre         #+#    #+#             */
-/*   Updated: 2025/07/12 19:16:04 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 11:28:36 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_img	*display_anim_open(t_data *data)
 		return (data->textures->door_9);
 	else
 	{
-		data->map->matrix[data->player->sy][data->player->sx] = 'O';
 		return (data->textures->door_10);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_doors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 11:39:27 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/12 18:58:51 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 11:35:11 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int	is_valid(int i, char **file, int no)
 
 int	is_door(int i, char **file, int no)
 {
-	printf("%c\n", file[no][i]);
 	if (file[no][i] && file[no][i] != 'O' && file[no][i] != 'C')
 		return (0);
 	if (!is_valid(i, file, no))

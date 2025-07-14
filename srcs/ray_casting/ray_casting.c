@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/14 10:20:36 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:32:38 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,6 @@ void	place_wall(t_data *data, t_hit hit, int x)
 	}
 	if (hit.door_hit && (int)(hit.door_hit->x) == data->map->anim_x)
 		anim_door(data, hit, x);
+	if (data->map->timer > 90000000 && data->map->door_anim == 2)
+		data->map->matrix[data->player->sy][data->player->sx] = 'O';
 }
