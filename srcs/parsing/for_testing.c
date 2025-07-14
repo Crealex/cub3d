@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   for_testing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 10:09:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/08 23:01:05 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 10:34:07 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 #include <cub3d.h>
 
-void print_file(char **file)
+void	print_file(char **file)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	printf("*****PRINT FILE*****\n");
-	//CONTENT
 	while (file[i] && !is_map_begin(file[i]))
 	{
 		printf("%d: %s\n", i, file[i]);
 		i++;
 	}
-	//MAPS
 	while (file[i])
 	{
 		printf("%d: %s", i, file[i]);
@@ -37,7 +35,9 @@ void print_file(char **file)
 
 void	print_struct(t_map *map)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	printf("*****PRINT STRUCT*****\n");
 	printf("no_path: %s\n", map->no_path);
 	printf("so_path: %s\n", map->so_path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/14 10:11:50 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 10:27:53 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_minimap
 	void	*img;
 }				t_minimap;
 
-typedef structs_background
+typedef struct s_background
 {
 	int		bpp;
 	int		line_size;
@@ -71,7 +71,7 @@ typedef structs_background
 	float	sin_a;
 }				t_background;
 
-typedef struct	s_square
+typedef struct s_square
 {
 	int		tile;
 	int		side;
@@ -97,7 +97,7 @@ typedef struct	s_square
 	char	*addr;
 }				t_player;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void			*mlx;
 	void			*window;
@@ -112,23 +112,23 @@ typedef struct	s_data
 }				t_data;
 
 // movement
-void	player_move_forwards(t_data *data);
-void	player_move_right(t_data *data);
-void	player_move_left(t_data *data);
-void	player_move_backwards(t_data *data);
-int		loop(t_data *data);
+void			player_move_forwards(t_data *data);
+void			player_move_right(t_data *data);
+void			player_move_left(t_data *data);
+void			player_move_backwards(t_data *data);
+int				loop(t_data *data);
 
 // collision
-int	forward_collision(t_data *data, t_player *player);
-int	h_forward_collision(t_data *data, t_player *player);
-int	v_forward_collision(t_data *data, t_player *player);
+int				forward_collision(t_data *data, t_player *player);
+int				h_forward_collision(t_data *data, t_player *player);
+int				v_forward_collision(t_data *data, t_player *player);
 
 // rotation
-void	player_rotate_left(t_data *data);
-void	player_rotate_right(t_data *data);
+void			player_rotate_left(t_data *data);
+void			player_rotate_right(t_data *data);
 
 // doors
-void	check_door(t_data *data);
+void			check_door(t_data *data);
 
 // window init
 void			refresh_window(t_data *data);
@@ -136,47 +136,47 @@ t_data			*data_init(t_minimap *mapi, t_map *map);
 t_background	*background_init(t_data *data);
 
 // controls init
-void	set_hooks(t_data *data);
-int 	on_keypress(int keycode, t_data *data);
-int		on_keyrelease(int keycode, t_data *data);
+void			set_hooks(t_data *data);
+int				on_keypress(int keycode, t_data *data);
+int				on_keyrelease(int keycode, t_data *data);
 
 // map init
-void	find_player_pos(t_data *data, t_player *square, t_map *mapi);
-void	map_init(t_data *data, t_player *player, t_minimap *mapi);
-int	is_empty(char c);
+void			find_player_pos(t_data *data, t_player *square, t_map *mapi);
+void			map_init(t_data *data, t_player *player, t_minimap *mapi);
+int				is_empty(char c);
 
 // player init
-void		compute_square(t_data *data, t_player *square);
-void		clear_square(t_data *data, t_player *square);
-void		dup_square(t_data *data);
-t_player	*square_init(t_data *data);
+void			compute_square(t_data *data, t_player *square);
+void			clear_square(t_data *data, t_player *square);
+void			dup_square(t_data *data);
+t_player		*square_init(t_data *data);
 
 // ray casting
-void	show_rays(t_data *data, t_player *player);
-void	base_bg(t_data *data);
-void	place_wall(t_data *data, t_hit hit, int x);
+void			show_rays(t_data *data, t_player *player);
+void			base_bg(t_data *data);
+void			place_wall(t_data *data, t_hit hit, int x);
 
 // end
-int	proper_exit(t_data *data);
+int				proper_exit(t_data *data);
 
 // utils
-char	**tab_dup(char **tab);
-int	tab_width(char **tab);
-int	ftt_strlen(char *str);
-int	is_door_or_wall(char c);
+char			**tab_dup(char **tab);
+int				tab_width(char **tab);
+int				ftt_strlen(char *str);
+int				is_door_or_wall(char c);
 
 // DDA de alex le big boos qui est Karim
-void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit);
-double	ft_abs(double n);
-int		define_step(double n);
-char	define_side_hit(double angle, int side);
-void	fill_data(t_dda *data, t_player *player, double offset);
+void			ray_cast(t_player *player, t_map *map, double off, t_hit *hit);
+double			ft_abs(double n);
+int				define_step(double n);
+char			define_side_hit(double angle, int side);
+void			fill_data(t_dda *data, t_player *player, double offset);
 
 // handle_door DDA
-void	handle_door(t_map *map, t_dda *data, t_hit *hit);
-int		hit_door(t_map *map, t_dda *data);
+void			handle_door(t_map *map, t_dda *data, t_hit *hit);
+int				hit_door(t_map *map, t_dda *data);
 
-// texture de alex le big boos qui est Karim (inclus ici pour les erreurs de compilations)
+// texture de alex le big boos qui est Karim
 unsigned int	define_pix_texture(t_hit hit, t_data *data, t_img *tex);
 t_texture		*textures_init(t_data *data);
 t_img			*define_tex(t_hit hit, t_data *data);
@@ -186,5 +186,8 @@ t_img			*display_anim_close(t_data *data);
 void			anim_door(t_data *data, t_hit hit, int x);
 void			handle_timer(t_data *data);
 void			free_tex(t_texture *tex, t_data *data);
+void			put_pixel(t_data *data, int x, int y, unsigned int color);
+int				define_tex_x(t_hit hit, t_img *tex);
+double			find_wall_size(t_data *data, double dist);
 
 #endif

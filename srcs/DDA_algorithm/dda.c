@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:39:36 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/12 18:50:09 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 10:27:45 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ static void	setup_data(t_dda *data, t_player *player)
 	data->side_disty = define_side_dist(*data, 'y', *player);
 }
 
-void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
+void	ray_cast(t_player *player, t_map *map, double off, t_hit *hit)
 {
 	t_dda	data;
 
-	fill_data(&data, player, offset);
-	data.ray_dirx = cos(player->angle + offset);
-	data.ray_diry = sin(player->angle + offset);
+	fill_data(&data, player, off);
+	data.ray_dirx = cos(player->angle + off);
+	data.ray_diry = sin(player->angle + off);
 	if (data.ray_dirx == 0)
 		data.delta_distx = 1e30;
 	else
@@ -104,12 +104,12 @@ void	ray_cast(t_player *player, t_map *map, double offset, t_hit *hit)
 	hit->ray_y = data.ray_diry;
 	setup_data(&data, player);
 	perform_dda(&data, map, hit);
-	hit->side = define_side_hit(player->angle + offset, data.side);
+	hit->side = define_side_hit(player->angle + off, data.side);
 	if (data.side == 0)
 		hit->dist = (data.side_distx - data.delta_distx);
 	else
 		hit->dist = (data.side_disty - data.delta_disty);
 	hit->x = (player->posx / TILE_SIZE) + hit->dist * data.ray_dirx;
 	hit->y = (player->posy / TILE_SIZE) + hit->dist * data.ray_diry;
-	hit->dist *= cos(offset);
+	hit->dist *= cos(off);
 }

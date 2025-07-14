@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 19:46:13 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/12 19:17:50 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 10:20:36 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	base_bg(t_data *data)
 	}
 }
 
-static double	find_wall_size(t_data *data, double dist)
+double	find_wall_size(t_data *data, double dist)
 {
 	double	wall_size;
 
@@ -47,7 +47,7 @@ static double	find_wall_size(t_data *data, double dist)
 	return (wall_size);
 }
 
-static int	define_tex_x(t_hit hit, t_img *tex)
+int	define_tex_x(t_hit hit, t_img *tex)
 {
 	double	impact;
 	int		res;
@@ -63,7 +63,7 @@ static int	define_tex_x(t_hit hit, t_img *tex)
 	return (res);
 }
 
-static void	put_pixel(t_data *data, int x, int y, unsigned int color)
+void	put_pixel(t_data *data, int x, int y, unsigned int color)
 {
 	t_background	*bg;
 
