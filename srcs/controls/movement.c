@@ -6,7 +6,7 @@
 /*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 13:00:53 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/08 13:02:38 by psoulie          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:56:45 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ void	player_move_forwards(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	if (is_empty(data->mapi->map \
-		[(int)((player->posy + MOVE_SPD * player->sin_a) / data->tilesize)] \
+	if (is_empty(data->mapi->map
+			[(int)((player->posy + MOVE_SPD * player->sin_a) / data->tilesize)]
 		[(int)((player->posx + MOVE_SPD * player->cos_a) / data->tilesize)]))
 	{
 		player->posx += MOVE_SPD * player->cos_a;
 		player->posy += MOVE_SPD * player->sin_a;
 	}
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy) / data->tilesize)]
 		[(int)((player->posx + MOVE_SPD * player->cos_a) / data->tilesize)]))
 		player->posx += MOVE_SPD * player->cos_a;
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy + MOVE_SPD * player->sin_a) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy + MOVE_SPD * player->sin_a) / data->tilesize)]
 		[(int)((player->posx) / data->tilesize)]))
 		player->posy += MOVE_SPD * player->sin_a;
 }
@@ -57,19 +57,19 @@ void	player_move_left(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	if (is_empty(data->mapi->map \
-		[(int)((player->posy - MOVE_SPD * player->cos_a) / data->tilesize)] \
+	if (is_empty(data->mapi->map
+			[(int)((player->posy - MOVE_SPD * player->cos_a) / data->tilesize)]
 		[(int)((player->posx + MOVE_SPD * player->sin_a) / data->tilesize)]))
 	{
 		player->posx += MOVE_SPD * player->sin_a;
 		player->posy -= MOVE_SPD * player->cos_a;
 	}
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy) / data->tilesize)]
 		[(int)((player->posx + MOVE_SPD * player->sin_a) / data->tilesize)]))
 		player->posx += MOVE_SPD * player->sin_a;
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy - MOVE_SPD * player->cos_a) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy - MOVE_SPD * player->cos_a) / data->tilesize)]
 		[(int)((player->posx) / data->tilesize)]))
 		player->posy -= MOVE_SPD * player->cos_a;
 }
@@ -79,19 +79,19 @@ void	player_move_backwards(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	if (is_empty(data->mapi->map \
-		[(int)((player->posy - MOVE_SPD * player->sin_a) / data->tilesize)] \
+	if (is_empty(data->mapi->map
+			[(int)((player->posy - MOVE_SPD * player->sin_a) / data->tilesize)]
 		[(int)((player->posx - MOVE_SPD * player->cos_a) / data->tilesize)]))
 	{
 		player->posx -= MOVE_SPD * player->cos_a;
 		player->posy -= MOVE_SPD * player->sin_a;
 	}
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy) / data->tilesize)]
 		[(int)((player->posx - MOVE_SPD * player->cos_a) / data->tilesize)]))
 		player->posx -= MOVE_SPD * player->cos_a;
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy - MOVE_SPD * player->sin_a) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy - MOVE_SPD * player->sin_a) / data->tilesize)]
 		[(int)((player->posx) / data->tilesize)]))
 		player->posy -= MOVE_SPD * player->sin_a;
 }
@@ -101,19 +101,19 @@ void	player_move_right(t_data *data)
 	t_player	*player;
 
 	player = data->player;
-	if (is_empty(data->mapi->map \
-		[(int)((player->posy + MOVE_SPD * player->cos_a) / data->tilesize)] \
+	if (is_empty(data->mapi->map
+			[(int)((player->posy + MOVE_SPD * player->cos_a) / data->tilesize)]
 		[(int)((player->posx - MOVE_SPD * player->sin_a) / data->tilesize)]))
 	{
 		player->posx -= MOVE_SPD * player->sin_a;
 		player->posy += MOVE_SPD * player->cos_a;
 	}
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy) / data->tilesize)]
 		[(int)((player->posx - MOVE_SPD * player->sin_a) / data->tilesize)]))
 		player->posx -= MOVE_SPD * player->sin_a;
-	else if (is_empty(data->mapi->map \
-		[(int)((player->posy + MOVE_SPD * player->cos_a) / data->tilesize)] \
+	else if (is_empty(data->mapi->map
+			[(int)((player->posy + MOVE_SPD * player->cos_a) / data->tilesize)]
 		[(int)((player->posx) / data->tilesize)]))
 		player->posy += MOVE_SPD * player->cos_a;
 }

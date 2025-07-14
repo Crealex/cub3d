@@ -3,53 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:07:27 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/12 18:18:50 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 11:03:01 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-/* void	dup_square(t_data *data)
-{
-	t_player	*square;
-
-	square = data->player;
-	if (square->posx - square->half < square->half)
-	{
-		if (square->posx + square->half < 0)
-			square->posx += data->winsize_x;
-		else
-			mlx_put_image_to_window(data->mlx, data->window, square->img, \
-				square->posx + data->winsize_x - square->half, square->posy - square->half);
-	}
-	if (square->posx + square->half > data->winsize_x)
-	{
-		if (square->posx - square->half > data->winsize_x)
-			square->posx -= data->winsize_x;
-		else
-			mlx_put_image_to_window(data->mlx, data->window, square->img, \
-				square->posx - data->winsize_x - square->half, square->posy - square->half);
-	}
-	if (square->posy - square->half < 0)
-	{
-		if (square->posy + square->half < 0)
-			square->posy += data->winsize_y;
-		else
-			mlx_put_image_to_window(data->mlx, data->window, square->img, \
-				square->posx - square->half, square->posy + data->winsize_y - square->half);
-	}
-	if (square->posy + square->half > data->winsize_y)
-	{
-		if (square->posy - square->half > data->winsize_y)
-			square->posy -= data->winsize_y;
-		else
-			mlx_put_image_to_window(data->mlx, data->window, square->img, \
-				square->posx - square->half, square->posy - data->winsize_y - square->half);
-	}
-} */
 
 void	clear_square(t_data *data, t_player *square)
 {
@@ -64,10 +25,10 @@ void	clear_square(t_data *data, t_player *square)
 		j = 0;
 		while (j <= data->tilesize)
 		{
-			*(unsigned int *)(square->addr + (j * (square->bpp / 8)) + \
-				(i * square->line_size)) = *(unsigned int *)(mapi->addr + \
-				((int)3 * data->tilesize + j) * (mapi->bpp / 8) + \
-				((int)3 * data->tilesize + i) * mapi->line_size);
+			*(unsigned int *)(square->addr + (j * (square->bpp / 8))
+					+ (i * square->line_size)) = *(unsigned int *)(mapi->addr
+					+ ((int)3 * data->tilesize + j) * (mapi->bpp / 8)
+					+ ((int)3 * data->tilesize + i) * mapi->line_size);
 			j++;
 		}
 		i++;
@@ -89,7 +50,7 @@ void	compute_square(t_data *data, t_player *square)
 	int		rx;
 	int		ry;
 
-	square->addr = mlx_get_data_addr(square->img, &square->bpp, \
+	square->addr = mlx_get_data_addr(square->img, &square->bpp,
 			&square->line_size, &square->endian);
 	clear_square(data, square);
 	y = -square->side / 2;
