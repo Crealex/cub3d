@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psoulie <psoulie@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/14 10:27:53 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:26:45 by psoulie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # endif
 # define MOVE_SPD 1.7
 # define TURN_SPD 0.03
-# define FOV M_PI / 3
+# define FOV 1.0455
 # define MINIMAP_SIZE 7
 # define TILE_SIZE 25
 
