@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/10 14:43:21 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 10:05:50 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@
 
 typedef struct s_map
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		floor;
-	int		ceiling;
-	int		player_start;
-	int		door_anim; // 0 static, 1 need animation
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
+	int			floor;
+	int			ceiling;
+	int			player_start;
+	int			door_anim; // 0 static, 1 need animation
 	double		anim_x;
-	int		anim_y;
-	double	timer;
-	char	**matrix;
+	int			anim_y;
+	double		timer;
+	char		**matrix;
 }			t_map;
 
 typedef struct s_elem
@@ -46,7 +46,7 @@ typedef struct s_elem
 	int	c;
 }			t_elem;
 
-typedef struct s_square t_player;
+typedef struct s_square	t_player;
 
 typedef struct s_dda
 {
@@ -67,21 +67,21 @@ typedef struct s_dda
 	t_player	*player;
 }			t_dda;
 
-typedef struct s_hit t_hit;
+typedef struct s_hit	t_hit;
 
 typedef struct s_hit
 {
-	char	type;
+	char		type;
 	double		x;
 	double		y;
-	char	side;
-	double	dist;
-	double	ray_x;
-	double	ray_y;
-	int		tex_x;
-	int		i;
-	double	wall_size;
-	t_hit	*door_hit;
+	char		side;
+	double		dist;
+	double		ray_x;
+	double		ray_y;
+	int			tex_x;
+	int			i;
+	double		wall_size;
+	t_hit		*door_hit;
 }			t_hit;
 
 typedef struct s_img

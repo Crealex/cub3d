@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:30:52 by psoulie           #+#    #+#             */
-/*   Updated: 2025/07/12 19:16:15 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/14 10:11:50 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define LEFT 65361
 # define SPACE 32
 
-
 // macros
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -43,7 +42,7 @@
 # define MINIMAP_SIZE 7
 # define TILE_SIZE 25
 
-typedef struct	s_minimap
+typedef struct s_minimap
 {
 	int		len_x;
 	int		len_y;
@@ -61,7 +60,7 @@ typedef struct	s_minimap
 	void	*img;
 }				t_minimap;
 
-typedef struct	s_background
+typedef structs_background
 {
 	int		bpp;
 	int		line_size;
