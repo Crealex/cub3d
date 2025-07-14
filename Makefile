@@ -104,9 +104,9 @@ caca:
 		tput setaf $$color; \
 		echo $$color; \
 		if [ $$(( $$color % 2)) -eq 0 ]; then \
-			cat poop.txt; \
+			cat ascii_arts/poop.txt; \
 		else \
-			cat poop2.txt; \
+			cat ascii_arts/poop2.txt; \
 		fi; \
 		tput sgr0; \
 		sleep 0.3; \
@@ -116,8 +116,8 @@ caca:
 
 display_ascii:
 	@echo "$(BOLD)$(GREEN)"
-	@if [ -f ascii_art.txt ]; then \
-		cat ascii_art.txt; \
+	@if [ -f ascii_arts/ascii_art.txt ]; then \
+		cat ascii_arts/ascii_art.txt; \
 	fi
 	@echo "$(END)"
 	@echo "${BOLD}${L_PURPLE} ✨cub3d✨ ${GREEN}is ready 🎉 ${END}"
