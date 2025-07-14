@@ -6,7 +6,7 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 19:08:00 by alexandre         #+#    #+#             */
-/*   Updated: 2025/07/14 11:28:36 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:41:41 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	anim_door(t_data *data, t_hit hit, int x)
 void	handle_timer(t_data *data)
 {
 	if (data->map->door_anim == 1 || data->map->door_anim == 2)
-		data->map->timer += 1;
+		data->map->timer += 6;
 	if (data->map->timer > 100000000)
 	{
 		data->map->door_anim = 0;
