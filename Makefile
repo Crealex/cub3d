@@ -83,7 +83,7 @@ ${OBJDIR}:
 	@echo "${BOLD}${BLUE}📁 Created objects directory${END}"
 
 leaks: ${NAME}
-	valgrind --leak-check=full --log-file="leakslog.txt" --track-fds=yes ./${NAME} ./assets/maps/test.cub
+	valgrind --leak-check=full --log-file="leakslog.txt" --track-fds=yes --show-leak-kinds=all ./${NAME} ./assets/maps/test.cub
 
 clean:
 	@echo "${BOLD}${YELLOW}🧹 Cleaning objects...${END}"

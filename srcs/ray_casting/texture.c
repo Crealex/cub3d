@@ -6,13 +6,13 @@
 /*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:29:27 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/14 17:00:43 by atomasi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-t_img	*side_init(t_data *data, char *path)
+t_img	*side_init(t_data *data, char *path, t_texture *tex)
 {
 	t_img	*res;
 
@@ -25,6 +25,15 @@ t_img	*side_init(t_data *data, char *path)
 	res->path = ft_strdup(path);
 	res->img = mlx_xpm_file_to_image(data->mlx, res->path, &res->width,
 			&res->height);
+	if (res->img)
+	{
+		ft_putstr_fd(RED"Error,\nInvalid xpm file\n"RESET, 2);
+		free_tex(tex, data);
+		free(res->path);
+		mlx_destroy_image(data->mlx, res->img);
+		free(res);
+		proper_exit(data);
+	}
 	res->addr = mlx_get_data_addr(res->img, &res->bpp, &res->line_size,
 			&res->endian);
 	return (res);
@@ -40,21 +49,21 @@ t_texture	*textures_init(t_data *data)
 		ft_putstr_fd("Error allocating memory for textures", 2);
 		exit(EXIT_FAILURE);
 	}
-	tex->ea = side_init(data, data->map->ea_path);
-	tex->no = side_init(data, data->map->no_path);
-	tex->so = side_init(data, data->map->so_path);
-	tex->we = side_init(data, data->map->we_path);
-	tex->door = side_init(data, "./assets/textures/door.xpm");
-	tex->door_1 = side_init(data, "./assets/textures/door_1.xpm");
-	tex->door_2 = side_init(data, "./assets/textures/door_2.xpm");
-	tex->door_3 = side_init(data, "./assets/textures/door_3.xpm");
-	tex->door_4 = side_init(data, "./assets/textures/door_4.xpm");
-	tex->door_5 = side_init(data, "./assets/textures/door_5.xpm");
-	tex->door_6 = side_init(data, "./assets/textures/door_6.xpm");
-	tex->door_7 = side_init(data, "./assets/textures/door_7.xpm");
-	tex->door_8 = side_init(data, "./assets/textures/door_8.xpm");
-	tex->door_9 = side_init(data, "./assets/textures/door_9.xpm");
-	tex->door_10 = side_init(data, "./assets/textures/door_10.xpm");
+	tex->ea = side_init(data, data->map->ea_path, tex);
+	tex->no = side_init(data, data->map->no_path, tex);
+	tex->so = side_init(data, data->map->so_path, tex);
+	tex->we = side_init(data, data->map->we_path, tex);
+	tex->door = side_init(data, "./assets/textures/door.xpm", tex);
+	tex->door_1 = side_init(data, "./assets/textures/door_1.xpm", tex);
+	tex->door_2 = side_init(data, "./assets/textures/door_2.xpm", tex);
+	tex->door_3 = side_init(data, "./assets/textures/door_3.xpm", tex);
+	tex->door_4 = side_init(data, "./assets/textures/door_4.xpm", tex);
+	tex->door_5 = side_init(data, "./assets/textures/door_5.xpm", tex);
+	tex->door_6 = side_init(data, "./assets/textures/door_6.xpm", tex);
+	tex->door_7 = side_init(data, "./assets/textures/door_7.xpm", tex);
+	tex->door_8 = side_init(data, "./assets/textures/door_8.xpm", tex);
+	tex->door_9 = side_init(data, "./assets/textures/door_9.xpm", tex);
+	tex->door_10 = side_init(data, "./assets/textures/door_10.xpm", tex);
 	return (tex);
 }
 
