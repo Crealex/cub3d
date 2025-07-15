@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:34:58 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:28:19 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/15 10:27:53 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@ void	fill_map(char **file, char **res, int *ires, int i)
 	int	iresd;
 
 	iresd = *ires;
-	while (file[i])
+	while (file[i] && file[i][0] != '\n')
 	{
 		res[iresd] = ft_strdup(file[i]);
 		iresd++;
 		i++;
+	}
+	if (*ires == iresd)
+	{
+		ft_putstr_fd(RED"Error,\nMissing map!\n"RESET, 2);
+		free_double_tab(file);
+		free_double_tab(res);
+		exit(EXIT_FAILURE);
 	}
 	res[iresd] = NULL;
 	*ires = iresd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 17:00:43 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/15 10:20:46 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_img	*side_init(t_data *data, char *path, t_texture *tex)
 	res->path = ft_strdup(path);
 	res->img = mlx_xpm_file_to_image(data->mlx, res->path, &res->width,
 			&res->height);
-	if (res->img)
+	if (!res->img)
 	{
 		ft_putstr_fd(RED"Error,\nInvalid xpm file\n"RESET, 2);
 		free_tex(tex, data);
