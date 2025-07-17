@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_elem_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:48:33 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:30:53 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/17 15:37:40 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_path_and_ext(char *file)
 	if (length < 5 || file[3] != '.' || file[4] != '/'
 		|| !try_open(path))
 	{
-		ft_putstr_fd(RED"Error,\nInvalid texture path !\n"RESET, 2);
+		ft_putstr_fd(RED"Error,\nCannot open xpm file!\n"RESET, 2);
 		free(path);
 		return (0);
 	}

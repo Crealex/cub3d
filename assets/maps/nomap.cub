@@ -1,8 +1,15 @@
-NO ./assets/textures/no.xpm
-SO ./assets/textures/so.xpm
-WE ./assets/textures/we.xpm
-EA ./assets/textures/ea.xpm
-F 220,10,8
-C 225,30,0
+NO ./assets/textures/novalid.xpm
+WE ./assets/textures/psoulie.xpm
+SO ./assets/textures/vrey.xpm
+EA ./assets/textures/atomasi.xpm
 
-1111111111111
+C 234,111,125
+F 111,122,123
+
+ 111111
+110E0001
+11111C11
+10000001
+111O1111
+11101
+   1

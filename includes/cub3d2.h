@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 14:25:09 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 10:05:50 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/17 14:43:01 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int		is_map_begin(char *line);
 int		find_begin(char **file);
 int		tab_size(char **file);
 int		len_wspace(char *str);
-int		is_dir(char c);
+int		is_dir(char c, int i, char **file, int no);
 int		is_door(int i, char **file, int no);
 int		try_open(char *path);
 void	init_map(t_map *map);
@@ -146,5 +146,6 @@ void	fill_matrix(t_map *map, char **file);
 // *** TESTING FCT ***
 void	print_struct(t_map *map);
 void	print_file(char **file);
+int		check_zero(int i, char **file, int no);
 
 #endif

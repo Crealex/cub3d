@@ -38,7 +38,7 @@ SRCS = $(addprefix srcs/,	main.c \
 							$(RC)anim.c \
 							)
 OBJS	=	${SRCS:%.c=${OBJDIR}/%.o}
-CFLAGS = -Wextra -Wall -g -Iincludes
+CFLAGS = -Wextra -Wall -Werror -Iincludes
 CC = gcc
 OBJDIR = objets
 

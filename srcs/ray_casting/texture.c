@@ -6,7 +6,7 @@
 /*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:25:19 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/15 10:20:46 by alexandre        ###   ########.fr       */
+/*   Updated: 2025/07/17 14:57:23 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_img	*side_init(t_data *data, char *path, t_texture *tex)
 		ft_putstr_fd(RED"Error,\nInvalid xpm file\n"RESET, 2);
 		free_tex(tex, data);
 		free(res->path);
-		mlx_destroy_image(data->mlx, res->img);
+		if (res->img)
+			mlx_destroy_image(data->mlx, res->img);
 		free(res);
 		proper_exit(data);
 	}

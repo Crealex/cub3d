@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 14:07:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:04:52 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/17 14:59:36 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int	check_line(char *line, char **file, int no, int first_line)
 			if (!check_zero(i, file, no) || no == first_line)
 				return (ft_putstr_fd(RED"Error,\nMissing wall!\n"RESET, 2), 0);
 		}
-		else if (is_dir(line[i]))
+		else if (is_dir(line[i], i, file, no))
 			player++;
-		if (player > 1 || (!is_dir(line[i]) && line[i] != '0' && line[i] != '1'
+		if (player > 1 || (!is_dir(line[i], i, file, no)
+				&& line[i] != '0' && line[i] != '1'
 				&& line[i] != ' ' && line[i] != '\n' && !is_door(i, file, no)))
 			return (print_error(i, file, no, player), 0);
 		i++;

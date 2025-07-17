@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atomasi <atomasi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alexandre <alexandre@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:36:32 by atomasi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:25:10 by atomasi          ###   ########.fr       */
+/*   Updated: 2025/07/17 14:45:47 by alexandre        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,18 @@ int	len_wspace(char *str)
 	return (count);
 }
 
-int	is_dir(char c)
+int	is_dir(char c, int i, char **file, int no)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		if (!check_zero(i, file, no))
+		{
+			ft_putstr_fd(RED"Error,\nBad player position\n"RESET, 2);
+			free_double_tab(file);
+			exit(1);
+		}
 		return (1);
+	}
 	return (0);
 }
 
